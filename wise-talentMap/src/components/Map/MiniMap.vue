@@ -146,15 +146,3 @@ onMounted(() => {
 
 });
 </script>
-
-<style scoped>
-#mini-map {
-  width: 300px;
-  /* Ajusta el ancho del mini mapa */
-  height: 300px;
-  /* Ajusta la altura del mini mapa */
-  border: 4px solid black;
-  /* Opcional: añade borde al mini mapa */
-  overflow: hidden
-}
-</style>

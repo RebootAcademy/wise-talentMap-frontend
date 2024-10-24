@@ -1,13 +1,7 @@
 <template>
-    <div style="background-color: white; position: relative">
-        <div id="map" class="w-full h-[600px] border-2 border-black"></div>
-        <MiniMap :center="[28.50291, -15.88168]" :zoom="0" style="
-            height: 250px;
-            width: 250px;
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-        " />
+    <div style="background-color: white;">
+        <div id="map"></div>
+        <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" />
         <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
             style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
 
@@ -27,7 +21,6 @@ import "leaflet.markercluster";
 import { onMounted, ref } from "vue";
 const showList = ref(false);
 const showCard = ref(false);
-const clusterMarkers = ref([]);
 const listData = ref([]);
 const target = ref({})
 
@@ -111,14 +104,13 @@ onMounted(() => {
         zoom: 8.4,
         maxZoom: 13,
         minZoom: 2,
-        scrollWheelZoom: true,
+        scrollWheelZoom: false,
         maxBounds: [
             [-85, -180], // Coordenadas suroeste (límite inferior izquierdo)
             [85, 180]    // Coordenadas noreste (límite superior derecho)
         ],
         maxBoundsViscosity: 1.0,
-
-    });
+    })
 
     const mtLayer = new L.MaptilerLayer({
         apiKey: "CNX23CDiEaOjDZ7zvUIS",
@@ -215,59 +207,16 @@ onMounted(() => {
 
 <style scoped>
 #map {
+    width: 100%;
+    height: 600px;
     border: 2px solid black;
 }
 
-/* Cambiar el color de fondo de los clusters */
-.marker-cluster {
-    background-color: rgba(255, 0, 0, 0.6);
-    /* Cambia a rojo, por ejemplo */
-    border-radius: 20px;
-    /* Mantiene el borde redondeado */
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    /* Agrega un borde blanco */
-}
-
-/* Cambiar el estilo de los clusters pequeños */
-.marker-cluster-small {
-    background-color: rgba(0, 255, 0, 0.6);
-    /* Cambia a verde, por ejemplo */
-}
-
-/* Personalizar el texto dentro de los clusters */
-.marker-cluster div {
-    width: 30px;
-    /* Puedes ajustar el tamaño */
-    height: 30px;
-    /* Puedes ajustar el tamaño */
-    margin-left: 0;
-    /* Ajusta el margen según sea necesario */
-    margin-top: 0;
-    /* Ajusta el margen según sea necesario */
-    text-align: center;
-    /* Centra el texto */
-    border-radius: 15px;
-    /* Mantiene el borde redondeado */
-    font: 14px "Helvetica Neue", Arial, Helvetica, sans-serif;
-    /* Ajusta la fuente y tamaño */
-    color: white;
-    /* Cambia el color del texto */
-}
-
-/* Cambiar el color de fondo de los clusters pequeños */
-.marker-cluster-small div {
-    background-color: rgba(0, 0, 255, 0.6);
-    /* Cambia a azul, por ejemplo */
-}
-
-.leaflet-marker-icon {
-    color: red;
-}
-
-.custom-icon {
-    width: 32px;
-    /* Asegúrate de que el tamaño sea adecuado */
-    height: 32px;
-    /* Asegúrate de que el tamaño sea adecuado */
+.minimap {
+    width: 16rem;
+    height: 10rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 </style>
