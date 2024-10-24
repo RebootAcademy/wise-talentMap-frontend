@@ -1,6 +1,6 @@
 <template>
-    <div style="background-color: white;">
-        <div id="map"></div>
+    <div class="w-full h-full bg-blue-500 relative">
+        <div id="map" class="w-full h-full"></div>
         <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" />
         <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
             style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
@@ -206,12 +206,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-#map {
-    width: 100%;
-    height: 600px;
-    border: 2px solid black;
-}
-
 .minimap {
     width: 16rem;
     height: 10rem;
