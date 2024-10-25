@@ -9,11 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@maptiler/leaflet-maptilersdk": "^2.0.0",
+    "@primevue/themes": "^4.1.1",
     "animate.css": "^4.1.1",
     "axios": "^1.7.7",
     "googleapis": "^144.0.0",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
     "pinia": "^2.2.4",
     "primeicons": "^7.0.0",
+    "primevue": "^4.1.1",
     "vue": "^3.5.12",
     "vue-gtag": "^2.0.1",
     "vue-router": "^4.4.5"
