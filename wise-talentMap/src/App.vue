@@ -1,7 +1,5 @@
 <template>
-  <Layout>
     <RouterView />
-  </Layout>
 </template>
 
 <script setup>
@@ -12,7 +10,7 @@ const userStore = useUserStore()
 import Layout from './layouts/Layout.vue'
 
 
-onMounted(async () => {
+/* onMounted(async () => {
   await userStore.fetchUsers(); 
-})
+}) */
 </script>
