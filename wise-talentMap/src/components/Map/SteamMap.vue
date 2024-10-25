@@ -1,9 +1,6 @@
 <template>
-    <div class="w-full h-full relative">
+    <div class="w-full h-full relative !bg-green-400">
         <div id="map" class="w-full h-full"></div>
-        <Drawer v-model:visible="drawerVisible" class="!w-1/2 absolute top-40" :modal="false">
-            <p>cucu</p>
-        </Drawer>
         <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" />
         <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
             style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
@@ -13,7 +10,8 @@
 </template>
 
 <script setup>
-import { onMounted, onUpdated, ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useUserStore } from "@/stores/user"
 import * as L from "leaflet";
 import "@maptiler/leaflet-maptilersdk";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
@@ -22,11 +20,14 @@ import Drawer from "primevue/drawer";
 import MiniMap from "./MiniMap.vue";
 import ListComponent from "./ListComponent.vue";
 import Card from './Card.vue'
+
+const store = useUserStore()
+
 const showList = ref(false);
 const showCard = ref(false);
-const drawerVisible = ref(false)
 const listData = ref([]);
 const target = ref({})
+
 
 const renderIcon = () => {
     // Generar el SVG del icono
@@ -169,7 +170,7 @@ onMounted(() => {
     markers.on("clusterclick", function (event) {
         event.originalEvent.stopPropagation()
         showCard.value = false
-        drawerVisible.value = true
+        store.handleOpenDrawer()
         const childMarkers = event.layer.getAllChildMarkers();
         listData.value = childMarkers.map((marker) => {
             const person = people.find(
@@ -203,7 +204,7 @@ onMounted(() => {
                 ...person
             }
 
-            drawerVisible.value = false
+            store.handleOpenDrawer()
 
             showCard.value = true; // Mostrar la lista
         });
