@@ -168,6 +168,7 @@ onMounted(() => {
         zoomToBoundsOnClick: false
     });
     markers.on("clusterclick", function (event) {
+        console.log(event.latlng)
         event.originalEvent.stopPropagation()
         showCard.value = false
         store.handleOpenDrawer()
@@ -178,13 +179,12 @@ onMounted(() => {
                     p.location[0] === marker.getLatLng().lat &&
                     p.location[1] === marker.getLatLng().lng
             );
-
-
             return {
                 id: marker._leaflet_id, // Asignar un ID único para cada marcador
                 ...person
             };
         });
+        setTimeout(() => map.setView([event.latlng.lat, event.latlng.lng], 8.4), 500)
     });
 
     people.forEach((person) => {
@@ -204,7 +204,7 @@ onMounted(() => {
                 ...person
             }
 
-            store.handleOpenDrawer()
+            // store.handleOpenDrawer()
 
             showCard.value = true; // Mostrar la lista
         });
