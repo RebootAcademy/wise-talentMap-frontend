@@ -4,7 +4,6 @@
         <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" />
         <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
             style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
-
         <Card v-if="showCard" :person=target @close="showCard = false"
             style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
     </div>
