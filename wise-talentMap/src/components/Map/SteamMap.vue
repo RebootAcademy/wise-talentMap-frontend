@@ -101,6 +101,7 @@ const people = [
 onMounted(() => {
     const map = L.map("map", {
         center: L.latLng(28.50291, -15.88168),
+        zoomControl: false,
         zoom: 8.4,
         maxZoom: 13,
         minZoom: 2,
@@ -111,6 +112,11 @@ onMounted(() => {
         ],
         maxBoundsViscosity: 1.0,
     })
+
+    const zoomControl = L.control.zoom()
+    map.removeControl(zoomControl)
+    zoomControl.options.position = 'topright'
+    zoomControl.addTo(map)
 
     const mtLayer = new L.MaptilerLayer({
         apiKey: "CNX23CDiEaOjDZ7zvUIS",

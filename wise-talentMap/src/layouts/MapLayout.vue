@@ -5,7 +5,7 @@
       <input />
       <p>X</p>
     </div>
-    <div class="bg-red-400 h-20">hola</div>
+    <div class="bg-red-400 h-20">Filters</div>
     <RouterView />
   </div>
 </template>
