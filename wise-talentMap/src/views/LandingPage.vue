@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="w-full flex flex-col md:flex-row items-center px-12 py-12 gap-12">
+    <div class="w-full flex flex-col md:flex-row items-center px-24 py-12 gap-12">
       <!--   <Map v-if="showMap" class="w-full  animate__animated animate__slideInLeft "/>
       <p  class="absolute top-1/2  text-4xl " :class="showMap ? 'left-2 rotate-180' : ' right-2'" @click="changeShowMapStatus">></p>
       <VR v-if="!showMap" class="w-full animate__animated animate__slideInRight" /> -->
