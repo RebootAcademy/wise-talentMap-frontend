@@ -10,13 +10,12 @@
 </template>
 
 <script setup>
-import { nextTick, onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useUserStore } from "@/stores/user"
 import * as L from "leaflet";
 import "@maptiler/leaflet-maptilersdk";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet.markercluster";
-import Drawer from "primevue/drawer";
 import MiniMap from "./MiniMap.vue";
 import ListComponent from "./ListComponent.vue";
 import Card from './Card.vue'
@@ -30,16 +29,14 @@ const target = ref({})
 const map = ref(null)
 const selectedCoordinates = ref([])
 
-
 const renderIcon = () => {
-    // Generar el SVG del icono
-    const iconSvg = generateSvgIcon("purple"); // Cambia el color a violeta
+    const iconSvg = generateSvgIcon("purple");
     return L.divIcon({
-        html: iconSvg, // Usar el SVG como HTML
+        html: iconSvg,
         className: "custom-icon",
-        iconSize: [32, 32], // Tamaño del ícono
-        iconAnchor: [16, 32], // Punto de anclaje del ícono
-        popupAnchor: [0, -32], // Punto desde donde se abre el popup
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32],
     });
 };
 
@@ -67,7 +64,6 @@ function generateSvgIcon(color = "black") {
     </svg>
     `;
 }
-
 
 const people = [
     {
@@ -100,8 +96,12 @@ const people = [
         location: [28.996, -13.592],
         sectors: ["Mathematics"],
     },
-    { firstName: "Martha", lastName: "Brown", location: [40.66, 128.65], sectors: ["Mathematics"] }
-
+    {
+        firstName: "Martha",
+        lastName: "Brown",
+        location: [40.66, 128.65],
+        sectors: ["Mathematics"]
+    }
 ];
 
 onMounted(() => {
@@ -142,16 +142,6 @@ onMounted(() => {
     if (mapTilerLink) {
         mapTilerLink.remove();
     }
-
-    // Crear un grupo de marcadores
-    /* const markers = L.markerClusterGroup();  */
-
-    /* const  markers = L.markerClusterGroup({
-    spiderfyOnMaxZoom: false,
-    showCoverageOnHover: false,
-    zoomToBoundsOnClick: false
-}); 
-   */
 
     const markers = L.markerClusterGroup({
         iconCreateFunction: function (cluster) {
@@ -200,11 +190,9 @@ onMounted(() => {
             }
             showCard.value = true
         });
-
         markers.addLayer(marker)
     });
     map.value.addLayer(markers)
-
 });
 
 watch(() => store.openDrawer, (isOpen) => {
