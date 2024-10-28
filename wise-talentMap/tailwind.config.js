@@ -41,8 +41,8 @@ module.exports = {
       },
       borderRadius: {
         xs: '4px',
-        m: '8px',
-        l: '24px',
+        md: '8px',
+        lg: '24px',
       },
       fontFamily: {
         bebas: ['"Bebas Neue"', 'sans-serif'],
