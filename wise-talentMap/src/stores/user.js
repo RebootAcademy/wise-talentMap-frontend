@@ -6,6 +6,7 @@ export const useUserStore = defineStore('user', {
   // Estado
   state: () => ({
     users: [], // Almacena la lista de usuarios
+    openDrawer: false,
   }),
 
   // Getters
@@ -26,6 +27,9 @@ export const useUserStore = defineStore('user', {
         console.error('Error al obtener usuarios:', error)
       }
     },
+    handleOpenDrawer() {
+      this.openDrawer = !this.openDrawer
+    }
   },
 })
 
