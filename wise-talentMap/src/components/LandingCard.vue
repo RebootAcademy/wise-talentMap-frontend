@@ -21,7 +21,7 @@
     </p>
     <div class="flex justify-center items-center">
       <i
-        class="pi pi-play-circle text-blue-600 text-5xl hover:text-green-800"
+        class="pi pi-play-circle text-blue-600 !text-4xl hover:text-green-800 cursor-pointer"
       ></i>
     </div>
   </div>

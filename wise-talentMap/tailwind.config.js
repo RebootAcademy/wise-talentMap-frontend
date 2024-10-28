@@ -5,6 +5,7 @@ module.exports = {
     './src/**/*.{vue,js,ts,jsx,tsx}', // Asegúrate de que los archivos Vue estén incluidos
   ],
   theme: {
+    
     extend: {
       screens: {
         sm: '640px',
