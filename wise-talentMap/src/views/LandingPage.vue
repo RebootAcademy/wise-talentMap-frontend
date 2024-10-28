@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <!-- <div>
     <div class="w-full flex flex-col md:flex-row items-center px-12 py-12 gap-12">
-      <!--   <Map v-if="showMap" class="w-full  animate__animated animate__slideInLeft "/>
-      <p  class="absolute top-1/2  text-4xl " :class="showMap ? 'left-2 rotate-180' : ' right-2'" @click="changeShowMapStatus">></p>
-      <VR v-if="!showMap" class="w-full animate__animated animate__slideInRight" /> -->
       <LandingCard class="w-full md:w-1/2 animate__animated animate__slideInLeft"/>
       <LandingCard class="w-full md:w-1/2 animate__animated animate__slideInLeft"/>
     </div>
     <Banner />
+  </div> -->
+  <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4 px-2 md:px-8 my-8">
+    <LandingCard class="col-span-4 sm:col-span-2 md:col-span-3 lg:col-span-6 animate__animated animate__slideInLeft"/>
+    <LandingCard class="col-span-4 sm:col-span-2 md:col-span-3 lg:col-span-6 animate__animated animate__slideInLeft"/>
+    <p @click="handleAnimation">Click</p>
   </div>
+
 </template>
 
 <script setup>
@@ -34,6 +37,9 @@ const showMap = ref(false)
     value: 1 // Puedes cambiar este valor según tu lógica
   });
 } */
+
+
+
 
 
 </script>
