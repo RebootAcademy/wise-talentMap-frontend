@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full bg-blue-500 relative">
+    <div class="w-full h-full relative !bg-green-400">
         <div id="map" class="w-full h-full"></div>
         <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" />
         <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
@@ -10,29 +10,33 @@
 </template>
 
 <script setup>
-import MiniMap from "./MiniMap.vue";
-import ListComponent from "./ListComponent.vue";
-import Card from './Card.vue'
+import { onMounted, ref, watch } from "vue";
+import { useUserStore } from "@/stores/user"
 import * as L from "leaflet";
 import "@maptiler/leaflet-maptilersdk";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet.markercluster";
-import { onMounted, ref } from "vue";
+import MiniMap from "./MiniMap.vue";
+import ListComponent from "./ListComponent.vue";
+import Card from './Card.vue'
+
+const store = useUserStore()
+
 const showList = ref(false);
 const showCard = ref(false);
 const listData = ref([]);
 const target = ref({})
+const map = ref(null)
+const selectedCoordinates = ref([])
 
 const renderIcon = () => {
-    // Generar el SVG del icono
-    const iconSvg = generateSvgIcon("purple"); // Cambia el color a violeta
-    console.log(iconSvg);
+    const iconSvg = generateSvgIcon("purple");
     return L.divIcon({
-        html: iconSvg, // Usar el SVG como HTML
+        html: iconSvg,
         className: "custom-icon",
-        iconSize: [32, 32], // Tamaño del ícono
-        iconAnchor: [16, 32], // Punto de anclaje del ícono
-        popupAnchor: [0, -32], // Punto desde donde se abre el popup
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32],
     });
 };
 
@@ -60,7 +64,6 @@ function generateSvgIcon(color = "black") {
     </svg>
     `;
 }
-
 
 const people = [
     {
@@ -93,12 +96,16 @@ const people = [
         location: [28.996, -13.592],
         sectors: ["Mathematics"],
     },
-    { firstName: "Martha", lastName: "Brown", location: [40.66, 128.65], sectors: ["Mathematics"] }
-
+    {
+        firstName: "Martha",
+        lastName: "Brown",
+        location: [40.66, 128.65],
+        sectors: ["Mathematics"]
+    }
 ];
 
 onMounted(() => {
-    const map = L.map("map", {
+    map.value = L.map("map", {
         center: L.latLng(28.50291, -15.88168),
         zoomControl: false,
         zoom: 8.4,
@@ -106,23 +113,23 @@ onMounted(() => {
         minZoom: 2,
         scrollWheelZoom: false,
         maxBounds: [
-            [-85, -180], // Coordenadas suroeste (límite inferior izquierdo)
-            [85, 180]    // Coordenadas noreste (límite superior derecho)
+            [-85, -180],
+            [85, 180]
         ],
         maxBoundsViscosity: 1.0,
     })
 
     const zoomControl = L.control.zoom()
-    map.removeControl(zoomControl)
+    map.value.removeControl(zoomControl)
     zoomControl.options.position = 'topright'
-    zoomControl.addTo(map)
+    zoomControl.addTo(map.value)
 
     const mtLayer = new L.MaptilerLayer({
         apiKey: "CNX23CDiEaOjDZ7zvUIS",
         style:
             "https://api.maptiler.com/maps/9acac1d3-e6e0-404c-8213-7da3ad245870/style.json",
         noWrap: true,
-    }).addTo(map);
+    }).addTo(map.value);
 
     let mapTile = document.querySelector(".leaflet-control-container");
     let mapTilerLink = document.querySelector(
@@ -135,16 +142,6 @@ onMounted(() => {
     if (mapTilerLink) {
         mapTilerLink.remove();
     }
-
-    // Crear un grupo de marcadores
-    /* const markers = L.markerClusterGroup();  */
-
-    /* const  markers = L.markerClusterGroup({
-    spiderfyOnMaxZoom: false,
-    showCoverageOnHover: false,
-    zoomToBoundsOnClick: false
-}); 
-   */
 
     const markers = L.markerClusterGroup({
         iconCreateFunction: function (cluster) {
@@ -163,9 +160,11 @@ onMounted(() => {
         zoomToBoundsOnClick: false
     });
     markers.on("clusterclick", function (event) {
+        console.log(event)
         event.originalEvent.stopPropagation()
         showCard.value = false
-        showList.value = true
+        store.handleOpenDrawer()
+        selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
         const childMarkers = event.layer.getAllChildMarkers();
         listData.value = childMarkers.map((marker) => {
             const person = people.find(
@@ -173,41 +172,38 @@ onMounted(() => {
                     p.location[0] === marker.getLatLng().lat &&
                     p.location[1] === marker.getLatLng().lng
             );
-
-
             return {
-                id: marker._leaflet_id, // Asignar un ID único para cada marcador
+                id: marker._leaflet_id,
                 ...person
             };
         });
     });
 
     people.forEach((person) => {
-        const customIcon = renderIcon(); // Usar la función para generar el ícono
+        const customIcon = renderIcon();
         const marker = L.marker(person.location, { icon: customIcon });
-        /* const popupContent = `
-        <strong>${person.firstName} ${person.lastName}</strong><br>
-        Sector: ${person.sectors.join(", ")}
-        `; */
-
-        //marker.bindPopup(popupContent);
-        // Agregar un evento de clic al marcador para mostrar la lista
         marker.on("click", () => {
             target.value =
             {
                 id: marker._leaflet_id,
                 ...person
             }
-
-            showList.value = false
-
-            showCard.value = true; // Mostrar la lista
+            showCard.value = true
         });
-
-        markers.addLayer(marker);
+        markers.addLayer(marker)
     });
-    map.addLayer(markers);
+    map.value.addLayer(markers)
 });
+
+watch(() => store.openDrawer, (isOpen) => {
+    if (isOpen && map.value) {
+        map.value.invalidateSize()
+        map.value.setView(selectedCoordinates.value, 8.5)
+    } else {
+        map.value.invalidateSize()
+        map.value.setView(selectedCoordinates.value, 7.5)
+    }
+})
 </script>
 
 <style scoped>
