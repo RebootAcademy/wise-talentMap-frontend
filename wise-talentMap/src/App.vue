@@ -10,6 +10,7 @@ const userStore = useUserStore()
 import Layout from './layouts/Layout.vue'
 
 
+
 onMounted(async () => {
   await userStore.fetchUsers();
 })

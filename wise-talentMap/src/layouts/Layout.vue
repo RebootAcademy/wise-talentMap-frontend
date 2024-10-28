@@ -1,9 +1,7 @@
 <template>
-  <div class="flex flex-col w-full min-h-screen ">
+  <div class="flex flex-col w-full min-h-screen bg-secondary-white text-anthraciteGray">
     <Header />
-    <main >
-        <slot />
-    </main>
+    <RouterView/>
   </div>
 </template>
 
