@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import { useUserStore } from "@/stores/user"
 import * as L from "leaflet";
 import "@maptiler/leaflet-maptilersdk";
@@ -27,6 +27,8 @@ const showList = ref(false);
 const showCard = ref(false);
 const listData = ref([]);
 const target = ref({})
+const map = ref(null)
+const selectedCoordinates = ref([])
 
 
 const renderIcon = () => {
@@ -103,7 +105,7 @@ const people = [
 ];
 
 onMounted(() => {
-    const map = L.map("map", {
+    map.value = L.map("map", {
         center: L.latLng(28.50291, -15.88168),
         zoomControl: false,
         zoom: 8.4,
@@ -111,23 +113,23 @@ onMounted(() => {
         minZoom: 2,
         scrollWheelZoom: false,
         maxBounds: [
-            [-85, -180], // Coordenadas suroeste (límite inferior izquierdo)
-            [85, 180]    // Coordenadas noreste (límite superior derecho)
+            [-85, -180],
+            [85, 180]
         ],
         maxBoundsViscosity: 1.0,
     })
 
     const zoomControl = L.control.zoom()
-    map.removeControl(zoomControl)
+    map.value.removeControl(zoomControl)
     zoomControl.options.position = 'topright'
-    zoomControl.addTo(map)
+    zoomControl.addTo(map.value)
 
     const mtLayer = new L.MaptilerLayer({
         apiKey: "CNX23CDiEaOjDZ7zvUIS",
         style:
             "https://api.maptiler.com/maps/9acac1d3-e6e0-404c-8213-7da3ad245870/style.json",
         noWrap: true,
-    }).addTo(map);
+    }).addTo(map.value);
 
     let mapTile = document.querySelector(".leaflet-control-container");
     let mapTilerLink = document.querySelector(
@@ -168,10 +170,11 @@ onMounted(() => {
         zoomToBoundsOnClick: false
     });
     markers.on("clusterclick", function (event) {
-        console.log(event.latlng)
+        console.log(event)
         event.originalEvent.stopPropagation()
         showCard.value = false
         store.handleOpenDrawer()
+        selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
         const childMarkers = event.layer.getAllChildMarkers();
         listData.value = childMarkers.map((marker) => {
             const person = people.find(
@@ -180,39 +183,39 @@ onMounted(() => {
                     p.location[1] === marker.getLatLng().lng
             );
             return {
-                id: marker._leaflet_id, // Asignar un ID único para cada marcador
+                id: marker._leaflet_id,
                 ...person
             };
         });
-        setTimeout(() => map.setView([event.latlng.lat, event.latlng.lng], 8.4), 500)
     });
 
     people.forEach((person) => {
-        const customIcon = renderIcon(); // Usar la función para generar el ícono
+        const customIcon = renderIcon();
         const marker = L.marker(person.location, { icon: customIcon });
-        /* const popupContent = `
-        <strong>${person.firstName} ${person.lastName}</strong><br>
-        Sector: ${person.sectors.join(", ")}
-        `; */
-
-        //marker.bindPopup(popupContent);
-        // Agregar un evento de clic al marcador para mostrar la lista
         marker.on("click", () => {
             target.value =
             {
                 id: marker._leaflet_id,
                 ...person
             }
-
-            // store.handleOpenDrawer()
-
-            showCard.value = true; // Mostrar la lista
+            showCard.value = true
         });
 
-        markers.addLayer(marker);
+        markers.addLayer(marker)
     });
-    map.addLayer(markers);
+    map.value.addLayer(markers)
+
 });
+
+watch(() => store.openDrawer, (isOpen) => {
+    if (isOpen && map.value) {
+        map.value.invalidateSize()
+        map.value.setView(selectedCoordinates.value, 8.5)
+    } else {
+        map.value.invalidateSize()
+        map.value.setView(selectedCoordinates.value, 7.5)
+    }
+})
 </script>
 
 <style scoped>
