@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen">
+  <div class="h-screen w-full">
     <div class="bg-blue-400 h-20 flex justify-between">
       <p>LOGO</p>
       <input />

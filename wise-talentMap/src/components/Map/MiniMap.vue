@@ -44,27 +44,17 @@ function getCustomMarker(sectors) {
 
 function generateSvgIcon(color = "black") {
   return `
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    version="1.1"
-    width="16" height="48" viewBox="0 0 256 256"
-    xml:space="preserve"
-  >
-    <defs></defs>
-    <g
-      style="fill: none; fill-rule: nonzero; opacity: 1;"
-      transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"
-    >
-      <path
-        d="M 45 0 C 25.463 0 9.625 15.838 9.625 35.375 c 0 8.722 3.171 16.693 8.404 22.861 L 45 90 l 26.97 -31.765 c 5.233 -6.167 8.404 -14.139 8.404 -22.861 C 80.375 15.838 64.537 0 45 0 z M 45 48.705 c -8.035 0 -14.548 -6.513 -14.548 -14.548 c 0 -8.035 6.513 -14.548 14.548 -14.548 s 14.548 6.513 14.548 14.548 C 59.548 42.192 53.035 48.705 45 48.705 z"
-        style="fill: ${color}; stroke: none;"
-        transform="matrix(1 0 0 1 0 0)"
-        stroke-linecap="round"
-      />
-    </g>
-  </svg>
-`;
+    <svg width="15" height="35" viewBox="0 0 175 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M174.951 139.447C171.931 144.791 168.398 149.807 164.423 154.431L164.5 154.5L93 232L22.5 154.5L22.5762 154.43C8.50488 138.065 0 116.775 0 93.5C0 41.8613 41.8613 0 93.5 0C127.003 0 156.39 17.6211 172.899 44.1006L131.416 61.6768C122.336 50.8691 108.72 44 93.5 44C66.1621 44 44 66.1621 44 93.5C44 120.838 66.1621 143 93.5 143C110.219 143 125.001 134.711 133.963 122.02L174.951 139.447Z" fill="url(#paint0_linear_82_92)"/>
+        <defs>
+            <linearGradient id="paint0_linear_82_92" x1="4.50001" y1="241" x2="173.852" y2="7.12159" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FC00FF"/>
+                <stop offset="0.39" stop-color="#881BF5"/>
+                <stop offset="1" stop-color="#17E4CE"/>
+            </linearGradient>
+        </defs>
+    </svg>
+`
 }
 
 onMounted(() => {
