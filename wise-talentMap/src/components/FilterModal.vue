@@ -23,8 +23,8 @@
                 {{ island }}
               </CustomButton>
             </div>
-            <Select v-model="selectedMunicipality" :options="municipalities" class="w-56 text-sm"
-              placeholder="Selecciona un municipio" />
+            <!-- <Select v-model="selectedMunicipality" :options="municipalities" class="w-56 text-sm"
+              placeholder="Selecciona un municipio" /> -->
           </section>
           <hr>
           <section class="flex flex-col gap-6">
@@ -44,13 +44,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import Dialog from 'primevue/dialog';
 import Select from 'primevue/select'
 import Icon from './Icon.vue';
 import CustomButton from './CustomButton.vue';
 import { useUserStore } from '@/stores/user';
 import SteamFilterButtons from './SteamFilterButtons.vue';
+import { getOutsiders } from '@/services/location.services';
 
 const props = defineProps({
   handleVisibility: {
@@ -65,7 +66,8 @@ const props = defineProps({
 
 const store = useUserStore()
 const islands = ['Gran Canaria', 'Fuerteventura', 'Lanzarote', 'Tenerife', 'La Gomera', 'La Palma', 'El Hierro']
-const municipalities = [
+
+/* const municipalities = [
   'Agaete', 'Agüimes', 'Alajeró', 'Antigua', 'Arafo', 'Arico', 'Arona', 'Arrecife',
   'Artenara', 'Arucas', 'Barlovento', 'Betancuria', 'Breña Alta', 'Breña Baja', 'Buenavista del Norte',
   'Candelaria', 'El Paso', 'El Pinar de El Hierro', 'El Rosario', 'El Sauzal', 'El Tanque',
@@ -80,15 +82,18 @@ const municipalities = [
   'Tacoronte', 'Tegueste', 'Teguise', 'Tejeda', 'Telde', 'Teror', 'Tijarafe', 'Tinajo',
   'Tuineje', 'Valle Gran Rey', 'Vallehermoso', 'Valleseco', 'Valsequillo de Gran Canaria', 'Valverde',
   'Vega de San Mateo', 'Vilaflor de Chasna', 'Villa de Mazo', 'Yaiza'
-]
-const countries = [
-  'España',
-  'Alemania',
-  'Japón'
-]
+] */
 
 const selectedMunicipality = ref('')
 const selectedCountry = ref('')
+const countries = ref([])
+
+onMounted(async () => {
+  const locationsResponse = await getOutsiders()
+  countries.value = locationsResponse
+    .map(location => location.country) // Formats to name only
+    .filter((location, index, self) => self.indexOf(location) === index) // Delete duplicates
+})
 
 const checkSelections = (type, option) => {
   if (type === 'country') {

@@ -100,7 +100,6 @@ function generateSvgIcon(color = 'black') {
 
 onMounted(async () => {
   people.value = await getUsers()
-  console.log(people.value)
   if (window.innerWidth < 500) {
     initialZoom.value = 6.4
   } else if (window.innerWidth < 765 || window.innerHeight < 500) {
