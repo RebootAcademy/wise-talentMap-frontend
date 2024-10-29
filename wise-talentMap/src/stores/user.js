@@ -7,6 +7,28 @@ export const useUserStore = defineStore('user', {
   state: () => ({
     users: [], // Almacena la lista de usuarios
     openDrawer: false,
+    steam: [
+      {
+        name: 'Science',
+        icon: 'science'
+      },
+      {
+        name: 'Technology',
+        icon: 'laptop'
+      },
+      {
+        name: 'Engineer',
+        icon: 'cog'
+      },
+      {
+        name: 'Art',
+        icon: 'paintbrush'
+      },
+      {
+        name: 'Math',
+        icon: 'functionMath'
+      }
+    ]
   }),
 
   // Getters

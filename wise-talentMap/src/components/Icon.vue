@@ -21,6 +21,7 @@ const props = defineProps({
 
 const allowedIcons = {
   cog: 'pi-cog',
+  closeCircle: 'pi-times-circle',
   filterSlash: 'pi-filter-slash',
   functionMath: FunctionMath,
   laptop: Laptop,

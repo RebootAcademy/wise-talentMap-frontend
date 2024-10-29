@@ -11,8 +11,8 @@
       <CustomInput icon="pi-search" placeholder="Buscar" :class="`${searchFocus ? 'w-full' : 'w-20'} h-8`"
         v-model="searchParam" :onFocus="onFocus" :onBlur="onBlur" />
       <div class="flex gap-7 items-center">
-        <Button v-for="(option, idx) in steam" :key="idx"
-          class="flex gap-2 items-center border border-mediumGray rounded-[16px]">
+        <Button v-for="(option, idx) in store.steam" :key="idx"
+          class="flex gap-2 items-center border border-mediumGray rounded-2xl">
           <Icon :icon="option.icon" />
           <span>{{ option.name }}</span>
         </Button>
@@ -22,39 +22,21 @@
       </Button>
     </div>
     <RouterView />
+    <FilterModal />
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import Button from '@/components/CustomButton.vue'
 import CustomInput from '@/components/CustomInput.vue';
+import FilterModal from '@/components/FilterModal.vue';
 import Icon from '@/components/Icon.vue';
-import { ref } from 'vue';
+import { useUserStore } from '@/stores/user';
 
+const store = useUserStore()
 const searchParam = ref('')
 const searchFocus = ref(false)
-const steam = [
-  {
-    name: 'Science',
-    icon: 'science'
-  },
-  {
-    name: 'Technology',
-    icon: 'laptop'
-  },
-  {
-    name: 'Engineer',
-    icon: 'cog'
-  },
-  {
-    name: 'Art',
-    icon: 'paintbrush'
-  },
-  {
-    name: 'Math',
-    icon: 'functionMath'
-  }
-]
 
 const onFocus = () => searchFocus.value = true
 const onBlur = () => searchFocus.value = false
