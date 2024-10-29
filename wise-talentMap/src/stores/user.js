@@ -35,8 +35,8 @@ export const useUserStore = defineStore('user', {
       }
     ],
     steamFilter: [],
-    islandFilter: [],
-    countryFilter: []
+    islandFilter: '',
+    countryFilter: ''
   }),
 
   // Getters

@@ -33,7 +33,7 @@
           <hr>
         </div>
         <footer class="font-bebas flex justify-between px-6 pb-6">
-          <CustomButton>QUITAR FILTROS</CustomButton>
+          <CustomButton :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
           <CustomButton class="border border-mediumGray rounded-md bg-softGray">ENTORNO VIRTUAL</CustomButton>
         </footer>
       </div>
@@ -94,6 +94,12 @@ const checkSelections = (type, option) => {
   } else {
     console.log('island')
   }
+}
+
+const clearFilters = () => {
+  store.steamFilter = []
+  store.countryFilter = ''
+  store.islandFilter = ''
 }
 
 
