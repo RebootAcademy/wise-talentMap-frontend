@@ -6,8 +6,10 @@
       <Button :clickFn="() => console.log('lolo')" class="h-11 text-2xl bg-softGray">ENTORNO VIRTUAL</Button>
     </div>
     <!-- Filters bar -->
-    <div class="bg-white h-20 text-black flex justify-between items-center py-2.5 px-8">
-      <CustomInput icon="pi-search" placeholder="Buscar" class="w-20 h-8" v-model="searchParam" />
+    <div
+      :class="`bg-white h-20 text-black flex ${searchFocus ? 'gap-7' : 'justify-between '} items-center py-2.5 px-8`">
+      <CustomInput icon="pi-search" placeholder="Buscar" :class="`${searchFocus ? 'w-full' : 'w-20'} h-8`"
+        v-model="searchParam" :onFocus="onFocus" :onBlur="onBlur" />
       <div class="flex gap-7 items-center">
         <Button v-for="(option, idx) in steam" :key="idx"
           class="flex gap-2 items-center border border-mediumGray rounded-[16px]">
@@ -30,6 +32,7 @@ import Icon from '@/components/Icon.vue';
 import { ref } from 'vue';
 
 const searchParam = ref('')
+const searchFocus = ref(false)
 const steam = [
   {
     name: 'Science',
@@ -52,4 +55,8 @@ const steam = [
     icon: 'functionMath'
   }
 ]
+
+const onFocus = () => searchFocus.value = true
+const onBlur = () => searchFocus.value = false
+
 </script>

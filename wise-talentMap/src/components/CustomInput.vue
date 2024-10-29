@@ -1,7 +1,8 @@
 <template>
   <div class="border rounded-md w-36 h-12 flex items-center gap-2.5 py-2 px-4">
     <Icon icon="search" />
-    <input v-model="textParameter" class="bg-white w-full" :placeholder="placeholder" @input="updateValue" />
+    <input v-model="textParameter" class="bg-white w-full" :placeholder="placeholder" @input="updateValue"
+      @focus="onFocus" @blur="onBlur" />
   </div>
 </template>
 
@@ -17,6 +18,14 @@ defineProps({
   placeholder: {
     type: String,
     default: () => ''
+  },
+  onFocus: {
+    type: Function,
+    default: () => () => { }
+  },
+  onBlur: {
+    type: Function,
+    default: () => () => { }
   }
 })
 
