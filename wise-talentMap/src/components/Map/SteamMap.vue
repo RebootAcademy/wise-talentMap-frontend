@@ -43,9 +43,7 @@ const filteredPeople = computed(() => {
         return store.steamFilter.some(filter => personSteams.includes(filter)) ||
           store.countryFilter.includes(person.location.country)
       })
-
     )
-
   }
 })
 
