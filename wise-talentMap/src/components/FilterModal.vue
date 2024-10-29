@@ -28,7 +28,7 @@
           <section class="flex flex-col gap-6">
             <p class="font-bebas text-xl">PAIS DE RESIDENCIA</p>
             <Select v-model="selectedCountry" :options="countries" class="!bg-white w-56 text-sm"
-              placeholder="Selecciona un país" />
+              placeholder="Selecciona un país" @change="(e) => checkSelections('country', e.value)" />
           </section>
           <hr>
         </div>
@@ -86,7 +86,20 @@ const countries = [
 ]
 
 const selectedMunicipality = ref('')
-const selectedCountry = ref('')
+const selectedCountry = ref(store.countryFilter)
+
+const checkSelections = (type, option) => {
+  if (type === 'country') {
+    if (store.countryFilter.includes(option)) {
+      const index = store.countryFilter.indexOf(option)
+      store.countryFilter.splice(index, 1)
+    } else {
+      store.countryFilter.push(option)
+    }
+  } else {
+    console.log('island')
+  }
+}
 
 
 </script>

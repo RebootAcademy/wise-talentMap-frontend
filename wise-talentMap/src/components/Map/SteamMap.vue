@@ -35,13 +35,17 @@ const people = ref([])
 const markers = ref(null)
 
 const filteredPeople = computed(() => {
-  if (store.steamFilter.length) {
-    return people.value.filter(person => {
-      const personSteams = person.steam.map(area => area.name)
-      return store.steamFilter.some(filter => personSteams.includes(filter))
-    })
-  } else {
-    return people.value
+  if (!store.steamFilter.length && !store.islandFilter.length && !store.countryFilter.length) return people.value
+  else {
+    return (
+      people.value.filter(person => {
+        const personSteams = person.steam.map(area => area.name)
+        return store.steamFilter.some(filter => personSteams.includes(filter)) ||
+          store.countryFilter.includes(person.location.country)
+      })
+
+    )
+
   }
 })
 
@@ -97,6 +101,7 @@ function generateSvgIcon(color = 'black') {
 
 onMounted(async () => {
   people.value = await getUsers()
+  console.log(people.value)
   if (window.innerWidth < 500) {
     initialZoom.value = 6.4
   } else if (window.innerWidth < 765 || window.innerHeight < 500) {
