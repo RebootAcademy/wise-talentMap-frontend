@@ -27,6 +27,10 @@ const allowedIcons = {
   paintbrush: Paintbrush,
   science: Science,
   search: 'pi-search',
+  linkedin: 'pi-linkedin',
+  location: 'pi-map-marker',
+  job: 'pi-briefcase',
+  close: 'pi-times'
 }
 
 const iconComponent = computed(() => {
