@@ -1,26 +1,18 @@
 <template>
   <div class="w-full h-full relative !bg-green-400">
     <div id="map" class="w-full h-full"></div>
-    <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap " :class="{'hidden': store.openDrawer}"/>
-    <ListComponent
-      v-if="showList"
-      :markers="listData"
-      :visible="showList"
-      @close="showList = false"
-      style="position: absolute; top: 10px; right: 10px; z-index: 1000"
-    />
-    <Card
-      v-if="showCard"
-      :person="target"
-      @close="showCard = false"
-      style="position: absolute; top: 50px; right: 50px; z-index: 1000"
-    />
+    <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap " :class="{ 'hidden': store.openDrawer }"
+      :people="people.length ? people : []" />
+    <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
+      style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
+    <Card v-if="showCard" :person="target" @close="showCard = false"
+      style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
   </div>
 </template>
 
 <script setup>
-import {onMounted, ref, watch} from 'vue'
-import {useUserStore} from '@/stores/user'
+import { onMounted, ref, watch } from 'vue'
+import { useUserStore } from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -28,6 +20,7 @@ import 'leaflet.markercluster'
 import MiniMap from './MiniMap.vue'
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
+import { getUsers } from '@/services/user.services'
 
 const store = useUserStore()
 
@@ -38,6 +31,7 @@ const target = ref({})
 const map = ref(null)
 const selectedCoordinates = ref([])
 const initialZoom = ref(8.4)
+const people = ref([])
 
 const renderIcon = () => {
   const iconSvg = generateSvgIcon('purple')
@@ -65,46 +59,8 @@ function generateSvgIcon(color = 'black') {
 `
 }
 
-const people = [
-  {
-    firstName: 'Mia',
-    lastName: 'Doe',
-    location: [28.120058, -15.43],
-    sectors: ['Science', 'Technology'],
-  },
-  {
-    firstName: 'Jane',
-    lastName: 'Smith',
-    location: [28.1232, -15.45],
-    sectors: ['Mathematics'],
-  },
-  {
-    firstName: 'Martha',
-    lastName: 'Beam',
-    location: [28.1249, -15.5],
-    sectors: ['Engineering', 'Arts', 'Science'],
-  },
-  {
-    firstName: 'John',
-    lastName: 'Doe',
-    location: [28.463, -16.27],
-    sectors: ['Arts', 'Mathematics'],
-  },
-  {
-    firstName: 'Tom',
-    lastName: 'Brown',
-    location: [28.996, -13.592],
-    sectors: ['Mathematics'],
-  },
-  {
-    firstName: 'Martha',
-    lastName: 'Brown',
-    location: [40.66, 128.65],
-    sectors: ['Mathematics'],
-  },
-]
-
-onMounted(() => {
+onMounted(async () => {
+  people.value = await getUsers()
   if (window.innerWidth < 500) {
     initialZoom.value = 6.4
   } else if (window.innerWidth < 765 || window.innerHeight < 500) {
@@ -170,17 +126,16 @@ onMounted(() => {
     zoomToBoundsOnClick: false,
   })
   markers.on('clusterclick', function (event) {
-    console.log(event)
     event.originalEvent.stopPropagation()
     showCard.value = false
     store.handleOpenDrawer()
     selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
     const childMarkers = event.layer.getAllChildMarkers()
     listData.value = childMarkers.map((marker) => {
-      const person = people.find(
+      const person = people.value.find(
         (p) =>
-          p.location[0] === marker.getLatLng().lat &&
-          p.location[1] === marker.getLatLng().lng
+          p.location.coordinates[0] === marker.getLatLng().lat &&
+          p.location.coordinates[1] === marker.getLatLng().lng
       )
       return {
         id: marker._leaflet_id,
@@ -189,17 +144,25 @@ onMounted(() => {
     })
   })
 
-  people.forEach((person) => {
-    const customIcon = renderIcon()
-    const marker = L.marker(person.location, {icon: customIcon})
-    marker.on('click', () => {
-      target.value = {
-        id: marker._leaflet_id,
-        ...person,
-      }
-      showCard.value = true
-    })
-    markers.addLayer(marker)
+  people.value.forEach((person) => {
+    const coords = person.location && person.location.coordinates
+    if (
+      Array.isArray(coords) &&
+      coords.length === 2 &&
+      typeof coords[0] === 'number' &&
+      typeof coords[1] === 'number'
+    ) {
+      const customIcon = renderIcon();
+      const marker = L.marker(coords, { icon: customIcon });
+      marker.on('click', () => {
+        target.value = {
+          id: marker._leaflet_id,
+          ...person,
+        };
+        showCard.value = true;
+      });
+      markers.addLayer(marker);
+    }
   })
   map.value.addLayer(markers)
 })

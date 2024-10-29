@@ -4,12 +4,10 @@
 
 <script setup>
 import * as L from 'leaflet';
-import { onMounted } from 'vue';
+import { onBeforeMount, onMounted, ref, watch } from 'vue';
 import "@maptiler/leaflet-maptilersdk";
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-
-
 
 const props = defineProps({
   center: {
@@ -19,17 +17,16 @@ const props = defineProps({
   zoom: {
     type: Number,
     default: 4 // Nivel de zoom por defecto
+  },
+  people: {
+    type: Array,
+    default: () => []
   }
 });
 
-const people = [
-  { firstName: "Mia", lastName: "Doe", location: [28.120058, -15.43], sectors: ["Science", "Technology"] },
-  { firstName: "Jane", lastName: "Smith", location: [28.1232, -15.450], sectors: ["Mathematics"] },
-  { firstName: "Martha", lastName: "Beam", location: [28.1249, -15.50], sectors: ["Engineering", "Arts", "Science"] },
-  { firstName: "John", lastName: "Doe", location: [28.463, -16.270], sectors: ["Arts", "Mathematics"] },
-  { firstName: "Tom", lastName: "Brown", location: [28.996, -13.592], sectors: ["Mathematics"] },
-  { firstName: "Martha", lastName: "Brown", location: [40.66, 128.65], sectors: ["Mathematics"] }
-];
+const people = ref([])
+let markers
+
 function getCustomMarker(sectors) {
   const iconSvg = generateSvgIcon("purple"); // Cambia el color a violeta
 
@@ -89,7 +86,7 @@ onMounted(() => {
     zoomControl.remove(); // Elimina el contenedor de los controles
   }
 
-  const markers = L.markerClusterGroup({
+  markers = L.markerClusterGroup({
     iconCreateFunction: function (cluster) {
       // Obtener el número de marcadores en el cluster
       const count = cluster.getChildCount();
@@ -117,22 +114,31 @@ onMounted(() => {
       });
     }
   });
-
-
-  people.forEach(person => {
-    const customMarker = getCustomMarker(person.sectors);
-    const marker = L.marker(person.location, { icon: customMarker });
-
-    const popupContent = `
-    <strong>${person.firstName} ${person.lastName}</strong><br>
-    Sector: ${person.sectors.join(', ')}
-  `;
-
-    //marker.bindPopup(popupContent);
-    markers.addLayer(marker); // Añadir el marcador al grupo de marcadores
-  });
-
   miniMap.addLayer(markers); // Añadir el grupo de marcadores al mapa
-
 });
+
+watch(() => props.people, () => {
+  people.value = props.people
+
+  people.value.forEach(person => {
+    const coords = person.location && person.location.coordinates
+    if (
+      Array.isArray(coords) &&
+      coords.length === 2 &&
+      typeof coords[0] === 'number' &&
+      typeof coords[1] === 'number'
+    ) {
+      const customMarker = getCustomMarker(person.sectors);
+      const marker = L.marker(coords, { icon: customMarker });
+      marker.on('click', () => {
+        target.value = {
+          id: marker._leaflet_id,
+          ...person,
+        };
+        showCard.value = true;
+      });
+      markers.addLayer(marker);
+    }// Añadir el marcador al grupo de marcadores
+  });
+})
 </script>
