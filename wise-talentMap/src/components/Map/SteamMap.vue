@@ -41,7 +41,8 @@ const filteredPeople = computed(() => {
       people.value.filter(person => {
         const personSteams = person.steam.map(area => area.name)
         return store.steamFilter.some(filter => personSteams.includes(filter)) ||
-          store.countryFilter.includes(person.location.country)
+          store.countryFilter.includes(person.location.country) ||
+          store.islandFilter.includes(person.location.island)
       })
     )
   }

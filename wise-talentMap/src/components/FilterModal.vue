@@ -17,7 +17,9 @@
           <section class="flex flex-col gap-6">
             <p class="font-bebas text-xl">ISLA DE RESIDENCIA</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
-              <CustomButton v-for="(island, idx) in islands" :key="idx" class="border rounded-2xl">
+              <CustomButton v-for="(island, idx) in islands" :key="idx"
+                :class="`${store.islandFilter.includes(island) ? 'border-2 font-bold' : 'border'} rounded-2xl`"
+                :clickFn="() => checkSelections('islands', island)">
                 {{ island }}
               </CustomButton>
             </div>
@@ -92,7 +94,12 @@ const checkSelections = (type, option) => {
   if (type === 'country') {
     store.countryFilter = option
   } else {
-    console.log('island')
+    if (store.islandFilter.includes(option)) {
+      const index = store.islandFilter.indexOf(option)
+      store.islandFilter.splice(index, 1)
+    } else {
+      store.islandFilter.push(option)
+    }
   }
 }
 
