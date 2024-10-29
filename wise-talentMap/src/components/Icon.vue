@@ -1,7 +1,7 @@
 <template>
   <div>
-    <component v-if="!isSvg" :is="iconComponent" aria-hidden="true" />
-    <span v-else :class="`pi ${iconComponent}`"></span>
+    <component v-if="!isSvg" :is="iconComponent" aria-hidden="true" :class="`${size}`" />
+    <span v-else :class="`pi ${iconComponent} ${size}`"></span>
   </div>
 </template>
 
@@ -16,6 +16,10 @@ const props = defineProps({
   icon: {
     type: String,
     required: true
+  },
+  size: {
+    type: String,
+    default: 'w-5 h-5'
   }
 })
 

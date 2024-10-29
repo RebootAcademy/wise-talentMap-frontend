@@ -14,8 +14,8 @@
       <div class="flex gap-7 items-center">
         <SteamFilterButtons />
       </div>
-      <CustomButton class="border rounded-md w-24 gap-2.5" :clickFn="handleOpenModal">
-        <Icon icon="filterSlash" />Filtros
+      <CustomButton class="border rounded-md gap-2.5" :clickFn="handleOpenModal">
+        <Icon icon="filterSlash" size="w-6 h-6" />Filtros
       </CustomButton>
     </div>
     <RouterView />

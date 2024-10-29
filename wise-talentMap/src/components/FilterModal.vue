@@ -1,5 +1,5 @@
 <template>
-  <Dialog :visible="filtersVisible" class="w-[31rem]" unstyled>
+  <Dialog :visible="filtersVisible" class="w-[31rem]" modal>
     <template #container>
       <div class="bg-white text-black rounded-md border border-black flex flex-col gap-6">
         <header class="flex items-center justify-center gap-2 relative p-6 font-bebas text-2xl border-b">
