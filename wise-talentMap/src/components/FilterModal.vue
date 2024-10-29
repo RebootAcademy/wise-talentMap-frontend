@@ -89,8 +89,8 @@ const selectedCountry = ref('')
 const countries = ref([])
 
 onMounted(async () => {
-  const locationsResponse = await getOutsiders()
-  countries.value = locationsResponse
+  const countriesResponse = await getOutsiders()
+  countries.value = countriesResponse
     .map(location => location.country) // Formats to name only
     .filter((location, index, self) => self.indexOf(location) === index) // Delete duplicates
 })
