@@ -1,10 +1,10 @@
 <template>
-  <Dialog :visible="true" class="w-[31rem]" unstyled>
+  <Dialog :visible="filtersVisible" class="w-[31rem]" unstyled>
     <template #container>
       <div class="bg-white text-black rounded-md border border-black flex flex-col gap-6">
         <header class="flex items-center justify-center gap-2 relative p-6 font-bebas text-2xl border-b">
           <span>FILTERS</span>
-          <Icon icon="closeCircle" class="absolute right-6 cursor-pointer" />
+          <Icon icon="closeCircle" class="absolute right-6 cursor-pointer" @click="handleVisibility" />
         </header>
         <div class="px-6 flex flex-col gap-6">
           <section class="flex flex-col gap-6">
@@ -52,6 +52,17 @@ import Select from 'primevue/select'
 import Icon from './Icon.vue';
 import CustomButton from './CustomButton.vue';
 import { useUserStore } from '@/stores/user';
+
+const props = defineProps({
+  handleVisibility: {
+    type: Function,
+    default: () => () => { }
+  },
+  filtersVisible: {
+    type: Boolean,
+    default: () => false
+  }
+})
 
 const store = useUserStore()
 const islands = ['Gran Canaria', 'Fuerteventura', 'Lanzarote', 'Tenerife', 'La Gomera', 'La Palma', 'El Hierro']
