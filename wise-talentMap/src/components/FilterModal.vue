@@ -10,11 +10,7 @@
           <section class="flex flex-col gap-6">
             <p class="font-bebas text-xl">ÁREA STEAM</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
-              <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-                class="flex gap-2 items-center border border-mediumGray rounded-2xl">
-                <Icon :icon="option.icon" />
-                <span>{{ option.name }}</span>
-              </CustomButton>
+              <SteamFilterButtons />
             </div>
           </section>
           <hr>
@@ -52,6 +48,7 @@ import Select from 'primevue/select'
 import Icon from './Icon.vue';
 import CustomButton from './CustomButton.vue';
 import { useUserStore } from '@/stores/user';
+import SteamFilterButtons from './SteamFilterButtons.vue';
 
 const props = defineProps({
   handleVisibility: {

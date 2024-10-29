@@ -12,12 +12,7 @@
       <CustomInput icon="pi-search" placeholder="Buscar" :class="`${searchFocus ? 'w-full' : 'w-20'} h-8`"
         v-model="searchParam" :onFocus="onFocus" :onBlur="onBlur" />
       <div class="flex gap-7 items-center">
-        <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-          :class="`flex gap-2 items-center ${checkSelection(option.filterValue) ? 'border-2 font-bold' : 'border'} border-mediumGray rounded-2xl`"
-          :clickFn="() => checkSteamFilter(option.filterValue)">
-          <Icon :icon="option.icon" />
-          <span>{{ option.name }}</span>
-        </CustomButton>
+        <SteamFilterButtons />
       </div>
       <CustomButton class="border rounded-md w-24 gap-2.5" :clickFn="handleOpenModal">
         <Icon icon="filterSlash" />Filtros
@@ -34,6 +29,7 @@ import CustomButton from '@/components/CustomButton.vue'
 import CustomInput from '@/components/CustomInput.vue';
 import FilterModal from '@/components/FilterModal.vue';
 import Icon from '@/components/Icon.vue';
+import SteamFilterButtons from '@/components/SteamFilterButtons.vue';
 import { useUserStore } from '@/stores/user';
 
 const store = useUserStore()
@@ -44,15 +40,5 @@ const filtersVisible = ref(false)
 const handleOpenModal = () => filtersVisible.value = !filtersVisible.value
 const onFocus = () => searchFocus.value = true
 const onBlur = () => searchFocus.value = false
-const checkSelection = (param) => store.steamFilter.includes(param)
-
-const checkSteamFilter = (option) => {
-  if (checkSelection(option)) {
-    const index = store.steamFilter.indexOf(option)
-    store.steamFilter.splice(index, 1)
-  } else {
-    store.steamFilter.push(option)
-  }
-}
 
 </script>
