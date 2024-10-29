@@ -2,7 +2,7 @@
   <div class="w-full h-full relative !bg-green-400">
     <div id="map" class="w-full h-full"></div>
     <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap " :class="{ 'hidden': store.openDrawer }"
-      :people="people.length ? people : []" />
+      :people="filteredPeople.length ? filteredPeople : []" />
     <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
       style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
     <Card v-if="showCard" :person="target" @close="showCard = false"
@@ -78,7 +78,6 @@ const updateMarkers = (people) => {
       markers.value.addLayer(marker);
     }
   })
-  console.log('lolo')
 }
 
 function generateSvgIcon(color = 'black') {

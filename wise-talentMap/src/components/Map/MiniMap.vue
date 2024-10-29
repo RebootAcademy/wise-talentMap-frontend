@@ -118,6 +118,7 @@ onMounted(() => {
 });
 
 watch(() => props.people, () => {
+  markers.clearLayers()
   people.value = props.people
 
   people.value.forEach(person => {
