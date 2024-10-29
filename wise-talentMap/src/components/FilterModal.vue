@@ -106,7 +106,7 @@ const checkSelections = (type, option) => {
 const clearFilters = () => {
   store.steamFilter = []
   store.countryFilter = ''
-  store.islandFilter = ''
+  store.islandFilter = []
 }
 
 
