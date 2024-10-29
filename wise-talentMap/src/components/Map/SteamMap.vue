@@ -75,6 +75,7 @@ onMounted(async () => {
     center: L.latLng(28.50291, -15.88168),
     zoomControl: false,
     zoom: initialZoom.value,
+    zoomAnimation: false,
     maxZoom: 13,
     minZoom: 2,
     scrollWheelZoom: false,
