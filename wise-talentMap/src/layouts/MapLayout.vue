@@ -13,7 +13,8 @@
         v-model="searchParam" :onFocus="onFocus" :onBlur="onBlur" />
       <div class="flex gap-7 items-center">
         <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-          class="flex gap-2 items-center border border-mediumGray rounded-2xl">
+          :class="`flex gap-2 items-center ${checkSelection(option.name) ? 'border-2 font-bold' : 'border'} border-mediumGray rounded-2xl`"
+          :clickFn="() => checkSteamFilter(option.name)">
           <Icon :icon="option.icon" />
           <span>{{ option.name }}</span>
         </CustomButton>
@@ -43,5 +44,16 @@ const filtersVisible = ref(false)
 const handleOpenModal = () => filtersVisible.value = !filtersVisible.value
 const onFocus = () => searchFocus.value = true
 const onBlur = () => searchFocus.value = false
+const checkSelection = (param) => store.steamFilter.includes(param)
+
+const checkSteamFilter = (option) => {
+  if (checkSelection(option)) {
+    const index = store.steamFilter.indexOf(option)
+    store.steamFilter.splice(index)
+  } else {
+    console.log(option)
+    store.steamFilter.push(option)
+  }
+}
 
 </script>

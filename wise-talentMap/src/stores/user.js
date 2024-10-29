@@ -28,7 +28,8 @@ export const useUserStore = defineStore('user', {
         name: 'Math',
         icon: 'functionMath'
       }
-    ]
+    ],
+    steamFilter: []
   }),
 
   // Getters
