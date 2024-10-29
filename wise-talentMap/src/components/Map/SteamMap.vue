@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useUserStore } from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
@@ -32,6 +32,18 @@ const map = ref(null)
 const selectedCoordinates = ref([])
 const initialZoom = ref(8.4)
 const people = ref([])
+const markers = ref(null)
+
+const filteredPeople = computed(() => {
+  if (store.steamFilter.length) {
+    return people.value.filter(person => {
+      const personSteams = person.steam.map(area => area.name)
+      return store.steamFilter.some(filter => personSteams.includes(filter))
+    })
+  } else {
+    return people.value
+  }
+})
 
 const renderIcon = () => {
   const iconSvg = generateSvgIcon('purple')
@@ -42,6 +54,31 @@ const renderIcon = () => {
     iconAnchor: [16, 32],
     popupAnchor: [0, -32],
   })
+}
+
+const updateMarkers = (people) => {
+  markers.value.clearLayers()
+  people.forEach((person) => {
+    const coords = person.location && person.location.coordinates
+    if (
+      Array.isArray(coords) &&
+      coords.length === 2 &&
+      typeof coords[0] === 'number' &&
+      typeof coords[1] === 'number'
+    ) {
+      const customIcon = renderIcon();
+      const marker = L.marker(coords, { icon: customIcon });
+      marker.on('click', () => {
+        target.value = {
+          id: marker._leaflet_id,
+          ...person,
+        };
+        showCard.value = true;
+      });
+      markers.value.addLayer(marker);
+    }
+  })
+  console.log('lolo')
 }
 
 function generateSvgIcon(color = 'black') {
@@ -110,7 +147,7 @@ onMounted(async () => {
     mapTilerLink.remove()
   }
 
-  const markers = L.markerClusterGroup({
+  markers.value = L.markerClusterGroup({
     iconCreateFunction: function (cluster) {
       const count = cluster.getChildCount()
       const size = count < 10 ? '30px' : count < 20 ? '35px' : '40px'
@@ -126,7 +163,8 @@ onMounted(async () => {
     },
     zoomToBoundsOnClick: false,
   })
-  markers.on('clusterclick', function (event) {
+
+  markers.value.on('clusterclick', function (event) {
     event.originalEvent.stopPropagation()
     showCard.value = false
     store.handleOpenDrawer()
@@ -144,29 +182,13 @@ onMounted(async () => {
       }
     })
   })
-
-  people.value.forEach((person) => {
-    const coords = person.location && person.location.coordinates
-    if (
-      Array.isArray(coords) &&
-      coords.length === 2 &&
-      typeof coords[0] === 'number' &&
-      typeof coords[1] === 'number'
-    ) {
-      const customIcon = renderIcon();
-      const marker = L.marker(coords, { icon: customIcon });
-      marker.on('click', () => {
-        target.value = {
-          id: marker._leaflet_id,
-          ...person,
-        };
-        showCard.value = true;
-      });
-      markers.addLayer(marker);
-    }
-  })
-  map.value.addLayer(markers)
+  updateMarkers(filteredPeople.value)
+  map.value.addLayer(markers.value)
 })
+
+watch(() => filteredPeople.value, (newPeople) => {
+  updateMarkers(newPeople)
+}, { deep: true })
 
 watch(
   () => store.openDrawer,

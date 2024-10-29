@@ -10,22 +10,27 @@ export const useUserStore = defineStore('user', {
     steam: [
       {
         name: 'Science',
+        filterValue: 'Ciencia',
         icon: 'science'
       },
       {
         name: 'Technology',
+        filterValue: 'Tecnología',
         icon: 'laptop'
       },
       {
         name: 'Engineer',
+        filterValue: 'Ingeniería',
         icon: 'cog'
       },
       {
         name: 'Art',
+        filterValue: 'Arte',
         icon: 'paintbrush'
       },
       {
         name: 'Math',
+        filterValue: 'Matemáticas',
         icon: 'functionMath'
       }
     ],

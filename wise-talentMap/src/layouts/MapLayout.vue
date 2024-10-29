@@ -13,8 +13,8 @@
         v-model="searchParam" :onFocus="onFocus" :onBlur="onBlur" />
       <div class="flex gap-7 items-center">
         <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-          :class="`flex gap-2 items-center ${checkSelection(option.name) ? 'border-2 font-bold' : 'border'} border-mediumGray rounded-2xl`"
-          :clickFn="() => checkSteamFilter(option.name)">
+          :class="`flex gap-2 items-center ${checkSelection(option.filterValue) ? 'border-2 font-bold' : 'border'} border-mediumGray rounded-2xl`"
+          :clickFn="() => checkSteamFilter(option.filterValue)">
           <Icon :icon="option.icon" />
           <span>{{ option.name }}</span>
         </CustomButton>
@@ -49,9 +49,8 @@ const checkSelection = (param) => store.steamFilter.includes(param)
 const checkSteamFilter = (option) => {
   if (checkSelection(option)) {
     const index = store.steamFilter.indexOf(option)
-    store.steamFilter.splice(index)
+    store.steamFilter.splice(index, 1)
   } else {
-    console.log(option)
     store.steamFilter.push(option)
   }
 }
