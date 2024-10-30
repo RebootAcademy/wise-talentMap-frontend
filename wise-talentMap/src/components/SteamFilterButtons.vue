@@ -1,8 +1,8 @@
 <template>
   <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-    :class="`flex gap-2 items-center ${checkSelection(option.filterValue) ? 'border-2 font-bold' : 'border'} border-mediumGray rounded-2xl`"
+    :class="`flex gap-2 font-bebas text-xl items-center ${checkSelection(option.filterValue) ? 'bg-twoColorsBlue text-white' : 'border'} border-mediumGray rounded-2xl`"
     :clickFn="() => checkSteamFilter(option.filterValue)">
-    <Icon :icon="option.icon" />
+    <Icon :icon="option.icon" :color="checkSelection(option.filterValue) ? 'white' : 'black'" />
     <span>{{ option.name }}</span>
   </CustomButton>
 </template>
