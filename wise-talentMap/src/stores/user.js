@@ -1,46 +1,45 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { getUsers } from '@/services/user.services'
-import { set } from 'mongoose'
 
 export const useUserStore = defineStore('user', {
   // Estado
   state: () => ({
     users: [], // Almacena la lista de usuarios
     selectedUsers: [],
-    cardPerson: {},
+    cardPerson: null,
     openDrawer: false,
     steam: [
       {
         name: 'Science',
         filterValue: 'Ciencia',
-        icon: 'science'
+        icon: 'science',
       },
       {
         name: 'Technology',
         filterValue: 'Tecnología',
-        icon: 'laptop'
+        icon: 'technology',
       },
       {
         name: 'Engineer',
         filterValue: 'Ingeniería',
-        icon: 'cog'
+        icon: 'engineer',
       },
       {
         name: 'Art',
         filterValue: 'Arte',
-        icon: 'paintbrush'
+        icon: 'art',
       },
       {
         name: 'Math',
         filterValue: 'Matemáticas',
-        icon: 'functionMath'
-      }
+        icon: 'math',
+      },
     ],
     steamFilter: [],
     islandFilter: [],
     municipalityFilter: '',
-    countryFilter: ''
+    countryFilter: '',
   }),
 
   // Getters
@@ -49,7 +48,6 @@ export const useUserStore = defineStore('user', {
       // Definido como un getter que recibe el estado
       return state.users // Devuelve la lista de usuarios
     },
-
   },
 
   // Acciones

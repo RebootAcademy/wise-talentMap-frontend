@@ -28,12 +28,12 @@ const props = defineProps({
 })
 
 const allowedIcons = {
-  cog: 'pi-cog',
+  engineer: 'pi-cog',
   closeCircle: 'pi-times-circle',
   filterSlash: 'pi-filter-slash',
-  functionMath: FunctionMath,
-  laptop: Laptop,
-  paintbrush: Paintbrush,
+  math: FunctionMath,
+  technology: Laptop,
+  art: Paintbrush,
   science: Science,
   search: 'pi-search',
   linkedin: 'pi-linkedin',
