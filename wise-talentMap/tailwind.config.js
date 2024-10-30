@@ -5,7 +5,7 @@ module.exports = {
     './src/**/*.{vue,js,ts,jsx,tsx}', // Asegúrate de que los archivos Vue estén incluidos
   ],
   theme: {
-    
+
     extend: {
       screens: {
         sm: '640px',
@@ -38,6 +38,7 @@ module.exports = {
         fourColors:
           'linear-gradient(45deg, #FC00FF, #881BF5, #5478E3, #17E4CE)',
         twoColors: 'linear-gradient(45deg, #FC00FF, #881BF5)',
+        twoColorsBlue: 'linear-gradient(90deg, #881BF5, #5478E3)',
         radialGradient: 'radial-gradient(circle,  #FAFAFA, #212121)',
       },
       borderRadius: {
