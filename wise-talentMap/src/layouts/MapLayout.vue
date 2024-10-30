@@ -9,7 +9,7 @@
     <!-- Filters bar -->
     <div
       :class="`bg-white h-20 text-black flex ${searchFocus ? 'gap-7' : 'justify-between '} items-center py-2.5 px-8`">
-      <CustomInput icon="pi-search" placeholder="Buscar" :class="`${searchFocus ? 'w-full' : 'w-20'} h-8`"
+      <CustomInput icon="pi-search" placeholder="Buscar" :class="`${searchFocus ? 'w-full' : 'w-20'} h-12`"
         v-model="searchParam" :onFocus="onFocus" :onBlur="onBlur" />
       <div class="flex gap-7 items-center">
         <SteamFilterButtons />
