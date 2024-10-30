@@ -1,11 +1,14 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { getUsers } from '@/services/user.services'
+import { set } from 'mongoose'
 
 export const useUserStore = defineStore('user', {
   // Estado
   state: () => ({
     users: [], // Almacena la lista de usuarios
+    selectedUsers: [],
+    cardPerson: {},
     openDrawer: false,
   }),
 
@@ -15,6 +18,7 @@ export const useUserStore = defineStore('user', {
       // Definido como un getter que recibe el estado
       return state.users // Devuelve la lista de usuarios
     },
+
   },
 
   // Acciones
@@ -29,7 +33,15 @@ export const useUserStore = defineStore('user', {
     },
     handleOpenDrawer() {
       this.openDrawer = !this.openDrawer
-    }
+    },
+
+    setSelectedUsers(users) {
+      this.selectedUsers = users
+    },
+
+    handleOpenCard(person) {
+      this.cardPerson = person
+    },
   },
 })
 

@@ -1,6 +1,13 @@
 <template>
   <div class="w-full h-full relative !bg-green-400">
     <div id="map" class="w-full h-full"></div>
+    <div
+      v-if="store.openDrawer"
+      class="bg-secondary-white text-anthraciteGray p-3 px-4 cursor-pointer rounded-md absolute sm:left-8 sm:top-8 z-50"
+      @click="store.handleOpenDrawer()"
+    >
+      <Icon icon="back" />
+    </div>
     <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap " :class="{'hidden': store.openDrawer}"/>
     <ListComponent
       v-if="showList"
@@ -28,6 +35,7 @@ import 'leaflet.markercluster'
 import MiniMap from './MiniMap.vue'
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
+import Icon from '../Icon.vue'
 
 const store = useUserStore()
 
@@ -174,6 +182,7 @@ onMounted(() => {
     event.originalEvent.stopPropagation()
     showCard.value = false
     store.handleOpenDrawer()
+    
     selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
     const childMarkers = event.layer.getAllChildMarkers()
     listData.value = childMarkers.map((marker) => {
@@ -187,6 +196,7 @@ onMounted(() => {
         ...person,
       }
     })
+    store.setSelectedUsers(listData.value)
   })
 
   people.forEach((person) => {
@@ -226,4 +236,9 @@ watch(
   bottom: 0;
   right: 0;
 }
+
+.leaflet-container {
+  z-index: 1 !important;
+}
+
 </style>

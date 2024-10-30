@@ -30,6 +30,7 @@ const allowedIcons = {
   linkedin: 'pi-linkedin',
   location: 'pi-map-marker',
   job: 'pi-briefcase',
+  back: 'pi-chevron-left'
 }
 
 const iconComponent = computed(() => {
