@@ -23,8 +23,13 @@
                 {{ island }}
               </CustomButton>
             </div>
-            <!-- <Select v-model="selectedMunicipality" :options="municipalities" class="w-56 text-sm"
-              placeholder="Selecciona un municipio" /> -->
+            <Select v-model="selectedMunicipality" :options="selectableMunicipalities" class="w-56 text-sm"
+              placeholder="Selecciona un municipio" @change="(e) => checkSelections('municipality', e.value)"
+              optionGroupLabel="island" optionGroupChildren="municipalities">
+              <template #optiongroup="slotProps">
+                <div>{{ slotProps.municipalities }}</div>
+              </template>
+            </Select>
           </section>
           <hr>
           <section class="flex flex-col gap-6">
@@ -44,7 +49,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import Dialog from 'primevue/dialog';
 import Select from 'primevue/select'
 import Icon from './Icon.vue';
@@ -65,39 +70,83 @@ const props = defineProps({
 })
 
 const store = useUserStore()
-const islands = ['Gran Canaria', 'Fuerteventura', 'Lanzarote', 'Tenerife', 'La Gomera', 'La Palma', 'El Hierro']
+const islands = ['Gran Canaria', 'Fuerteventura', 'La Graciosa', 'Lanzarote', 'Tenerife', 'La Gomera', 'La Palma', 'El Hierro']
 
-/* const municipalities = [
-  'Agaete', 'Agüimes', 'Alajeró', 'Antigua', 'Arafo', 'Arico', 'Arona', 'Arrecife',
-  'Artenara', 'Arucas', 'Barlovento', 'Betancuria', 'Breña Alta', 'Breña Baja', 'Buenavista del Norte',
-  'Candelaria', 'El Paso', 'El Pinar de El Hierro', 'El Rosario', 'El Sauzal', 'El Tanque',
-  'Fasnia', 'Firgas', 'Fuencaliente de la Palma', 'Garachico', 'Garafía', 'Gáldar', 'Granadilla de Abona',
-  'Güímar', 'Guía de Isora', 'Haría', 'Hermigua', 'Icod de los Vinos', 'Ingenio', 'La Guancha',
-  'La Matanza de Acentejo', 'La Oliva', 'La Orotava', 'La Victoria de Acentejo', 'Las Palmas de Gran Canaria',
-  'Las Rosas', 'Llanos de Aridane', 'Los Realejos', 'Los Silos', 'Mogán', 'Moya', 'Pájara',
-  'Puerto de la Cruz', 'Puerto del Rosario', 'Puntagorda', 'Puntallana', 'San Andrés y Sauces',
-  'San Bartolomé', 'San Bartolomé de Tirajana', 'San Cristóbal de La Laguna', 'San Juan de la Rambla',
-  'San Miguel de Abona', 'Santa Brígida', 'Santa Cruz de La Palma', 'Santa Cruz de Tenerife',
-  'Santa Lucía de Tirajana', 'Santa María de Guía de Gran Canaria', 'Santiago del Teide', 'Sauzal',
-  'Tacoronte', 'Tegueste', 'Teguise', 'Tejeda', 'Telde', 'Teror', 'Tijarafe', 'Tinajo',
-  'Tuineje', 'Valle Gran Rey', 'Vallehermoso', 'Valleseco', 'Valsequillo de Gran Canaria', 'Valverde',
-  'Vega de San Mateo', 'Vilaflor de Chasna', 'Villa de Mazo', 'Yaiza'
-] */
+const municipalities = [
+  {
+    island: "Tenerife",
+    municipalities: [
+      "Arafo", "Arico", "Arona", "Buenavista del Norte", "Candelaria", "El Rosario",
+      "El Sauzal", "El Tanque", "Fasnia", "Garachico", "Granadilla de Abona", "Güímar",
+      "Guía de Isora", "Icod de los Vinos", "La Guancha", "La Matanza de Acentejo",
+      "La Orotava", "La Victoria de Acentejo", "Los Realejos", "Los Silos",
+      "Puerto de la Cruz", "San Cristóbal de La Laguna", "San Juan de la Rambla",
+      "San Miguel de Abona", "Santa Cruz de Tenerife", "Santa Úrsula", "Santiago del Teide",
+      "Tacoronte", "Tegueste", "Vilaflor de Chasna"
+    ]
+  },
+  {
+    island: "Gran Canaria",
+    municipalities: [
+      "Agaete", "Agüimes", "Artenara", "Arucas", "Firgas", "Gáldar", "Ingenio",
+      "La Aldea de San Nicolás", "Las Palmas de Gran Canaria", "Mogán", "Moya",
+      "San Bartolomé de Tirajana", "Santa Brígida", "Santa Lucía de Tirajana",
+      "Santa María de Guía de Gran Canaria", "Tejeda", "Telde", "Teror",
+      "Valleseco", "Valsequillo de Gran Canaria", "Vega de San Mateo"
+    ]
+  },
+  {
+    island: "Lanzarote",
+    municipalities: [
+      "Arrecife", "Haría", "San Bartolomé", "Teguise", "Tías", "Tinajo", "Yaiza"
+    ]
+  },
+  {
+    island: "Fuerteventura",
+    municipalities: [
+      "Antigua", "Betancuria", "La Oliva", "Pájara", "Puerto del Rosario", "Tuineje"
+    ]
+  },
+  {
+    island: "La Palma",
+    municipalities: [
+      "Barlovento", "Breña Alta", "Breña Baja", "Fuencaliente de la Palma", "Garafía",
+      "Los Llanos de Aridane", "Puntagorda", "Puntallana", "San Andrés y Sauces",
+      "Santa Cruz de La Palma", "Tazacorte", "Tijarafe", "Villa de Mazo"
+    ]
+  },
+  {
+    island: "La Gomera",
+    municipalities: [
+      "Agulo", "Alajeró", "Hermigua", "San Sebastián de La Gomera", "Valle Gran Rey", "Vallehermoso"
+    ]
+  },
+  {
+    island: "El Hierro",
+    municipalities: [
+      "Frontera", "El Pinar de El Hierro", "Valverde"
+    ]
+  }
+];
 
 const selectedMunicipality = ref('')
 const selectedCountry = ref('')
 const countries = ref([])
+const selectableMunicipalities = ref([])
 
 onMounted(async () => {
   const countriesResponse = await getOutsiders()
   countries.value = countriesResponse
     .map(location => location.country) // Formats to name only
     .filter((location, index, self) => self.indexOf(location) === index) // Delete duplicates
+  selectableMunicipalities.value = [...municipalities]
 })
 
 const checkSelections = (type, option) => {
   if (type === 'country') {
     store.countryFilter = option
+  } else if (type === 'municipality') {
+    store.municipalityFilter = option
   } else {
     if (store.islandFilter.includes(option)) {
       const index = store.islandFilter.indexOf(option)
@@ -112,7 +161,21 @@ const clearFilters = () => {
   store.steamFilter = []
   store.countryFilter = ''
   store.islandFilter = []
+  store.municipalityFilter = ''
 }
+
+const separateMunicipalities = () => {
+  let selected = []
+  for (const island of municipalities) {
+    if (store.islandFilter.includes(island.island)) selected.push(island)
+  }
+  if (!store.islandFilter.length) selected = [...municipalities]
+  selectableMunicipalities.value = selected
+}
+
+watch(() => store.islandFilter, () => {
+  separateMunicipalities()
+}, { deep: true })
 
 
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full relative !bg-green-400">
+  <div class="w-full h-full relative !bg-secondary-blue">
     <div id="map" class="w-full h-full"></div>
     <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap " :class="{ 'hidden': store.openDrawer }"
       :people="filteredPeople.length ? filteredPeople : []" />
@@ -35,14 +35,15 @@ const people = ref([])
 const markers = ref(null)
 
 const filteredPeople = computed(() => {
-  if (!store.steamFilter.length && !store.islandFilter.length && !store.countryFilter.length) return people.value
+  if (!store.steamFilter.length && !store.islandFilter.length && !store.countryFilter && !store.municipalityFilter) return people.value
   else {
     return (
       people.value.filter(person => {
         const personSteams = person.steam.map(area => area.name)
         return store.steamFilter.some(filter => personSteams.includes(filter)) ||
           store.countryFilter.includes(person.location.country) ||
-          store.islandFilter.includes(person.location.island)
+          store.islandFilter.includes(person.location.island) ||
+          store.municipalityFilter.includes(person.location.municipality)
       })
     )
   }

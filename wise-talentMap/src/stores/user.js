@@ -36,6 +36,7 @@ export const useUserStore = defineStore('user', {
     ],
     steamFilter: [],
     islandFilter: [],
+    municipalityFilter: '',
     countryFilter: ''
   }),
 
