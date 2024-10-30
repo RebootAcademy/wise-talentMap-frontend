@@ -1,14 +1,41 @@
 <template>
-  <div class="card">
-    <span class="x" @click="close">X</span>
-    <p>{{ props.person.firstName + ' ' + props.person.lastName }}</p>
-    <li v-for="(sectors, idx) in props.person.sectors" :key="idx">{{ sectors }}</li>
-
+  <div class="bg-secondary-white text-anthraciteGray text-md rounded-md w-96 relative">
+    <div class="relative bg-gray-300 h-20 rounded-t-md">
+      <span class="absolute top-2 right-3 cursor-pointer" @click="close">x</span>
+      <!-- <div class="absolute top-2 right-3 cursor-pointer" >
+        <Icon icon="close" />
+      </div> -->
+    </div>
+    <img :src="person.image" class="absolute h-20 w-20 top-10 left-4 object-cover rounded-full bg-gray-300" />
+    <div class="flex flex-col p-4 px-6 mt-12 gap-2">
+      <p class="font-bebas text-3xl mb-2">{{ person.firstName }} {{ person.lastName }}</p>
+      <div class="flex gap-2">
+        <Icon icon="location" />
+        <p>{{ personLocation() }}</p>
+      </div>
+      <div class="flex gap-2">
+        <span>Icono</span>
+        <p>{{ person.steam }}</p>
+      </div>
+      <div class="flex gap-2">
+        <Icon icon="job" />
+        <p>{{ person.jobPosition }}</p>
+      </div>
+      <div class="flex gap-2">
+        <Icon icon="linkedin" />
+        <p>{{ person.linkedin }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { defineProps, defineEmits } from 'vue';
+import { useUserStore } from '@/stores/user.js';
+import Icon from '../Icon.vue'
+const userStore = useUserStore()
+
+console.log(userStore.users)
 
 const props = defineProps({
   person: {
@@ -16,6 +43,16 @@ const props = defineProps({
     required: true
   }
 })
+
+console.log(props.person)
+
+const personLocation = () => {
+  if (props.person.location.type === "Canarias" ) {
+    return props.person.location.municipality + ", " + props.person.location.island
+  } else {
+    return props.person.location.city + ", " + props.person.location.country
+  }
+}
 
 const emit = defineEmits(['close']);
 
@@ -26,22 +63,5 @@ const close = () => {
 </script>
 
 <style scoped>
-.card {
-  position: relative;
-  background-color: #f0f0f0;
-  color: black;
-  padding: 15px;
-  padding-right: 48px;
-  padding-left: 48px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-.x {
-  position: absolute;
-  top: 4px;
-  right: 8px;
-  font-size: 18px;
-  cursor: pointer;
-}
 </style>
