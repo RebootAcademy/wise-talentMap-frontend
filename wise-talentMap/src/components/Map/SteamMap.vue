@@ -143,7 +143,7 @@ onMounted(async () => {
     zoomAnimation: false,
     maxZoom: 13,
     minZoom: 2,
-    scrollWheelZoom: false,
+    scrollWheelZoom: true,
     maxBounds: [
       [-85, -180],
       [85, 180],
@@ -155,11 +155,11 @@ onMounted(async () => {
   map.value.removeControl(zoomControl)
   zoomControl.options.position = 'topright'
   zoomControl.addTo(map.value)
-
+  //
   const mtLayer = new L.MaptilerLayer({
-    apiKey: 'CNX23CDiEaOjDZ7zvUIS',
+    apiKey: 'i5OzUSOgKbWzD2DSP43I',
     style:
-      'https://api.maptiler.com/maps/9acac1d3-e6e0-404c-8213-7da3ad245870/style.json',
+      'https://api.maptiler.com/maps/f5b7cf32-2b60-40ea-b08b-6e6c919e904a/style.json',
     noWrap: true,
   }).addTo(map.value)
 
