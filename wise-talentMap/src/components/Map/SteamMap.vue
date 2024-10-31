@@ -1,23 +1,40 @@
 <template>
-  <div class="w-full h-full relative !bg-secondary-blue ">
-   <div v-if="store.openDrawer" class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
-   @click="store.handleOpenDrawer()"
-   >
-    <Icon icon='back' color="primary-violet" class="hover:transition hover:ease-in hover:duration-300 hover:animate__animated hover:animate__rotateIn"/>
-   </div>
+  <div class="w-full h-full relative !bg-secondary-blue">
+    <div
+      class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
+      @click="store.handleOpenDrawer()"
+    >
+      <Icon
+        icon="back"
+        color="primary-violet"
+        :class="[
+    'transform transition-transform duration-300',
+    store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
+  ]"
+      />
+    </div>
     <div id="map" class="w-full h-full"></div>
-    <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
-      :people="filteredPeople.length ? filteredPeople : []" />
-    <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
-      style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
-    <Card v-if="showCard" :person="target" @close="showCard = false"
-      style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
+    <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
+      :people="filteredPeople.length ? filteredPeople : []" /> -->
+    <ListComponent
+      v-if="showList"
+      :markers="listData"
+      :visible="showList"
+      @close="showList = false"
+      style="position: absolute; top: 10px; right: 10px; z-index: 1000"
+    />
+    <Card
+      v-if="showCard"
+      :person="target"
+      @close="showCard = false"
+      style="position: absolute; top: 50px; right: 50px; z-index: 1000"
+    />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
-import { useUserStore } from '@/stores/user'
+import {computed, onMounted, ref, watch} from 'vue'
+import {useUserStore} from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -25,7 +42,7 @@ import 'leaflet.markercluster'
 import MiniMap from './MiniMap.vue'
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
-import { getUsers } from '@/services/user.services'
+import {getUsers} from '@/services/user.services'
 import Icon from '../Icon.vue'
 
 const store = useUserStore()
@@ -35,7 +52,7 @@ const showCard = ref(false)
 const listData = ref([])
 const target = ref({})
 const map = ref(null)
-const selectedCoordinates = ref([])
+const selectedCoordinates = ref([28.50291, -15.88168])
 const initialZoom = ref(8.4)
 const people = ref([])
 const markers = ref(null)
@@ -46,9 +63,10 @@ const filteredPeople = computed(() => {
     !store.islandFilter.length &&
     !store.countryFilter &&
     !store.municipalityFilter
-  )
+  ){
     return people.value
-  else {
+  }else {
+
     return people.value.filter((person) => {
       const personSteams = person.steam.map((area) => area.name)
       return (
@@ -83,7 +101,7 @@ const updateMarkers = (people) => {
       typeof coords[1] === 'number'
     ) {
       const customIcon = renderIcon()
-      const marker = L.marker(coords, { icon: customIcon })
+      const marker = L.marker(coords, {icon: customIcon})
       marker.on('click', () => {
         target.value = {
           id: marker._leaflet_id,
@@ -179,7 +197,6 @@ onMounted(async () => {
   })
 
   markers.value.on('clusterclick', function (event) {
-    console.log(event)
     event.originalEvent.stopPropagation()
     store.handleOpenDrawer()
 
@@ -204,9 +221,15 @@ onMounted(async () => {
   map.value.addLayer(markers.value)
 
   const zoomContainer = document.querySelector('.leaflet-touch .leaflet-bar')
-  zoomContainer.setAttribute('style', 'border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;')
+  zoomContainer.setAttribute(
+    'style',
+    'border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;'
+  )
   const zoomEl = document.querySelectorAll('.leaflet-bar > a')
-  zoomEl[0].setAttribute('style', 'color: #881BF5; border-bottom: 1px solid #881BF5;')
+  zoomEl[0].setAttribute(
+    'style',
+    'color: #881BF5; border-bottom: 1px solid #881BF5;'
+  )
   zoomEl[1].setAttribute('style', 'color: #881BF5;')
 })
 
@@ -215,7 +238,7 @@ watch(
   (newPeople) => {
     updateMarkers(newPeople)
   },
-  { deep: true }
+  {deep: true}
 )
 
 watch(
@@ -246,6 +269,6 @@ watch(
 }
 
 #zoom-controls {
-  color: #881BF5 !important;
+  color: #881bf5 !important;
 }
 </style>

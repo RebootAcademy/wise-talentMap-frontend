@@ -11,6 +11,7 @@
         <Icon
           icon="close"
           class="absolute top-4 right-4 cursor-pointer hover:opacity-40"
+          extraStyles="16px"
           color="white"
           @click="close"
         />
@@ -20,63 +21,14 @@
       </div>
       <img
         :src="person.image"
-        class="absolute h-24 w-24 top-12 left-6 object-cover rounded-full bg-gray-300"
+        class="absolute h-28 w-28 top-10 left-6 object-cover border border-secondary-turquoise rounded-full bg-gray-300"
       />
-      <div class="flex flex-col p-4 py-6 px-6 mt-12 gap-4">
+      <div class="flex flex-col p-4 py-6 px-6 mt-14 gap-4">
         <p class="font-bebas text-3xl mb-1">
           {{ person.firstName }} {{ person.lastName }}
         </p>
 
-        <div
-          class="flex items-center gap-2 text-2xl font-bold bg-gradient-to-b from-primary-pink via-primary-violet to-secondary-blue bg-clip-text text-transparent"
-        >
-          <Icon
-            icon="science"
-            size="w-6 h-6"
-            :color="
-              person.steam.some((steam) => steam.name === 'Ciencia')
-                ? 'primary-violet'
-                : 'black'
-            "
-          />
-          <Icon
-            icon="technology"
-            size="w-6 h-6"
-            :color="
-              person.steam.some((steam) => steam.name === 'Tecnología')
-                ? 'primary-violet'
-                : 'black'
-            "
-          />
-          <Icon
-            icon="engineer"
-            extraStyles="22px"
-            size=""
-            :color="
-              person.steam.some((steam) => steam.name === 'Ingeniería')
-                ? 'primary-violet'
-                : 'black'
-            "
-          />
-          <Icon
-            icon="art"
-            size="w-5 h-5"
-            :color="
-              person.steam.some((steam) => steam.name === 'Arte')
-                ? 'primary-violet'
-                : 'black'
-            "
-          />
-          <Icon
-            icon="math"
-            size="w-5 h-5"
-            :color="
-              person.steam.some((steam) => steam.name === 'Matemáticas')
-                ? 'primary-violet'
-                : 'black'
-            "
-          />
-        </div>
+        <SteamIcons :steams="person.steam" />
         <div class="flex gap-2">
           <Icon icon="location" />
           <p>{{ personLocation() }}</p>
@@ -107,6 +59,7 @@ import { defineProps, defineEmits } from 'vue'
 import { useUserStore } from '@/stores/user.js'
 import Icon from '../Icon.vue'
 import { switchEnglishSteamName } from '@/utils'
+import SteamIcons from '../SteamIcons.vue'
 const userStore = useUserStore()
 
 const props = defineProps({
@@ -119,10 +72,10 @@ const props = defineProps({
 const personLocation = () => {
   if (props.person.location?.type === 'Canarias') {
     return (
-      props.person.location.municipality + ', ' + props.person.location.island
+      props.person.location.island + ', ' + props.person.location.municipality
     )
   } else {
-    return props.person.location?.city + ', ' + props.person.location?.country
+    return props.person.location?.country + ', ' + props.person.location?.city
   }
 }
 
@@ -130,6 +83,7 @@ const emit = defineEmits(['close'])
 
 // Función para cerrar el componente
 const close = () => {
+  userStore.cardPerson = null
   emit('close')
 }
 </script>

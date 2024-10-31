@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-scrollbar relative bg-white border-t overflow-auto mb-5">
+  <div class="custom-scrollbar relative bg-secondary-white border-t overflow-auto mb-5">
 
         <Card
           v-if="showCard"

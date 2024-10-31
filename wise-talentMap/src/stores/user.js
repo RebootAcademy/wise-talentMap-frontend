@@ -56,6 +56,9 @@ export const useUserStore = defineStore('user', {
       try {
         // Llama a la API para obtener usuarios
         this.users = await getUsers()
+        if (!this.selectedUsers.length) {
+          this.selectedUsers = this.users
+        }
       } catch (error) {
         console.error('Error al obtener usuarios:', error)
       }
