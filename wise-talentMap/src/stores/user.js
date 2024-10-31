@@ -6,38 +6,40 @@ export const useUserStore = defineStore('user', {
   // Estado
   state: () => ({
     users: [], // Almacena la lista de usuarios
+    selectedUsers: [],
+    cardPerson: null,
     openDrawer: false,
     steam: [
       {
         name: 'Science',
         filterValue: 'Ciencia',
-        icon: 'science'
+        icon: 'science',
       },
       {
         name: 'Technology',
         filterValue: 'Tecnología',
-        icon: 'laptop'
+        icon: 'technology',
       },
       {
         name: 'Engineer',
         filterValue: 'Ingeniería',
-        icon: 'cog'
+        icon: 'engineer',
       },
       {
         name: 'Art',
         filterValue: 'Arte',
-        icon: 'paintbrush'
+        icon: 'art',
       },
       {
         name: 'Math',
         filterValue: 'Matemáticas',
-        icon: 'functionMath'
-      }
+        icon: 'math',
+      },
     ],
     steamFilter: [],
     islandFilter: [],
     municipalityFilter: '',
-    countryFilter: ''
+    countryFilter: '',
   }),
 
   // Getters
@@ -54,13 +56,24 @@ export const useUserStore = defineStore('user', {
       try {
         // Llama a la API para obtener usuarios
         this.users = await getUsers()
+        if (!this.selectedUsers.length) {
+          this.selectedUsers = this.users
+        }
       } catch (error) {
         console.error('Error al obtener usuarios:', error)
       }
     },
     handleOpenDrawer() {
       this.openDrawer = !this.openDrawer
-    }
+    },
+
+    setSelectedUsers(users) {
+      this.selectedUsers = users
+    },
+
+    handleOpenCard(person) {
+      this.cardPerson = person
+    },
   },
 })
 

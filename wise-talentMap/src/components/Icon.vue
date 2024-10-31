@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="flex items-center justify-center">
     <component v-if="!isSvg" :is="iconComponent" aria-hidden="true" :class="`${size} fill-transparent text-${color}`" />
-    <span v-else :class="`pi ${iconComponent} ${size} text-${color}`"></span>
+    <span v-else :class="`pi ${iconComponent} ${size} text-${color}`" :style="`font-size: ${extraStyles}`"></span>
   </div>
 </template>
 
@@ -24,21 +24,27 @@ const props = defineProps({
   color: {
     type: String,
     default: 'black'
+  },
+  extraStyles: {
+    type: String,
+    default: ''
   }
 })
 
 const allowedIcons = {
-  cog: 'pi-cog',
+  engineer: 'pi-cog',
   closeCircle: 'pi-times-circle',
+  close: 'pi-times',
   filterSlash: 'pi-filter-slash',
-  functionMath: FunctionMath,
-  laptop: Laptop,
-  paintbrush: Paintbrush,
+  math: FunctionMath,
+  technology: Laptop,
+  art: Paintbrush,
   science: Science,
   search: 'pi-search',
   linkedin: 'pi-linkedin',
   location: 'pi-map-marker',
   job: 'pi-briefcase',
+  back: 'pi-chevron-left'
 }
 
 const iconComponent = computed(() => {

@@ -68,8 +68,8 @@ onMounted(() => {
   });
 
   const miniMapLayer = new L.MaptilerLayer({
-    apiKey: "CNX23CDiEaOjDZ7zvUIS",
-    style: 'https://api.maptiler.com/maps/9acac1d3-e6e0-404c-8213-7da3ad245870/style.json'
+    apiKey: "i5OzUSOgKbWzD2DSP43I",
+    style: 'https://api.maptiler.com/maps/f5b7cf32-2b60-40ea-b08b-6e6c919e904a/style.json'
   }).addTo(miniMap);
 
 

@@ -1,18 +1,40 @@
 <template>
   <div class="w-full h-full relative !bg-secondary-blue">
+    <div
+      class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
+      @click="store.handleOpenDrawer()"
+    >
+      <Icon
+        icon="back"
+        color="primary-violet"
+        :class="[
+    'transform transition-transform duration-300',
+    store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
+  ]"
+      />
+    </div>
     <div id="map" class="w-full h-full"></div>
-    <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap " :class="{ 'hidden': store.openDrawer }"
-      :people="filteredPeople.length ? filteredPeople : []" />
-    <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
-      style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
-    <Card v-if="showCard" :person="target" @close="showCard = false"
-      style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
+    <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
+      :people="filteredPeople.length ? filteredPeople : []" /> -->
+    <ListComponent
+      v-if="showList"
+      :markers="listData"
+      :visible="showList"
+      @close="showList = false"
+      style="position: absolute; top: 10px; right: 10px; z-index: 1000"
+    />
+    <Card
+      v-if="showCard"
+      :person="target"
+      @close="showCard = false"
+      style="position: absolute; top: 50px; right: 50px; z-index: 1000"
+    />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
-import { useUserStore } from '@/stores/user'
+import {computed, onMounted, ref, watch} from 'vue'
+import {useUserStore} from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -20,7 +42,8 @@ import 'leaflet.markercluster'
 import MiniMap from './MiniMap.vue'
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
-import { getUsers } from '@/services/user.services'
+import {getUsers} from '@/services/user.services'
+import Icon from '../Icon.vue'
 
 const store = useUserStore()
 
@@ -29,23 +52,30 @@ const showCard = ref(false)
 const listData = ref([])
 const target = ref({})
 const map = ref(null)
-const selectedCoordinates = ref([])
+const selectedCoordinates = ref([28.50291, -15.88168])
 const initialZoom = ref(8.4)
 const people = ref([])
 const markers = ref(null)
 
 const filteredPeople = computed(() => {
-  if (!store.steamFilter.length && !store.islandFilter.length && !store.countryFilter && !store.municipalityFilter) return people.value
-  else {
-    return (
-      people.value.filter(person => {
-        const personSteams = person.steam.map(area => area.name)
-        return store.steamFilter.some(filter => personSteams.includes(filter)) ||
-          store.countryFilter.includes(person.location.country) ||
-          store.islandFilter.includes(person.location.island) ||
-          store.municipalityFilter.includes(person.location.municipality)
-      })
-    )
+  if (
+    !store.steamFilter.length &&
+    !store.islandFilter.length &&
+    !store.countryFilter &&
+    !store.municipalityFilter
+  ){
+    return people.value
+  }else {
+
+    return people.value.filter((person) => {
+      const personSteams = person.steam.map((area) => area.name)
+      return (
+        store.steamFilter.some((filter) => personSteams.includes(filter)) ||
+        store.countryFilter.includes(person.location.country) ||
+        store.islandFilter.includes(person.location.island) ||
+        store.municipalityFilter.includes(person.location.municipality)
+      )
+    })
   }
 })
 
@@ -70,16 +100,15 @@ const updateMarkers = (people) => {
       typeof coords[0] === 'number' &&
       typeof coords[1] === 'number'
     ) {
-      const customIcon = renderIcon();
-      const marker = L.marker(coords, { icon: customIcon });
+      const customIcon = renderIcon()
+      const marker = L.marker(coords, {icon: customIcon})
       marker.on('click', () => {
         target.value = {
           id: marker._leaflet_id,
           ...person,
-        };
-        showCard.value = true;
-      });
-      markers.value.addLayer(marker);
+        }
+      })
+      markers.value.addLayer(marker)
     }
   })
 }
@@ -118,7 +147,7 @@ onMounted(async () => {
     zoomAnimation: false,
     maxZoom: 13,
     minZoom: 2,
-    scrollWheelZoom: false,
+    scrollWheelZoom: true,
     maxBounds: [
       [-85, -180],
       [85, 180],
@@ -130,11 +159,11 @@ onMounted(async () => {
   map.value.removeControl(zoomControl)
   zoomControl.options.position = 'topright'
   zoomControl.addTo(map.value)
-
+  //
   const mtLayer = new L.MaptilerLayer({
-    apiKey: 'CNX23CDiEaOjDZ7zvUIS',
+    apiKey: 'i5OzUSOgKbWzD2DSP43I',
     style:
-      'https://api.maptiler.com/maps/9acac1d3-e6e0-404c-8213-7da3ad245870/style.json',
+      'https://api.maptiler.com/maps/f5b7cf32-2b60-40ea-b08b-6e6c919e904a/style.json',
     noWrap: true,
   }).addTo(map.value)
 
@@ -169,29 +198,48 @@ onMounted(async () => {
 
   markers.value.on('clusterclick', function (event) {
     event.originalEvent.stopPropagation()
-    showCard.value = false
     store.handleOpenDrawer()
+
     selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
     const childMarkers = event.layer.getAllChildMarkers()
-    listData.value = childMarkers.map((marker) => {
-      const person = people.value.find(
+    listData.value = childMarkers.flatMap((marker) => {
+      return people.value.filter(
         (p) =>
           p.location.coordinates[0] === marker.getLatLng().lat &&
           p.location.coordinates[1] === marker.getLatLng().lng
       )
-      return {
-        id: marker._leaflet_id,
-        ...person,
-      }
     })
+
+    // Eliminar duplicados basados en el email
+    listData.value = [
+      ...new Map(listData.value.map((item) => [item.email, item])).values(),
+    ]
+    console.log(listData.value)
+    store.setSelectedUsers(listData.value)
   })
   updateMarkers(filteredPeople.value)
   map.value.addLayer(markers.value)
+
+  const zoomContainer = document.querySelector('.leaflet-touch .leaflet-bar')
+  zoomContainer.setAttribute(
+    'style',
+    'border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;'
+  )
+  const zoomEl = document.querySelectorAll('.leaflet-bar > a')
+  zoomEl[0].setAttribute(
+    'style',
+    'color: #881BF5; border-bottom: 1px solid #881BF5;'
+  )
+  zoomEl[1].setAttribute('style', 'color: #881BF5;')
 })
 
-watch(() => filteredPeople.value, (newPeople) => {
-  updateMarkers(newPeople)
-}, { deep: true })
+watch(
+  () => filteredPeople.value,
+  (newPeople) => {
+    updateMarkers(newPeople)
+  },
+  {deep: true}
+)
 
 watch(
   () => store.openDrawer,
@@ -214,5 +262,13 @@ watch(
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.leaflet-container {
+  z-index: 1 !important;
+}
+
+#zoom-controls {
+  color: #881bf5 !important;
 }
 </style>
