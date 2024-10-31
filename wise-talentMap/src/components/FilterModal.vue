@@ -41,7 +41,8 @@
         </div>
         <footer class="font-bebas flex justify-between px-6 pb-6">
           <CustomButton :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
-          <CustomButton class="border border-mediumGray rounded-md bg-softGray">ENTORNO VIRTUAL</CustomButton>
+          <CustomButton class="border border-mediumGray rounded-md text-secondary-white bg-twoColorsBlue">APLICAR
+          </CustomButton>
         </footer>
       </div>
     </template>
