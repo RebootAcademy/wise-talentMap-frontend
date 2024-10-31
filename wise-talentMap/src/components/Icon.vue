@@ -7,6 +7,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import FilterSlider from '@/assets/Icons/FilterSlider.vue';
 import FunctionMath from '@/assets/Icons/FunctionMath.vue';
 import Laptop from '@/assets/Icons/Laptop.vue';
 import Paintbrush from '@/assets/Icons/Paintbrush.vue';
@@ -30,7 +31,7 @@ const props = defineProps({
 const allowedIcons = {
   engineer: 'pi-cog',
   closeCircle: 'pi-times-circle',
-  filterSlash: 'pi-filter-slash',
+  filterSlider: FilterSlider,
   math: FunctionMath,
   technology: Laptop,
   art: Paintbrush,

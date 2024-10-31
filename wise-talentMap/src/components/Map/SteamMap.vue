@@ -7,12 +7,18 @@
         class="hover:transition hover:ease-in hover:duration-300 hover:animate__animated hover:animate__rotateIn" />
     </div>
     <div id="map" class="w-full h-full"></div>
+    <CustomButton
+      class="absolute top-2.5 right-2.5 p-2 z-[1000] w-8 h-8 bg-white flex justify-center items-center border border-primary-violet"
+      :clickFn="handleOpenModal">
+      <Icon icon="filterSlider" color="primary-violet" />
+    </CustomButton>
     <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
       :people="filteredPeople.length ? filteredPeople : []" />
     <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
       style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
     <Card v-if="showCard" :person="target" @close="showCard = false"
       style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
+    <FilterModal :filtersVisible="filtersVisible" :handleVisibility="handleOpenModal" />
   </div>
 </template>
 
@@ -28,6 +34,8 @@ import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
 import { getUsers } from '@/services/user.services'
 import Icon from '../Icon.vue'
+import CustomButton from '../CustomButton.vue'
+import FilterModal from '../FilterModal.vue'
 
 const store = useUserStore()
 
@@ -40,6 +48,9 @@ const selectedCoordinates = ref([])
 const initialZoom = ref(8.4)
 const people = ref([])
 const markers = ref(null)
+const filtersVisible = ref(false)
+
+const handleOpenModal = () => filtersVisible.value = !filtersVisible.value
 
 const filteredPeople = computed(() => {
   if (
@@ -207,7 +218,7 @@ onMounted(async () => {
   map.value.addLayer(markers.value)
 
   const zoomContainer = document.querySelector('.leaflet-touch .leaflet-bar')
-  zoomContainer.setAttribute('style', 'border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;')
+  zoomContainer.setAttribute('style', 'margin-top:60px;border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;')
   const zoomEl = document.querySelectorAll('.leaflet-bar > a')
   zoomEl[0].setAttribute('style', 'color: #881BF5; border-bottom: 1px solid #881BF5;')
   zoomEl[1].setAttribute('style', 'color: #881BF5;')
