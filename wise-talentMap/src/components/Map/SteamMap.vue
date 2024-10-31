@@ -163,6 +163,8 @@ onMounted(async () => {
   }
 
   markers.value = L.markerClusterGroup({
+    spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
     iconCreateFunction: function (cluster) {
       const count = cluster.getChildCount()
       const size = count < 10 ? '30px' : count < 20 ? '35px' : '40px'
