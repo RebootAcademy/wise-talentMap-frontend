@@ -4,7 +4,7 @@
     @click="close"
   >
     <div
-      class="bg-secondary-white text-anthraciteGray text-md rounded-md min-w-[442px] max-w-[450px]  relative"
+      class="bg-secondary-white text-anthraciteGray text-md rounded-md min-w-[442px] max-w-[450px]  relative  border-blueGradient"
       @click.stop
     >
       <div class="relative bg-twoColorsBlue h-24 rounded-t-md">
@@ -94,8 +94,8 @@
             ><p>
               {{ person.firstName.split(' ').join('')
               }}{{ person.lastName.split(' ').join('').toLocaleLowerCase() }}
-            </p></a
-          >
+            </p>
+          </a>
         </div>
       </div>
     </div>
@@ -103,10 +103,10 @@
 </template>
 
 <script setup>
-import {defineProps, defineEmits} from 'vue'
-import {useUserStore} from '@/stores/user.js'
+import { defineProps, defineEmits } from 'vue'
+import { useUserStore } from '@/stores/user.js'
 import Icon from '../Icon.vue'
-import {switchEnglishSteamName} from '@/utils'
+import { switchEnglishSteamName } from '@/utils'
 const userStore = useUserStore()
 
 const props = defineProps({
