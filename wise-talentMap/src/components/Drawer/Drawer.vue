@@ -14,7 +14,7 @@
         v-for="user in store.selectedUsers"
         :key="user.id"
         :person="user"
-        class="col-span-2 border-2 border-gray-50 max-h-[350px]"
+        class="col-span-2 border-2 border-gray-50 "
         @click="handleShowCard(user)"
       />
     </div>
