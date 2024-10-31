@@ -35,7 +35,7 @@
         </div>
         <div class="flex gap-2">
           <Icon icon="job" />
-          <p>{{ person.jobPosition }}</p>
+          <p class="card-title">{{ person.jobPosition }}</p>
         </div>
         <div class="flex gap-2">
           <Icon icon="linkedin" />
@@ -94,4 +94,5 @@ span {
   -webkit-text-stroke: 0.5px #881bf5;
   transition: 0.5s;
 }
+
 </style>

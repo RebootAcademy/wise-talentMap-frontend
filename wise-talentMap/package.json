@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.21.0",
+    "@cloudinary/vue": "^1.12.1",
     "@maptiler/leaflet-maptilersdk": "^2.0.0",
     "@primevue/themes": "^4.1.1",
     "animate.css": "^4.1.1",
