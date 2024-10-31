@@ -4,7 +4,7 @@
         <Card
           v-if="showCard"
           :person="store.cardPerson"
-          class="sticky top-0  z-50"
+          class="sticky top-0 z-50 "
           @close="showCard = false"
         />
 

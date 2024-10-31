@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full relative !bg-secondary-blue ">
-   <div v-if="store.openDrawer" class="absolute border-2 border-primary-violet flex items-center justify-center top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
+   <div v-if="store.openDrawer" class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
    @click="store.handleOpenDrawer()"
    >
     <Icon icon='back' color="primary-violet" class="hover:transition hover:ease-in hover:duration-300 hover:animate__animated hover:animate__rotateIn"/>
