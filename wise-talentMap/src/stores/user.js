@@ -63,8 +63,9 @@ export const useUserStore = defineStore('user', {
         console.error('Error al obtener usuarios:', error)
       }
     },
-    handleOpenDrawer() {
-      this.openDrawer = !this.openDrawer
+    handleOpenDrawer(state) {
+      this.openDrawer = state
+      console.log(this.openDrawer, 'openDrawer')
     },
 
     setSelectedUsers(users) {

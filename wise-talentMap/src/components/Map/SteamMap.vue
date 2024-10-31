@@ -2,15 +2,15 @@
   <div class="w-full h-full relative !bg-secondary-blue">
     <div
       class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
-      @click="store.handleOpenDrawer()"
+      @click="closeDrawer"
     >
       <Icon
         icon="back"
         color="primary-violet"
         :class="[
-    'transform transition-transform duration-300',
-    store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
-  ]"
+          'transform transition-transform duration-300',
+          store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
+        ]"
       />
     </div>
     <div id="map" class="w-full h-full"></div>
@@ -63,10 +63,9 @@ const filteredPeople = computed(() => {
     !store.islandFilter.length &&
     !store.countryFilter &&
     !store.municipalityFilter
-  ){
+  ) {
     return people.value
-  }else {
-
+  } else {
     return people.value.filter((person) => {
       const personSteams = person.steam.map((area) => area.name)
       return (
@@ -103,10 +102,11 @@ const updateMarkers = (people) => {
       const customIcon = renderIcon()
       const marker = L.marker(coords, {icon: customIcon})
       marker.on('click', () => {
-        target.value = {
-          id: marker._leaflet_id,
-          ...person,
-        }
+        store.handleOpenDrawer(true)
+        
+        target.value = person
+        selectedCoordinates.value = person.location.coordinates
+        store.selectedUsers = [person]
       })
       markers.value.addLayer(marker)
     }
@@ -198,7 +198,7 @@ onMounted(async () => {
 
   markers.value.on('clusterclick', function (event) {
     event.originalEvent.stopPropagation()
-    store.handleOpenDrawer()
+    store.handleOpenDrawer(true)
 
     selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
     const childMarkers = event.layer.getAllChildMarkers()
@@ -253,6 +253,11 @@ watch(
     }
   }
 )
+
+const closeDrawer = () => {
+  store.handleOpenDrawer(store.openDrawer ? false : true)
+  store.setSelectedUsers(filteredPeople.value)
+}
 </script>
 
 <style scoped>

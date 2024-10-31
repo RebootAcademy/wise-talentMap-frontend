@@ -9,7 +9,7 @@
         />
 
 
-    <div class="absolute top-6 h-full grid grid-cols-6 gap-6 px-8 bg-white z-10">
+    <div class="absolute top-6 h-full w-full grid grid-cols-6 gap-6 px-8 bg-white z-10">
       <DrawerCard
         v-for="user in store.selectedUsers"
         :key="user.id"

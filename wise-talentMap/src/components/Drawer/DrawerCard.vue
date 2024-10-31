@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col items-center bg-secondary-white gap-6 px-4 min-w-[210px] max-w-[300px] min-h-[330px] max-h-[350px] rounded-md cursor-pointer"
+    class="flex flex-col items-center bg-secondary-white gap-6 px-4 min-w-full max-w-[300px] min-h-[330px] max-h-[350px] rounded-md cursor-pointer"
     :class="
       isSelectedPerson
         ? 'border-2 border-primary-violet'
