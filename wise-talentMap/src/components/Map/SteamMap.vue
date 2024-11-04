@@ -203,15 +203,15 @@ onMounted(async () => {
 
     selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
     const childMarkers = event.layer.getAllChildMarkers()
-    listData.value = childMarkers.flatMap((marker) => {
-      return people.value.filter(
+    
+listData.value = childMarkers.flatMap((marker) => {
+      return filteredPeople.value.filter(
         (p) =>
           p.location.coordinates[0] === marker.getLatLng().lat &&
           p.location.coordinates[1] === marker.getLatLng().lng
       )
     })
-
-    // Eliminar duplicados basados en el email
+   
     listData.value = [
       ...new Map(listData.value.map((item) => [item.email, item])).values(),
     ]
