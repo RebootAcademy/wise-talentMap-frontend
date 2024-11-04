@@ -26,7 +26,7 @@
             <p class="font-bebas text-xl">ISLA DE RESIDENCIA</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
               <CustomButton v-for="(island, idx) in islands" :key="idx"
-                :class="`${islandFilter.includes(island) ? 'border-2 font-bold' : 'border'} rounded-2xl`"
+                :class="`${islandFilter.includes(island) ? 'bg-twoColorsBlue bg-clip-text text-transparent border-blueGradient-rounded' : 'border border-deepGray'} !rounded-full`"
                 :clickFn="() => checkSelections('islands', island)">
                 {{ island }}
               </CustomButton>
