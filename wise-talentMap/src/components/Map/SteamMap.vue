@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full relative !bg-secondary-blue">
     <div
-      class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
+      class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-6 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"
       @click="closeDrawer">
       <Icon icon="back" color="primary-violet" :class="[
         'transform transition-transform duration-300',
@@ -14,13 +14,14 @@
       :clickFn="handleOpenModal">
       <Icon icon="filterSlider" color="primary-violet" />
     </CustomButton>
-    <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
-      :people="filteredPeople.length ? filteredPeople : []" />
+    <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
+      :people="filteredPeople.length ? filteredPeople : []" /> -->
     <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
       style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
     <Card v-if="showCard" :person="target" @close="showCard = false"
       style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
-    <FilterModal :filtersVisible="filtersVisible" :handleVisibility="handleOpenModal" />
+    <FilterModal v-model:visible="filtersVisible" :filtersVisible="filtersVisible"
+      :handleVisibility="handleOpenModal" />
   </div>
 </template>
 
@@ -31,7 +32,7 @@ import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import 'leaflet.markercluster'
-import MiniMap from './MiniMap.vue'
+/* import MiniMap from './MiniMap.vue' */
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
 import { getUsers } from '@/services/user.services'
