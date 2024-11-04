@@ -1,7 +1,7 @@
 <template>
-  <Dialog :visible="filtersVisible" class="w-[31rem]" modal>
+  <Dialog :visible="filtersVisible" class="w-[31rem]" modal dismissableMask>
     <template #container>
-      <div class="bg-white text-black rounded-md border border-black flex flex-col gap-6">
+      <div class="bg-white text-black rounded-md border border-black flex flex-col gap-6" @blur="handleVisibility">
         <header class="flex items-center justify-center gap-2 relative p-6 font-bebas text-2xl border-b">
           <span>FILTERS</span>
           <Icon icon="closeCircle" class="absolute right-6 cursor-pointer" @click="handleVisibility" />
@@ -10,7 +10,12 @@
           <section class="flex flex-col gap-6">
             <p class="font-bebas text-xl">ÁREA STEAM</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
-              <SteamFilterButtons />
+              <CustomButton v-for="(option, idx) in store.steam" :key="idx"
+                :class="`flex gap-2 font-bebas text-xl items-center ${checkSelection(option.filterValue) ? 'bg-twoColorsBlue text-white border-transparent' : 'border-blueGradient'} border-mediumGray rounded-2xl`"
+                :clickFn="() => checkSteamFilter(option.filterValue)">
+                <Icon :icon="option.icon" :color="checkSelection(option.filterValue) ? 'white' : 'black'" />
+                <span>{{ option.name }}</span>
+              </CustomButton>
             </div>
           </section>
           <hr>
@@ -18,7 +23,7 @@
             <p class="font-bebas text-xl">ISLA DE RESIDENCIA</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
               <CustomButton v-for="(island, idx) in islands" :key="idx"
-                :class="`${store.islandFilter.includes(island) ? 'border-2 font-bold' : 'border'} rounded-2xl`"
+                :class="`${islandFilter.includes(island) ? 'border-2 font-bold' : 'border'} rounded-2xl`"
                 :clickFn="() => checkSelections('islands', island)">
                 {{ island }}
               </CustomButton>
@@ -41,7 +46,9 @@
         </div>
         <footer class="font-bebas flex justify-between px-6 pb-6">
           <CustomButton :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
-          <CustomButton class="border border-mediumGray rounded-md bg-softGray">ENTORNO VIRTUAL</CustomButton>
+          <CustomButton :clickFn="applyFilters"
+            class="border border-mediumGray rounded-md text-secondary-white bg-twoColorsBlue">APLICAR
+          </CustomButton>
         </footer>
       </div>
     </template>
@@ -55,7 +62,6 @@ import Select from 'primevue/select'
 import Icon from './Icon.vue';
 import CustomButton from './CustomButton.vue';
 import { useUserStore } from '@/stores/user';
-import SteamFilterButtons from './SteamFilterButtons.vue';
 import { getOutsiders } from '@/services/location.services';
 
 const props = defineProps({
@@ -71,6 +77,10 @@ const props = defineProps({
 
 const store = useUserStore()
 const islands = ['Gran Canaria', 'Fuerteventura', 'La Graciosa', 'Lanzarote', 'Tenerife', 'La Gomera', 'La Palma', 'El Hierro']
+const steamFilter = ref([])
+const countryFilter = ref('')
+const islandFilter = ref([])
+const municipalityFilter = ref('')
 
 const municipalities = [
   {
@@ -134,6 +144,25 @@ const selectedCountry = ref('')
 const countries = ref([])
 const selectableMunicipalities = ref([])
 
+const checkSelection = (param) => steamFilter.value.includes(param)
+
+const checkSteamFilter = (option) => {
+  if (checkSelection(option)) {
+    const index = steamFilter.value.indexOf(option)
+    steamFilter.value.splice(index, 1)
+  } else {
+    steamFilter.value.push(option)
+  }
+}
+
+const applyFilters = () => {
+  store.steamFilter = [...steamFilter.value]
+  store.countryFilter = countryFilter.value
+  store.islandFilter = [...islandFilter.value]
+  store.municipalityFilter = municipalityFilter.value
+  props.handleVisibility()
+}
+
 onMounted(async () => {
   const countriesResponse = await getOutsiders()
   countries.value = countriesResponse
@@ -144,15 +173,15 @@ onMounted(async () => {
 
 const checkSelections = (type, option) => {
   if (type === 'country') {
-    store.countryFilter = option
+    countryFilter.value = option
   } else if (type === 'municipality') {
-    store.municipalityFilter = option
+    municipalityFilter.value = option
   } else {
-    if (store.islandFilter.includes(option)) {
-      const index = store.islandFilter.indexOf(option)
-      store.islandFilter.splice(index, 1)
+    if (islandFilter.value.includes(option)) {
+      const index = islandFilter.value.indexOf(option)
+      islandFilter.value.splice(index, 1)
     } else {
-      store.islandFilter.push(option)
+      islandFilter.value.push(option)
     }
   }
 }
@@ -167,13 +196,13 @@ const clearFilters = () => {
 const separateMunicipalities = () => {
   let selected = []
   for (const island of municipalities) {
-    if (store.islandFilter.includes(island.island)) selected.push(island)
+    if (islandFilter.value.includes(island.island)) selected.push(island)
   }
-  if (!store.islandFilter.length) selected = [...municipalities]
+  if (!islandFilter.value.length) selected = [...municipalities]
   selectableMunicipalities.value = selected
 }
 
-watch(() => store.islandFilter, () => {
+watch(() => islandFilter.value, () => {
   separateMunicipalities()
 }, { deep: true })
 

@@ -15,17 +15,11 @@
     <!-- Filters bar -->
     <div
       :class="`bg-white h-20 text-black flex ${searchFocus ? 'gap-7' : 'justify-between '} items-center py-2.5 px-8`">
-      <CustomInput icon="pi-search" placeholder="Buscar" :class="`${searchFocus ? 'w-full' : 'w-20'} h-12`"
-        v-model="searchParam" :onFocus="onFocus" :onBlur="onBlur" />
-      <div class="flex gap-7 items-center">
+      <div class="w-full flex gap-7 items-center justify-center">
         <SteamFilterButtons />
       </div>
-      <CustomButton class="border rounded-md gap-2.5" :clickFn="handleOpenModal">
-        <Icon icon="filterSlash" size="w-6 h-6" />Filtros
-      </CustomButton>
     </div>
     <RouterView />
-    <FilterModal :filtersVisible="filtersVisible" :handleVisibility="handleOpenModal" />
   </div>
 </template>
 
@@ -33,12 +27,8 @@
 import { ref } from 'vue';
 import CustomButton from '@/components/CustomButton.vue'
 import CustomInput from '@/components/CustomInput.vue';
-import FilterModal from '@/components/FilterModal.vue';
-import Icon from '@/components/Icon.vue';
 import SteamFilterButtons from '@/components/SteamFilterButtons.vue';
-import { useUserStore } from '@/stores/user';
 
-const store = useUserStore()
 const searchParam = ref('')
 const searchFocus = ref(false)
 const filtersVisible = ref(false)

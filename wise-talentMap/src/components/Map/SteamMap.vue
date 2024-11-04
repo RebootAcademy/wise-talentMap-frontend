@@ -2,39 +2,31 @@
   <div class="w-full h-full relative !bg-secondary-blue">
     <div
       class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
-      @click="closeDrawer"
-    >
-      <Icon
-        icon="back"
-        color="primary-violet"
-        :class="[
-          'transform transition-transform duration-300',
-          store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
-        ]"
-      />
+      @click="closeDrawer">
+      <Icon icon="back" color="primary-violet" :class="[
+        'transform transition-transform duration-300',
+        store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
+      ]" />
     </div>
     <div id="map" class="w-full h-full"></div>
-    <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
-      :people="filteredPeople.length ? filteredPeople : []" /> -->
-    <ListComponent
-      v-if="showList"
-      :markers="listData"
-      :visible="showList"
-      @close="showList = false"
-      style="position: absolute; top: 10px; right: 10px; z-index: 1000"
-    />
-    <Card
-      v-if="showCard"
-      :person="target"
-      @close="showCard = false"
-      style="position: absolute; top: 50px; right: 50px; z-index: 1000"
-    />
+    <CustomButton
+      class="absolute top-[32px] right-[32px] p-2 z-[1000] w-8 h-8 bg-white flex justify-center items-center border border-primary-violet"
+      :clickFn="handleOpenModal">
+      <Icon icon="filterSlider" color="primary-violet" />
+    </CustomButton>
+    <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
+      :people="filteredPeople.length ? filteredPeople : []" />
+    <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
+      style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
+    <Card v-if="showCard" :person="target" @close="showCard = false"
+      style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
+    <FilterModal :filtersVisible="filtersVisible" :handleVisibility="handleOpenModal" />
   </div>
 </template>
 
 <script setup>
-import {computed, onMounted, ref, watch} from 'vue'
-import {useUserStore} from '@/stores/user'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useUserStore } from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -42,8 +34,10 @@ import 'leaflet.markercluster'
 import MiniMap from './MiniMap.vue'
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
-import {getUsers} from '@/services/user.services'
+import { getUsers } from '@/services/user.services'
 import Icon from '../Icon.vue'
+import CustomButton from '../CustomButton.vue'
+import FilterModal from '../FilterModal.vue'
 
 const store = useUserStore()
 
@@ -56,6 +50,9 @@ const selectedCoordinates = ref([28.50291, -15.88168])
 const initialZoom = ref(8.4)
 const people = ref([])
 const markers = ref(null)
+const filtersVisible = ref(false)
+
+const handleOpenModal = () => filtersVisible.value = !filtersVisible.value
 
 const filteredPeople = computed(() => {
   if (
@@ -100,10 +97,10 @@ const updateMarkers = (people) => {
       typeof coords[1] === 'number'
     ) {
       const customIcon = renderIcon()
-      const marker = L.marker(coords, {icon: customIcon})
+      const marker = L.marker(coords, { icon: customIcon })
       marker.on('click', () => {
         store.handleOpenDrawer(true)
-        
+
         target.value = person
         selectedCoordinates.value = person.location.coordinates
         store.selectedUsers = [person]
@@ -115,15 +112,15 @@ const updateMarkers = (people) => {
 
 function generateSvgIcon(color = 'black') {
   return `
-    <svg width="30" height="30" viewBox="0 0 175 232" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M174.951 139.447C171.931 144.791 168.398 149.807 164.423 154.431L164.5 154.5L93 232L22.5 154.5L22.5762 154.43C8.50488 138.065 0 116.775 0 93.5C0 41.8613 41.8613 0 93.5 0C127.003 0 156.39 17.6211 172.899 44.1006L131.416 61.6768C122.336 50.8691 108.72 44 93.5 44C66.1621 44 44 66.1621 44 93.5C44 120.838 66.1621 143 93.5 143C110.219 143 125.001 134.711 133.963 122.02L174.951 139.447Z" fill="url(#paint0_linear_82_92)"/>
-        <defs>
-            <linearGradient id="paint0_linear_82_92" x1="4.50001" y1="241" x2="173.852" y2="7.12159" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FC00FF"/>
-                <stop offset="0.39" stop-color="#881BF5"/>
-                <stop offset="1" stop-color="#17E4CE"/>
-            </linearGradient>
-        </defs>
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" viewBox="0 0 175 232" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M164.423 154.431C168.398 149.807 171.931 144.791 174.951 139.447L133.963 122.02C125.001 134.711 110.219 143 93.5 143C66.1621 143 44 120.838 44 93.5C44 66.1621 66.1621 44 93.5 44C108.72 44 122.336 50.8691 131.416 61.6768L172.899 44.1006C156.39 17.6211 127.003 0 93.5 0C41.8613 0 0 41.8613 0 93.5C0 116.775 8.50488 138.065 22.5762 154.43L22.5 154.5L93 232L164.5 154.5L164.423 154.431ZM93.5 125C110.897 125 125 110.897 125 93.5C125 76.103 110.897 62 93.5 62C76.103 62 62 76.103 62 93.5C62 110.897 76.103 125 93.5 125Z" fill="url(#paint0_linear_82_89)"/>
+      <defs>
+        <linearGradient id="paint0_linear_82_89" x1="4.50001" y1="241" x2="173.852" y2="7.12159" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FC00FF"/>
+        <stop offset="0.39" stop-color="#881BF5"/>
+        <stop offset="1" stop-color="#17E4CE"/>
+        </linearGradient>
+      </defs>
     </svg>
 `
 }
@@ -180,6 +177,8 @@ onMounted(async () => {
   }
 
   markers.value = L.markerClusterGroup({
+    spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
     iconCreateFunction: function (cluster) {
       const count = cluster.getChildCount()
       const size = count < 10 ? '30px' : count < 20 ? '35px' : '40px'
@@ -221,10 +220,7 @@ onMounted(async () => {
   map.value.addLayer(markers.value)
 
   const zoomContainer = document.querySelector('.leaflet-touch .leaflet-bar')
-  zoomContainer.setAttribute(
-    'style',
-    'border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;'
-  )
+  zoomContainer.setAttribute('style', 'margin-top:76px;margin-right: 32px;border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;')
   const zoomEl = document.querySelectorAll('.leaflet-bar > a')
   zoomEl[0].setAttribute(
     'style',
@@ -238,7 +234,7 @@ watch(
   (newPeople) => {
     updateMarkers(newPeople)
   },
-  {deep: true}
+  { deep: true }
 )
 
 watch(
