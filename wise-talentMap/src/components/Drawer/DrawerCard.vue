@@ -10,8 +10,9 @@
     "
   >
     <Divider
-      type="gradient"
-      class="absolute top-20 z-10 w-[70%] origin-center transition-transform duration-300 ease-in-out"
+      type="fourColors"
+      customWidth="w-[80%]"
+      class="absolute top-20 z-10 origin-center transition-transform duration-300 ease-in-out"
       :class="isHovered ? 'scale-x-100' : 'scale-x-0'"
     />
 

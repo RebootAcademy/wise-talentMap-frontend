@@ -1,33 +1,51 @@
 <template>
   <div class="w-full h-full relative !bg-secondary-blue">
     <div
-      class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-6 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"
-      @click="closeDrawer">
-      <Icon icon="back" color="primary-violet" :class="[
-        'transform transition-transform duration-300',
-        store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
-      ]" />
+      class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-8 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"
+      @click="closeDrawer"
+    >
+      <Icon
+        icon="back"
+        color="primary-violet"
+        :class="[
+          'transform transition-transform duration-300',
+          store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
+        ]"
+      />
     </div>
     <div id="map" class="w-full h-full"></div>
     <CustomButton
       class="absolute top-[32px] right-[32px] p-2 z-[1000] w-8 h-8 bg-white flex justify-center items-center border border-primary-violet"
-      :clickFn="handleOpenModal">
+      :clickFn="handleOpenModal"
+    >
       <Icon icon="filterSlider" color="primary-violet" />
     </CustomButton>
     <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
       :people="filteredPeople.length ? filteredPeople : []" /> -->
-    <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
-      style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
-    <Card v-if="showCard" :person="target" @close="showCard = false"
-      style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
-    <FilterModal v-model:visible="filtersVisible" :filtersVisible="filtersVisible"
-      :handleVisibility="handleOpenModal" />
+    <ListComponent
+      v-if="showList"
+      :markers="listData"
+      :visible="showList"
+      @close="showList = false"
+      style="position: absolute; top: 10px; right: 10px; z-index: 1000"
+    />
+    <Card
+      v-if="showCard"
+      :person="target"
+      @close="showCard = false"
+      style="position: absolute; top: 50px; right: 50px; z-index: 1000"
+    />
+    <FilterModal
+      v-model:visible="filtersVisible"
+      :filtersVisible="filtersVisible"
+      :handleVisibility="handleOpenModal"
+    />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
-import { useUserStore } from '@/stores/user'
+import {computed, onMounted, ref, watch} from 'vue'
+import {useUserStore} from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -35,7 +53,7 @@ import 'leaflet.markercluster'
 /* import MiniMap from './MiniMap.vue' */
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
-import { getUsers } from '@/services/user.services'
+import {getUsers} from '@/services/user.services'
 import Icon from '../Icon.vue'
 import CustomButton from '../CustomButton.vue'
 import FilterModal from '../FilterModal.vue'
@@ -53,7 +71,7 @@ const people = ref([])
 const markers = ref(null)
 const filtersVisible = ref(false)
 
-const handleOpenModal = () => filtersVisible.value = !filtersVisible.value
+const handleOpenModal = () => (filtersVisible.value = !filtersVisible.value)
 
 const filteredPeople = computed(() => {
   if (
@@ -98,7 +116,7 @@ const updateMarkers = (people) => {
       typeof coords[1] === 'number'
     ) {
       const customIcon = renderIcon()
-      const marker = L.marker(coords, { icon: customIcon })
+      const marker = L.marker(coords, {icon: customIcon})
       marker.on('click', () => {
         store.handleOpenDrawer(true)
 
@@ -203,15 +221,15 @@ onMounted(async () => {
 
     selectedCoordinates.value = [event.latlng.lat, event.latlng.lng]
     const childMarkers = event.layer.getAllChildMarkers()
+
     listData.value = childMarkers.flatMap((marker) => {
-      return people.value.filter(
+      return filteredPeople.value.filter(
         (p) =>
           p.location.coordinates[0] === marker.getLatLng().lat &&
           p.location.coordinates[1] === marker.getLatLng().lng
       )
     })
 
-    // Eliminar duplicados basados en el email
     listData.value = [
       ...new Map(listData.value.map((item) => [item.email, item])).values(),
     ]
@@ -222,13 +240,17 @@ onMounted(async () => {
   map.value.addLayer(markers.value)
 
   const zoomContainer = document.querySelector('.leaflet-touch .leaflet-bar')
-  zoomContainer.setAttribute('style', 'margin-top:76px;margin-right: 32px;border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;')
+  zoomContainer.setAttribute(
+    'style',
+    'margin-top:76px;margin-right: 32px;border-radius: 8px;outline: 1px solid #881BF5;outline-offset: -1px;background-color: transparent;box-shadow: inset 0 0 0 1000px white;'
+  )
   const zoomEl = document.querySelectorAll('.leaflet-bar > a')
   zoomEl[0].setAttribute(
     'style',
     'color: #881BF5; border-bottom: 1px solid #881BF5;'
   )
   zoomEl[1].setAttribute('style', 'color: #881BF5;')
+
 })
 
 watch(
@@ -236,7 +258,7 @@ watch(
   (newPeople) => {
     updateMarkers(newPeople)
   },
-  { deep: true }
+  {deep: true}
 )
 
 watch(
