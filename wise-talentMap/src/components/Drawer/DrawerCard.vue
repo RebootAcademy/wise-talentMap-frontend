@@ -26,7 +26,7 @@
       <p class="font-bebas text-xl">
         {{ person.firstName }} {{ person.lastName }}
       </p>
-      <div class="flex flex-col gap-4 mt-4 h-full justify-end">
+      <div class="flex flex-col gap-4 h-full  ">
         <SteamIcons :steams="person.steam" />
         <div class="flex gap-2">
           <Icon icon="job" />
