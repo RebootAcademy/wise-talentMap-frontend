@@ -1,10 +1,10 @@
 <template>
   <Dialog :visible="filtersVisible" class="w-[31rem]" modal dismissableMask>
     <template #container>
-      <div class="bg-white text-black rounded-md border border-black flex flex-col gap-6" @blur="handleVisibility">
+      <div class="bg-white text-black rounded-md  flex flex-col gap-6">
         <header class="flex items-center justify-center gap-2 relative p-6 font-bebas text-2xl border-b">
           <span>FILTERS</span>
-          <Icon icon="closeCircle" class="absolute right-6 cursor-pointer" @click="handleVisibility" />
+          <Icon icon="close" class="absolute right-6 cursor-pointer" size="w-3 h-3" @click="handleVisibility" />
         </header>
         <div class="px-6 flex flex-col gap-6">
           <section class="flex flex-col gap-6">
