@@ -56,12 +56,16 @@ export const useUserStore = defineStore('user', {
       try {
         // Llama a la API para obtener usuarios
         this.users = await getUsers()
+        if (!this.selectedUsers.length) {
+          this.selectedUsers = this.users
+        }
       } catch (error) {
         console.error('Error al obtener usuarios:', error)
       }
     },
-    handleOpenDrawer() {
-      this.openDrawer = !this.openDrawer
+    handleOpenDrawer(state) {
+      this.openDrawer = state
+      console.log(this.openDrawer, 'openDrawer')
     },
 
     setSelectedUsers(users) {

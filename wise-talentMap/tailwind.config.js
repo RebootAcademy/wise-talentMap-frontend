@@ -5,8 +5,10 @@ module.exports = {
     './src/**/*.{vue,js,ts,jsx,tsx}', // Asegúrate de que los archivos Vue estén incluidos
   ],
   theme: {
-
     extend: {
+      scale: {
+        '-100': '-1',
+      },
       screens: {
         sm: '640px',
         md: '768px',
