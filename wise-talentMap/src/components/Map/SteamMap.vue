@@ -105,6 +105,7 @@ const updateMarkers = (people) => {
         target.value = person
         selectedCoordinates.value = person.location.coordinates
         store.selectedUsers = [person]
+        store.searchInput = ''
       })
       markers.value.addLayer(marker)
     }
@@ -214,7 +215,7 @@ onMounted(async () => {
     listData.value = [
       ...new Map(listData.value.map((item) => [item.email, item])).values(),
     ]
-    console.log(listData.value)
+    store.searchInput = ''
     store.setSelectedUsers(listData.value)
   })
   updateMarkers(filteredPeople.value)

@@ -29,7 +29,7 @@
     mask-composite: exclude;
     pointer-events: none;
   }
-
+  
   .border-blueGradient-rounded {
     position: relative;
     border: none;

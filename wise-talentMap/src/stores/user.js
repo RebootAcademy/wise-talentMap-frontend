@@ -8,6 +8,7 @@ export const useUserStore = defineStore('user', {
     users: [], // Almacena la lista de usuarios
     selectedUsers: [],
     cardPerson: null,
+    searchInput: '',
     openDrawer: false,
     steam: [
       {
