@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full relative !bg-secondary-blue">
     <div
-      class="absolute flex justify-center items-center border-2 border-primary-violet f top-6 left-6 z-10 bg-secondary-white p-3 rounded-md cursor-pointer"
+      class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-6 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"
       @click="closeDrawer">
       <Icon icon="back" color="primary-violet" :class="[
         'transform transition-transform duration-300',
