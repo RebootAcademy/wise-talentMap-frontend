@@ -11,10 +11,13 @@
             <p class="font-bebas text-xl">ÁREA STEAM</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
               <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-                :class="`flex gap-2 font-bebas text-xl items-center ${checkSelection(option.filterValue) ? 'bg-twoColorsBlue text-white border-transparent' : 'border-blueGradient'} border-mediumGray rounded-2xl`"
-                :clickFn="() => checkSteamFilter(option.filterValue)">
-                <Icon :icon="option.icon" :color="checkSelection(option.filterValue) ? 'white' : 'black'" />
-                <span>{{ option.name }}</span>
+                :class="`flex gap-2 font-bebas text-xl items-center border border-deepGray !rounded-full ${isFilterActive(option.filterValue) && 'border-blueGradient-rounded'}`"
+                :clickFn="() => toggleSteamFilter(option.filterValue)">
+                <Icon :icon="option.icon" :color="isFilterActive(option.filterValue) ? 'primary-violet' : 'black'" />
+                <span
+                  :class="isFilterActive(option.filterValue) ? 'bg-twoColorsBlue bg-clip-text text-transparent' : 'text-black'">
+                  {{ option.name }}
+                </span>
               </CustomButton>
             </div>
           </section>
@@ -144,14 +147,14 @@ const selectedCountry = ref('')
 const countries = ref([])
 const selectableMunicipalities = ref([])
 
-const checkSelection = (param) => steamFilter.value.includes(param)
+const isFilterActive = (param) => steamFilter.value.includes(param)
 
-const checkSteamFilter = (option) => {
-  if (checkSelection(option)) {
-    const index = steamFilter.value.indexOf(option)
-    steamFilter.value.splice(index, 1)
+const toggleSteamFilter = (option) => {
+  if (isFilterActive(option)) {
+    const index = steamFilter.value.indexOf(option);
+    steamFilter.value.splice(index, 1);
   } else {
-    steamFilter.value.push(option)
+    steamFilter.value.push(option);
   }
 }
 

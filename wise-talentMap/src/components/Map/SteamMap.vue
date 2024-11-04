@@ -14,8 +14,8 @@
       :clickFn="handleOpenModal">
       <Icon icon="filterSlider" color="primary-violet" />
     </CustomButton>
-    <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
-      :people="filteredPeople.length ? filteredPeople : []" />
+    <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
+      :people="filteredPeople.length ? filteredPeople : []" /> -->
     <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
       style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
     <Card v-if="showCard" :person="target" @close="showCard = false"
@@ -31,7 +31,7 @@ import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import 'leaflet.markercluster'
-import MiniMap from './MiniMap.vue'
+/* import MiniMap from './MiniMap.vue' */
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
 import { getUsers } from '@/services/user.services'
