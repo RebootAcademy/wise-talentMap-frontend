@@ -2,7 +2,7 @@
   <div :class="`h-[83%] flex relative`">
     <Drawer
       v-if="store.openDrawer"
-      class="md:w-1/2 transition ease-in-out duration-500"
+      class="w-full md:w-1/2 transition ease-in-out duration-500"
     />
 
     <div
