@@ -3,8 +3,14 @@
     <!-- Main header -->
     <div class="bg-white border-b h-24 flex items-center justify-between font-bebas text-3xl text-black py-2.5 px-8">
       <p>HEADER LOGOTYPE</p>
-      <CustomButton :clickFn="() => console.log('lolo')" class="h-11 text-2xl bg-softGray">ENTORNO VIRTUAL
-      </CustomButton>
+      <div class="flex gap-2">
+        <CustomButton :clickFn="() => console.log('Wise')" class="h-11 text-2xl border border-black">
+          WISE CANARIAS
+        </CustomButton>
+        <CustomButton :clickFn="() => console.log('VR')" class="h-11 text-2xl text-white bg-fourColors">
+          ENTORNO VIRTUAL
+        </CustomButton>
+      </div>
     </div>
     <!-- Filters bar -->
     <div
