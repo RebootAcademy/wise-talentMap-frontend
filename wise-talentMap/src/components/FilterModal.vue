@@ -1,7 +1,7 @@
 <template>
   <Dialog :visible="filtersVisible" class="w-[31rem]" style="border: 1px solid #881BF5" modal dismissableMask>
     <template #container>
-      <div class="bg-white text-black rounded-md  flex flex-col gap-6">
+      <div class="bg-white text-deepGray rounded-md  flex flex-col gap-6">
         <header class="flex items-center justify-center gap-2 relative p-6 font-bebas text-2xl border-b">
           <span>FILTERS</span>
           <Icon icon="close" class="absolute right-6 cursor-pointer" size="w-3 h-3" @click="handleVisibility" />
@@ -9,13 +9,12 @@
         <div class="px-6 flex flex-col gap-6">
           <section class="flex flex-col gap-6">
             <p class="font-bebas text-xl">ÁREA STEAM</p>
-            <div class="flex flex-wrap gap-2 text-deepGray">
+            <div class="flex flex-wrap gap-2">
               <CustomButton v-for="(option, idx) in store.steam" :key="idx"
                 :class="`flex gap-2 font-bebas text-xl items-center border border-deepGray !rounded-full ${isFilterActive(option.filterValue) && 'border-blueGradient-rounded'}`"
                 :clickFn="() => toggleSteamFilter(option.filterValue)">
-                <Icon :icon="option.icon" :color="isFilterActive(option.filterValue) ? 'primary-violet' : 'black'" />
-                <span
-                  :class="isFilterActive(option.filterValue) ? 'bg-twoColorsBlue bg-clip-text text-transparent' : 'text-black'">
+                <Icon :icon="option.icon" :color="isFilterActive(option.filterValue) ? 'primary-violet' : 'deepGray'" />
+                <span :class="isFilterActive(option.filterValue) && 'bg-twoColorsBlue bg-clip-text text-transparent'">
                   {{ option.name }}
                 </span>
               </CustomButton>
