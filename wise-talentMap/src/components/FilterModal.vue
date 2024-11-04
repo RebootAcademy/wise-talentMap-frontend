@@ -1,20 +1,22 @@
 <template>
-  <Dialog :visible="filtersVisible" class="w-[31rem]" modal dismissableMask>
+  <Dialog :visible="filtersVisible" class="w-[31rem]" style="border: 1px solid #881BF5" modal dismissableMask>
     <template #container>
-      <div class="bg-white text-black rounded-md border border-black flex flex-col gap-6" @blur="handleVisibility">
+      <div class="bg-white text-deepGray rounded-md  flex flex-col gap-6">
         <header class="flex items-center justify-center gap-2 relative p-6 font-bebas text-2xl border-b">
           <span>FILTERS</span>
-          <Icon icon="closeCircle" class="absolute right-6 cursor-pointer" @click="handleVisibility" />
+          <Icon icon="close" class="absolute right-6 cursor-pointer" size="w-3 h-3" @click="handleVisibility" />
         </header>
         <div class="px-6 flex flex-col gap-6">
           <section class="flex flex-col gap-6">
             <p class="font-bebas text-xl">ÁREA STEAM</p>
-            <div class="flex flex-wrap gap-2 text-deepGray">
+            <div class="flex flex-wrap gap-2">
               <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-                :class="`flex gap-2 font-bebas text-xl items-center ${checkSelection(option.filterValue) ? 'bg-twoColorsBlue text-white border-transparent' : 'border-blueGradient'} border-mediumGray rounded-2xl`"
-                :clickFn="() => checkSteamFilter(option.filterValue)">
-                <Icon :icon="option.icon" :color="checkSelection(option.filterValue) ? 'white' : 'black'" />
-                <span>{{ option.name }}</span>
+                :class="`flex gap-2 font-bebas text-xl items-center border border-deepGray !rounded-full ${isFilterActive(option.filterValue) && 'border-blueGradient-rounded'}`"
+                :clickFn="() => toggleSteamFilter(option.filterValue)">
+                <Icon :icon="option.icon" :color="isFilterActive(option.filterValue) ? 'primary-violet' : 'deepGray'" />
+                <span :class="isFilterActive(option.filterValue) && 'bg-twoColorsBlue bg-clip-text text-transparent'">
+                  {{ option.name }}
+                </span>
               </CustomButton>
             </div>
           </section>
@@ -23,7 +25,7 @@
             <p class="font-bebas text-xl">ISLA DE RESIDENCIA</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
               <CustomButton v-for="(island, idx) in islands" :key="idx"
-                :class="`${islandFilter.includes(island) ? 'border-2 font-bold' : 'border'} rounded-2xl`"
+                :class="`${islandFilter.includes(island) ? 'bg-twoColorsBlue bg-clip-text text-transparent border-blueGradient-rounded' : 'border border-deepGray'} !rounded-full`"
                 :clickFn="() => checkSelections('islands', island)">
                 {{ island }}
               </CustomButton>
@@ -144,14 +146,14 @@ const selectedCountry = ref('')
 const countries = ref([])
 const selectableMunicipalities = ref([])
 
-const checkSelection = (param) => steamFilter.value.includes(param)
+const isFilterActive = (param) => steamFilter.value.includes(param)
 
-const checkSteamFilter = (option) => {
-  if (checkSelection(option)) {
-    const index = steamFilter.value.indexOf(option)
-    steamFilter.value.splice(index, 1)
+const toggleSteamFilter = (option) => {
+  if (isFilterActive(option)) {
+    const index = steamFilter.value.indexOf(option);
+    steamFilter.value.splice(index, 1);
   } else {
-    steamFilter.value.push(option)
+    steamFilter.value.push(option);
   }
 }
 

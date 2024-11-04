@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-center h-full bg-black/5"
+    class="flex items-center justify-center h-full bg-anthraciteGray/5 "
     @click="close"
   >
     <div

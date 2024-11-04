@@ -29,4 +29,30 @@
     mask-composite: exclude;
     pointer-events: none;
   }
+  
+  .border-blueGradient-rounded {
+    position: relative;
+    border: none;
+  }
+
+  .border-blueGradient-rounded::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    padding: 1px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #881BF5 0%, #5478E3 100%);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }
