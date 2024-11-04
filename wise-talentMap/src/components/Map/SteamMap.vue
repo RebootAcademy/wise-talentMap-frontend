@@ -20,7 +20,8 @@
       style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
     <Card v-if="showCard" :person="target" @close="showCard = false"
       style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
-    <FilterModal :filtersVisible="filtersVisible" :handleVisibility="handleOpenModal" />
+    <FilterModal v-model:visible="filtersVisible" :filtersVisible="filtersVisible"
+      :handleVisibility="handleOpenModal" />
   </div>
 </template>
 
