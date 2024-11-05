@@ -177,6 +177,7 @@ const checkSelections = (type, option) => {
   if (type === 'country') {
     countryFilter.value = option
   } else if (type === 'municipality') {
+    console.log(option)
     municipalityFilter.value = option
   } else {
     if (islandFilter.value.includes(option)) {
@@ -207,6 +208,10 @@ const separateMunicipalities = () => {
 watch(() => islandFilter.value, () => {
   separateMunicipalities()
 }, { deep: true })
+
+watch(() => store.steamFilter, () => {
+  steamFilter.value = [...store.steamFilter]
+}, { immediate: true })
 
 
 </script>

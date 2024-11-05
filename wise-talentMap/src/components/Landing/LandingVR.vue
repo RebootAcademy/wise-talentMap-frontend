@@ -16,6 +16,10 @@
         Canarias, donde cada interacción tiene el potencial de abrir nuevas oportunidades y empoderar a las mujeres en
         su desarrollo profesional.
       </p>
+      <CustomButton
+        class="font-bebas border h-12 flex items-center border-deepGray rounded-md self-center text-2xl px-4 py-2"
+        :clickFn="() => console.log('Ir a entorno virtual')">IR A LA HERRAMIENTA
+      </CustomButton>
     </div>
   </div>
 </template>

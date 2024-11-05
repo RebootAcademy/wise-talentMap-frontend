@@ -2,50 +2,32 @@
   <div class="w-full h-full relative !bg-secondary-blue">
     <div
       class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-8 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"
-      @click="closeDrawer"
-    >
-      <Icon
-        icon="back"
-        color="primary-violet"
-        :class="[
-          'transform transition-transform duration-300',
-          store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
-        ]"
-      />
+      @click="closeDrawer">
+      <Icon icon="back" color="primary-violet" :class="[
+        'transform transition-transform duration-300',
+        store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
+      ]" />
     </div>
     <div id="map" class="w-full h-full"></div>
     <CustomButton
       class="absolute top-[32px] right-[32px] p-2 z-[1000] w-8 h-8 bg-white flex justify-center items-center border border-primary-violet"
-      :clickFn="handleOpenModal"
-    >
+      :clickFn="handleOpenModal">
       <Icon icon="filterSlider" color="primary-violet" />
     </CustomButton>
     <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
       :people="filteredPeople.length ? filteredPeople : []" /> -->
-    <ListComponent
-      v-if="showList"
-      :markers="listData"
-      :visible="showList"
-      @close="showList = false"
-      style="position: absolute; top: 10px; right: 10px; z-index: 1000"
-    />
-    <Card
-      v-if="showCard"
-      :person="target"
-      @close="showCard = false"
-      style="position: absolute; top: 50px; right: 50px; z-index: 1000"
-    />
-    <FilterModal
-      v-model:visible="filtersVisible"
-      :filtersVisible="filtersVisible"
-      :handleVisibility="handleOpenModal"
-    />
+    <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
+      style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
+    <Card v-if="showCard" :person="target" @close="showCard = false"
+      style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
+    <FilterModal v-model:visible="filtersVisible" :filtersVisible="filtersVisible"
+      :handleVisibility="handleOpenModal" />
   </div>
 </template>
 
 <script setup>
-import {computed, onMounted, ref, watch} from 'vue'
-import {useUserStore} from '@/stores/user'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useUserStore } from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -53,7 +35,7 @@ import 'leaflet.markercluster'
 /* import MiniMap from './MiniMap.vue' */
 import ListComponent from './ListComponent.vue'
 import Card from './Card.vue'
-import {getUsers} from '@/services/user.services'
+import { getUsers } from '@/services/user.services'
 import Icon from '../Icon.vue'
 import CustomButton from '../CustomButton.vue'
 import FilterModal from '../FilterModal.vue'
@@ -77,22 +59,42 @@ const filteredPeople = computed(() => {
   if (
     !store.steamFilter.length &&
     !store.islandFilter.length &&
-    !store.countryFilter &&
-    !store.municipalityFilter
+    !store.countryFilter.length &&
+    !store.municipalityFilter.length
   ) {
-    return people.value
+    return people.value;
   } else {
     return people.value.filter((person) => {
-      const personSteams = person.steam.map((area) => area.name)
+      const personSteams = person.steam.map((area) => area.name);
+
+      // Define individual match conditions
+      const matchesSteamFilter = store.steamFilter.length
+        ? store.steamFilter.some((filter) => personSteams.includes(filter))
+        : true;
+
+      const matchesCountryFilter = store.countryFilter.length
+        ? store.countryFilter.includes(person.location.country)
+        : true;
+
+      const matchesIslandFilter = store.islandFilter.length
+        ? store.islandFilter.includes(person.location.island)
+        : true;
+
+      const matchesMunicipalityFilter = store.municipalityFilter.length
+        ? store.municipalityFilter.includes(person.location.municipality)
+        : true;
+
+      const matchesIslandAndMunicipality =
+        matchesIslandFilter && matchesMunicipalityFilter;
+
       return (
-        store.steamFilter.some((filter) => personSteams.includes(filter)) ||
-        store.countryFilter.includes(person.location.country) ||
-        store.islandFilter.includes(person.location.island) ||
-        store.municipalityFilter.includes(person.location.municipality)
-      )
-    })
+        matchesSteamFilter &&
+        matchesCountryFilter &&
+        matchesIslandAndMunicipality
+      );
+    });
   }
-})
+});
 
 const renderIcon = () => {
   const iconSvg = generateSvgIcon('purple')
@@ -116,7 +118,7 @@ const updateMarkers = (people) => {
       typeof coords[1] === 'number'
     ) {
       const customIcon = renderIcon()
-      const marker = L.marker(coords, {icon: customIcon})
+      const marker = L.marker(coords, { icon: customIcon })
       marker.on('click', () => {
         store.handleOpenDrawer(true)
 
@@ -258,7 +260,7 @@ watch(
   (newPeople) => {
     updateMarkers(newPeople)
   },
-  {deep: true}
+  { deep: true }
 )
 
 watch(

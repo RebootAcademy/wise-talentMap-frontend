@@ -41,6 +41,7 @@ module.exports = {
           'linear-gradient(45deg, #FC00FF, #881BF5, #5478E3, #17E4CE)',
         twoColors: 'linear-gradient(45deg, #FC00FF, #881BF5)',
         twoColorsBlue: 'linear-gradient(90deg, #881BF5, #5478E3)',
+        threeColorsBanner: 'linear-gradient(90deg, rgba(136, 27, 245, 0.36) 0%, rgba(84, 120, 227, 0.36) 18.4%, rgba(0, 0, 0, 0.60) 58.4%)',
         radialGradient: 'radial-gradient(circle,  #FAFAFA, #212121)',
       },
       borderRadius: {
