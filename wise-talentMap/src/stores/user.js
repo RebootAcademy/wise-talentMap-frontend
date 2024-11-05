@@ -37,6 +37,7 @@ export const useUserStore = defineStore('user', {
         icon: 'math',
       },
     ],
+    filterType: 'canary',
     steamFilter: [],
     islandFilter: [],
     municipalityFilter: '',

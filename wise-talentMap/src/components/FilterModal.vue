@@ -21,7 +21,8 @@
             </div>
           </section>
           <hr>
-          <section class="flex flex-col gap-6">
+          <Tabs />
+          <section v-if="store.filterType === 'canary'" class="flex flex-col gap-6">
             <p class="font-bebas text-xl">ISLA DE RESIDENCIA</p>
             <div class="flex flex-wrap gap-2 text-deepGray">
               <CustomButton v-for="(island, idx) in islands" :key="idx"
@@ -30,16 +31,17 @@
                 {{ island }}
               </CustomButton>
             </div>
-            <Select v-model="selectedMunicipality" :options="selectableMunicipalities" class="w-56 text-sm"
-              placeholder="Selecciona un municipio" @change="(e) => checkSelections('municipality', e.value)"
-              optionGroupLabel="island" optionGroupChildren="municipalities">
+            <Select v-if="islandFilter.length" v-model="selectedMunicipality" :options="selectableMunicipalities"
+              class="w-56 text-sm" placeholder="Selecciona un municipio"
+              @change="(e) => checkSelections('municipality', e.value)" optionGroupLabel="island"
+              optionGroupChildren="municipalities">
               <template #optiongroup="slotProps">
                 <div>{{ slotProps.municipalities }}</div>
               </template>
             </Select>
           </section>
-          <hr>
-          <section class="flex flex-col gap-6">
+          <section v-else class="flex flex-col gap-6">
+            <hr>
             <p class="font-bebas text-xl">PAIS DE RESIDENCIA</p>
             <Select v-model="selectedCountry" :value="selectedCountry" :options="countries" class="w-56"
               placeholder="Selecciona un país" @change="(e) => checkSelections('country', e.value)" />
@@ -62,6 +64,7 @@ import { onMounted, ref, watch } from 'vue';
 import Dialog from 'primevue/dialog';
 import Select from 'primevue/select'
 import Icon from './Icon.vue';
+import Tabs from './Tabs.vue'
 import CustomButton from './CustomButton.vue';
 import { useUserStore } from '@/stores/user';
 import { getOutsiders } from '@/services/location.services';
@@ -194,6 +197,10 @@ const clearFilters = () => {
   store.countryFilter = ''
   store.islandFilter = []
   store.municipalityFilter = ''
+  steamFilter.value = []
+  countryFilter.value = ''
+  islandFilter.value = []
+  municipalityFilter.value = ''
 }
 
 const separateMunicipalities = () => {
