@@ -1,9 +1,10 @@
 <template>
   <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 ">
-    <LandingBanner class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12"/>
-    <LandingMap class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 "/>
-    <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 "/>
-    <LandingGoals class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft"/>
+    <LandingBanner class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12" />
+    <LandingMap class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 " />
+    <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 " />
+    <LandingGoals
+      class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft" />
   </div>
 </template>
 
@@ -14,9 +15,9 @@ import LandingMap from '@/components/Landing/LandingMap.vue';
 import LandingVR from '@/components/Landing/LandingVR.vue'
 import LandingGoals from '@/components/Landing/LandingGoals.vue'
 import { useUserStore } from '../stores/user.js'; // Asegúrate de usar la ruta correcta
-const userStore = useUserStore()
 import { getUsers } from '../services/user.services'
 import { useRouter } from 'vue-router'
+const userStore = useUserStore()
 const router = useRouter()
 
 </script>
