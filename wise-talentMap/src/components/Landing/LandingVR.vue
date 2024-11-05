@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col-reverse items-center justify-center h-[570px] bg-[#C7E1FF]  md:flex-row">
+  <div class="w-full flex flex-col-reverse items-center justify-center h-[570px] md:flex-row">
     <iframe src="https://www.youtube.com/embed/ls_Eue1xUtY?autoplay=1&mute=1&controls=0" title="YouTube video player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       class="md:w-1/2 h-[250px] lg:h-[450px] md:h-[300px] md:px-12" frameborder="0"
