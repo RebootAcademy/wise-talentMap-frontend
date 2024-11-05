@@ -5,6 +5,7 @@
     <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 " />
     <LandingGoals
       class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft" />
+    <Footer  class="col-span-4 md:col-span-6 lg:col-span-12"/>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import LandingGoals from '@/components/Landing/LandingGoals.vue'
 import { useUserStore } from '../stores/user.js'; // Asegúrate de usar la ruta correcta
 import { getUsers } from '../services/user.services'
 import { useRouter } from 'vue-router'
+import Footer from '@/components/Footer.vue'
 const userStore = useUserStore()
 const router = useRouter()
 
