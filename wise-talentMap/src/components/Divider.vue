@@ -1,5 +1,5 @@
 <template>
-    <div :class="`${customWidth} rounded-lg ${customHeight} bg-${type}`"
+    <div :class="`${customWidth} ${roundedSize} ${customHeight} bg-${type}`"
     ></div>
 </template>
 
@@ -18,6 +18,10 @@ const props = defineProps({
     customHeight: {
         type: String,
         default: 'h-0.5'
+    },
+    roundedSize:{
+        type: String,
+        default: 'rounded-lg'
     }
 })
 </script>
