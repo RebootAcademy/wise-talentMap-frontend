@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-between bg-blue-500 h-24  px-8">
+    <div class="flex items-center justify-between bg-blue-200 h-24  px-8">
         <div>
             ICONO
         </div>

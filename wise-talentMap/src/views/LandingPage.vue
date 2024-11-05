@@ -1,22 +1,25 @@
 <template>
-  <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4 px-2 md:px-8 my-8">
-    <LandingCard class="col-span-4 sm:col-span-2 md:col-span-3 lg:col-span-6 animate__animated animate__slideInLeft cursor-pointer" @click="router.push('/talentMap')"/>
-    <LandingCard class="col-span-4 sm:col-span-2 md:col-span-3 lg:col-span-6 animate__animated animate__slideInLeft"/>
-    <Banner class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12"/>
+  <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 ">
+    <LandingBanner class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12" />
+    <LandingMap class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 " />
+    <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 " />
+    <LandingGoals
+      class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft" />
   </div>
 </template>
 
 <script setup>
-import Banner from '../components/Banner.vue'
 import { ref, onMounted, computed } from 'vue'
+import LandingBanner from '../components/Landing/LandingBanner.vue'
+import LandingMap from '@/components/Landing/LandingMap.vue';
+import LandingVR from '@/components/Landing/LandingVR.vue'
+import LandingGoals from '@/components/Landing/LandingGoals.vue'
 import { useUserStore } from '../stores/user.js'; // Asegúrate de usar la ruta correcta
-const userStore = useUserStore()
 import { getUsers } from '../services/user.services'
-import LandingCard from '@/components/LandingCard.vue'
 import { useRouter } from 'vue-router'
+const userStore = useUserStore()
 const router = useRouter()
 
-const items = computed(() => userStore.getAllUsers)
 </script>
 
 <style scoped>
