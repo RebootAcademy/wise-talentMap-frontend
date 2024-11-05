@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full flex items-center justify-center h-[570px] bg-[#CBA4FF] animate__animated animate__slideInLeft">
-    <div class="flex flex-col gap-4 w-1/2 px-12 animate__animated animate__slideInLeft">
+  <div class="w-full flex flex-col items-center justify-center h-[570px] bg-[#CBA4FF]">
+    <div class="flex flex-col gap-4 w-1/2 px-12 animate__animated animate__zoomIn">
       <h1 class="font-bebas text-6xl text-center text-anthraciteGray mb-4">
         Mapa interactivo
       </h1>

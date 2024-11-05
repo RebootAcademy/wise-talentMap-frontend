@@ -1,8 +1,8 @@
 <template>
   <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 ">
     <LandingBanner class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12"/>
-    <LandingMap class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft"/>
-    <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInRight"/>
+    <LandingMap class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 "/>
+    <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 "/>
     <LandingGoals class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft"/>
   </div>
 </template>
