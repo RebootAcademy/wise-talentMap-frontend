@@ -1,20 +1,20 @@
 <template>
-  <div class="w-full flex flex-col items-center justify-center h-[570px] bg-[#CBA4FF]">
-    <div class="flex flex-col gap-4 w-1/2 px-12 animate__animated animate__zoomIn">
-      <h1 class="font-bebas text-6xl text-center text-anthraciteGray mb-4">
+  <div class="w-full flex flex-col md:flex-row items-center justify-center p-4 md:h-[570px] bg-[#CBA4FF]">
+    <div class="flex flex-col gap-4 md:w-1/2 mb-8 md:mb-0 px-12 animate__animated animate__zoomIn">
+      <h1 class="font-bebas text-4xl lg:text-6xl text-center text-anthraciteGray mb-4">
         Mapa interactivo
       </h1>
-      <p class="text-2xl text-center text-anthraciteGray">
-        ¡Descubre el talento femenino en Canarias! Con nuestro mapa interactivo, podrás explorar perfiles destacados de
-        mujeres en las áreas STEAM, organizados por especialidad y ubicación. Esta herramienta te permitirá conectar
-        fácilmente con profesionales clave y acceder a una red de referentes que promueven una comunidad más inclusiva y
-        diversa.
+      <p class="text-lg lg:text-2xl text-center text-anthraciteGray">
+        ¡Descubre el talento femenino en Canarias! Con nuestro mapa interactivo, podrás explorar perfiles destacados de mujeres en las áreas STEAM, organizados por especialidad y ubicación. Esta herramienta te permitirá conectar fácilmente con profesionales clave y acceder a una red de referentes que promueven una comunidad más inclusiva y diversa.
       </p>
     </div>
     <iframe src="https://www.youtube.com/embed/ls_Eue1xUtY?autoplay=1&mute=1&controls=0" title="YouTube video player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      class="w-1/2 h-[450px] px-12" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen></iframe>
+      class="md:w-1/2 h-[250px] md:h-[300px] lg:h-[450px] px-12"
+      frameborder="0"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
   </div>
 </template>
 

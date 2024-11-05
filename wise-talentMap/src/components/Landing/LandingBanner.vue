@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-row-reverse  items-center min-h-[655px] bg-blue-500">
-        <div class="w-1/2 px-28 mr-32">
+    <div class="flex md:flex-row-reverse justify-center md:justify-start items-center p-12 md:min-h-[655px] bg-blue-500">
+        <div class="md:w-1/2 px-12 md:px-0 lg:px-16 md:mr-12">
             <h1 class="font-bebas text-5xl text-center text-secondary-white mb-4">¿Qué es el Mapa de Talento de Mujeres
                 STEAM en Canarias?</h1>
             <p class="text-2xl text-center text-secondary-white">Es una plataforma interactiva diseñada para visibilizar
@@ -12,7 +12,6 @@
                 cambio!
             </p>
         </div>
-
     </div>
 </template>
 
