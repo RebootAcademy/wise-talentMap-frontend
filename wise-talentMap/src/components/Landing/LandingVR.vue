@@ -6,16 +6,15 @@
       referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <div class="flex flex-col gap-4 md:w-1/2 px-12 mb-8 md:mb-0">
       <h1 class="font-bebas text-4xl md:text-6xl text-center text-anthraciteGray mb-4">
-        ENTORNO 3D
+        Entorno Virtual
       </h1>
       <p class="md:text-2xl text-lg text-center text-anthraciteGray">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+        El entorno virtual ofrece a las profesionales canarias una nueva ventana para mostrar sus experiencias y
+        conectar con otras expertas. Con un diseño inmersivo y accesible desde ordenadores, móviles o gafas de realidad
+        virtual, esta plataforma facilita el networking, la mentoría y la colaboración en proyectos innovadores. Además,
+        permite la participación en conferencias y talleres, ampliando redes y fortaleciendo la comunidad STEAM en
+        Canarias, donde cada interacción tiene el potencial de abrir nuevas oportunidades y empoderar a las mujeres en
+        su desarrollo profesional.
       </p>
     </div>
   </div>
