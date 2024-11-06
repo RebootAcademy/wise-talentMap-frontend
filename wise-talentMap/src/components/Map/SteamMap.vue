@@ -1,16 +1,10 @@
 <template>
   <div class="w-full h-full relative !bg-secondary-blue">
-    <div
-      class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-8 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"
-      @click="closeDrawer">
-      <Icon icon="back" color="primary-violet" :class="[
-        'transform transition-transform duration-300',
-        store.openDrawer ? 'scale-x-100' : 'scale-x-[-1]',
-      ]" />
-    </div>
+    <DrawerButton class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-8 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"/>
     <div id="map" class="w-full h-full"></div>
     <CustomButton
       class="absolute top-[32px] right-[32px] p-2 z-[1000] w-8 h-8 bg-white flex justify-center items-center border border-primary-violet"
+      :class="store.openDrawer && 'hidden md:flex'"
       :clickFn="handleOpenModal">
       <Icon icon="filterSlider" color="primary-violet" />
     </CustomButton>
@@ -39,6 +33,7 @@ import { getUsers } from '@/services/user.services'
 import Icon from '../Icon.vue'
 import CustomButton from '../CustomButton.vue'
 import FilterModal from '../FilterModal.vue'
+import DrawerButton from '../DrawerButton.vue'
 
 const store = useUserStore()
 

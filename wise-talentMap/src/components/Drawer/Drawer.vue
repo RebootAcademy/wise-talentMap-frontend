@@ -3,13 +3,16 @@
     class="custom-scrollbar relative bg-secondary-white border-t overflow-auto mb-5"
    
   >
-  <div class="absolute w-full px-8">
-    <CustomInput
-      :isDisabled="filteredPeople.length === 1 && !store.searchInput"
-      class="mt-4 w-full"
-       :class="showCard &&' blur-sm'"
-      placeholder="Buscar por nombre y/o apellidos"
-    />
+  <div class="absolute  w-full px-8">
+    <div class="flex justify-center items-center gap-4 mt-4">
+      <CustomInput
+        :isDisabled="filteredPeople.length === 1 && !store.searchInput"
+        class=" w-full"
+         :class="showCard &&' blur-sm'"
+        placeholder="Buscar por nombre y/o apellidos"
+      />
+      <DrawerButton class=" md:hidden px-1.5 py-2 w-10 h-10 border-2 border-primary-violet bg-secondary-white rounded-md cursor-pointer"/>
+    </div>
   </div>
     <Card
       v-if="showCard"
@@ -24,7 +27,7 @@
         v-for="user in filteredPeople"
         :key="user.id"
         :person="user"
-        class="col-span-6 lg:col-span-3 2xl:col-span-2 border-2 border-gray-50"
+        class="col-span-6 sm:col-span-3 lg:col-span-3 2xl:col-span-2 border-2 border-gray-50"
          :class="showCard &&' blur-sm'"
         @click="handleShowCard(user)"
       />
@@ -38,6 +41,7 @@ import {useUserStore} from '@/stores/user'
 import DrawerCard from './DrawerCard.vue'
 import Card from '../Map/Card.vue'
 import CustomInput from '../CustomInput.vue'
+import DrawerButton from '../DrawerButton.vue'
 const store = useUserStore()
 const showCard = ref(false)
 const searchUser = ref(null)
