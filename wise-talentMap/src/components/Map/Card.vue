@@ -20,7 +20,7 @@
         </div> -->
       </div>
       <img
-        :src="person.image"
+        :src="person.image  ? person.image : '/defaultImg.png'"
         class="absolute h-28 w-28 top-10 left-6 object-cover border border-secondary-turquoise rounded-full bg-gray-300"
       />
       <div class="flex flex-col p-4 py-6 px-6 mt-14 gap-4">

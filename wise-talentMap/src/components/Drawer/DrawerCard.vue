@@ -18,7 +18,7 @@
 
     <div class="pt-6 mb-2 z-20">
       <img
-        :src="person.image"
+        :src="person.image  ? person.image : '/defaultImg.png'"
         class="h-32 w-32 top-10 left-4 object-cover rounded-full border border-secondary-turquoise"
       />
     </div>
