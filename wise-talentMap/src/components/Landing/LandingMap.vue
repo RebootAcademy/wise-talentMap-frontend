@@ -14,12 +14,12 @@
         :clickFn="() => $router.push('/talentMap')">IR A LA HERRAMIENTA
       </CustomButton>
     </div>
-    <!-- <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730806498/gifMapaTalento_dpvgka.gif"
-      class="md:w-1/2 h-[250px] md:h-[300px] lg:h-[450px] px-12" /> -->
-    <iframe src="https://www.youtube.com/embed/ls_Eue1xUtY?autoplay=1&mute=1&controls=0" title="YouTube video player"
+    <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif"
+      class="md:w-1/2 h-[250px] md:h-[300px] lg:h-[450px] px-12" />
+    <!-- <iframe src="https://www.youtube.com/embed/ls_Eue1xUtY?autoplay=1&mute=1&controls=0" title="YouTube video player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       class="md:w-1/2 h-[250px] md:h-[300px] lg:h-[450px] px-12" frameborder="0"
-      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
   </div>
 </template>
 
