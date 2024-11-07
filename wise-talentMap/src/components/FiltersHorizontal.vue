@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-white text-deepGray h-[90%] rounded-md flex flex-col justify-between gap-1">
+  <div class="bg-white text-deepGray h-screen rounded-md flex flex-col justify-between gap-1">
     <header class="flex items-center justify-center gap-2 sm:h-3 relative p-6 font-bebas text-2xl border-b">
       <span>FILTROS</span>
       <Icon icon="close" class="absolute right-6 cursor-pointer" size="w-3 h-3" @click="handleVisibility" />
     </header>
     <div class="px-6 w-full h-full flex gap-6">
-      <section class="flex flex-col gap-2.5 w-1/2">
+      <section class="flex flex-col gap-4 w-1/2">
         <p class="font-bebas text-xl">ÁREA STEAM</p>
         <div class="flex flex-wrap gap-2">
           <CustomButton v-for="(option, idx) in store.steam" :key="idx"
@@ -17,12 +17,12 @@
             </span>
           </CustomButton>
         </div>
-      </section>
-      <section class="flex flex-col gap-2.5 w-1/2">
         <div class="flex items-center gap-2">
           <p class="font-bebas text-xl">Localizacion</p>
           <Tabs class="h-6" />
         </div>
+      </section>
+      <section class="flex flex-col justify-center gap-2.5 w-1/2">
         <div v-if="store.filterType === 'canary'" class="flex flex-wrap gap-2 text-deepGray">
           <CustomButton v-for="(island, idx) in islands" :key="idx"
             :class="`${islandFilter.includes(island) ? 'bg-twoColorsBlue bg-clip-text text-transparent border-blueGradient-rounded' : 'border border-deepGray'} !rounded-full`"

@@ -3,7 +3,7 @@
     <!-- Main header -->
     <div
       class="bg-white border-b h-16 lg:h-24 flex items-center justify-between font-bebas text-3xl text-black py-2.5 px-8">
-      <img class="w-28 cursor-pointer"
+      <img class="w-20 lg:w-28 cursor-pointer"
         src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730735936/logoTalentMap_vsxcz2.png"
         @click="() => router.push('/')">
       <div class="hidden md:flex gap-2">

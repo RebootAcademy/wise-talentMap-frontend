@@ -1,5 +1,5 @@
 <template>
-  <Dialog :visible="filtersVisible" class="w-full h-full absolute top-16 md:static lg:h-fit lg:w-[31rem] overflow-auto"
+  <Dialog :visible="filtersVisible" class="w-full md:static lg:h-fit lg:w-[31rem] overflow-auto"
     style="border: 1px solid #881BF5" modal dismissableMask>
     <template #container>
       <FiltersVertical v-if="checkWidth" :handleVisibility="handleVisibility" />
@@ -28,6 +28,6 @@ const props = defineProps({
   }
 })
 
-const checkWidth = ref(window.innerWidth > 865)
+const checkWidth = ref(window.innerWidth >= 1024)
 
 </script>
