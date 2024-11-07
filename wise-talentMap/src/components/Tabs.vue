@@ -1,10 +1,11 @@
 <template>
   <div class="border border-deepGray flex rounded-md w-fit text-black cursor-pointer">
-    <div :class="`border-r p-2.5 rounded-l-md ${store.filterType === 'canary' && 'bg-blue-300'}`"
+    <div
+      :class="`border-r p-2.5 h-full flex items-center rounded-l-md ${store.filterType === 'canary' && 'bg-blue-300'}`"
       @click="() => store.filterType = 'canary'">
       Islas Canarias
     </div>
-    <div :class="`p-2.5 rounded-r-md ${store.filterType !== 'canary' && 'bg-blue-300'}`"
+    <div :class="`p-2.5 h-full flex items-center rounded-r-md ${store.filterType !== 'canary' && 'bg-blue-300'}`"
       @click="() => store.filterType = 'international'">
       Internacional
     </div>

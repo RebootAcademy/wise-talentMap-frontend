@@ -1,43 +1,25 @@
 <template>
-  <div
-    class="custom-scrollbar relative bg-secondary-white border-t overflow-auto mb-5"
-   
-  >
-  <div class="absolute  w-full px-8">
-    <div class="flex justify-center items-center gap-4 mt-4">
-      <CustomInput
-        :isDisabled="filteredPeople.length === 1 && !store.searchInput"
-        class=" w-full"
-         :class="showCard &&' blur-sm'"
-        placeholder="Buscar por nombre y/o apellidos"
-      />
-      <DrawerButton class=" md:hidden px-1.5 py-2 w-10 h-10 border-2 border-primary-violet bg-secondary-white rounded-md cursor-pointer"/>
+  <div class="custom-scrollbar relative bg-secondary-white border-t overflow-auto mb-5">
+    <div class="absolute  w-full px-8">
+      <div class="flex justify-center items-center gap-4 mt-4">
+        <CustomInput :isDisabled="filteredPeople.length === 1 && !store.searchInput" class=" w-full"
+          :class="showCard && ' blur-sm'" placeholder="Buscar por nombre y/o apellidos" />
+        <DrawerButton
+          class=" md:hidden px-1.5 py-2 w-10 h-10 border-2 border-primary-violet bg-secondary-white rounded-md cursor-pointer" />
+      </div>
     </div>
-  </div>
-    <Card
-      v-if="showCard"
-      :person="store.cardPerson"
-      class="sticky top-0  z-50"
-      @close="showCard = false"
-    />
-    <div
-      class="absolute top-20 h-full w-full grid grid-cols-6 gap-6 px-8 bg-secondary-white z-10"
-    >
-      <DrawerCard
-        v-for="user in filteredPeople"
-        :key="user.id"
-        :person="user"
+    <Card v-if="showCard" :person="store.cardPerson" class="sticky top-0  z-50" @close="showCard = false" />
+    <div class="absolute top-20 h-full w-full grid grid-cols-6 gap-6 px-8 bg-secondary-white z-10">
+      <DrawerCard v-for="user in filteredPeople" :key="user.id" :person="user"
         class="col-span-6 sm:col-span-3 lg:col-span-3 2xl:col-span-2 border-2 border-gray-50"
-         :class="showCard &&' blur-sm'"
-        @click="handleShowCard(user)"
-      />
+        :class="showCard && ' blur-sm'" @click="handleShowCard(user)" />
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref, computed} from 'vue'
-import {useUserStore} from '@/stores/user'
+import { ref, computed } from 'vue'
+import { useUserStore } from '@/stores/user'
 import DrawerCard from './DrawerCard.vue'
 import Card from '../Map/Card.vue'
 import CustomInput from '../CustomInput.vue'
@@ -62,7 +44,7 @@ const filteredPeople = computed(() => {
         person.lastName.toLowerCase()
           .includes(store.searchInput.toLowerCase())
       )
-    }) 
+    })
   }
   return filtered.sort((a, b) => {
     if (a.image && !b.image) {
