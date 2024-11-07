@@ -11,6 +11,7 @@ module.exports = {
       },
       screens: {
         sm: '640px', /* Mobile Vertical */
+        smd: '720px',
         md: '768px', /* Mobile Horizontal */
         lg: '1024px', /* Tablet Vertical */
         xl: '1280px', /* Tablet Horizontal */
