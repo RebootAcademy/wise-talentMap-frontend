@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-wrap md:flex-row items-center justify-center py-6 pb-12 md:pb-8 px-8 md:px-0 gap-8 bg-[#C7E1FF]"
+    class="flex w-full flex-wrap md:flex-row items-center justify-center py-6 pb-12 md:pb-8 px-8 md:px-0 gap-8 bg-[#C7E1FF]"
   >
     <img src="../assets/logo_ICI.png" class="w-24 md:w-40 lg:w-56" />
     <img src="../assets/logo_GC.png" class="w-24 md:w-40 lg:w-56" />
