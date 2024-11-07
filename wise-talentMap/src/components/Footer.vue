@@ -1,10 +1,20 @@
 <template>
   <div
-    class="flex md:justify-between md:items-center gap-3 md:gap-0 justify-center items-center flex-col md:flex-row bg-black text-secondary-white h-24">
+    class="flex flex-col gap-6 md:gap-0 md:flex-row p-5 md:p-0 justify-between items-center bg-black text-secondary-white md:h-24"
+  >
     <div class="flex gap-6 md:pl-11">
-      <a href="https://www.linkedin.com/company/wisecanarias/?trk=public_post_main-feed-card_reshare_feed-actor-name"
-        target="_blank">
-        <Icon icon="linkedin" class="cursor-pointer" color="white" isHovered extraStyles="24px" />
+      <a
+        href="https://www.linkedin.com/company/wisecanarias/?trk=public_post_main-feed-card_reshare_feed-actor-name"
+        target="_blank"
+      >
+        <Icon
+          icon="linkedin"
+          class="cursor-pointer"
+          color="white"
+          isHovered
+          extraStyles="24px"
+        />
+
       </a>
       <a href="https://www.instagram.com/wisecanarias/" target="_blank">
         <Icon icon="instagram" class="cursor-pointer" color="white" isHovered extraStyles="24px" />
@@ -18,7 +28,8 @@
         <Icon icon="email" class="cursor-pointer" color="white" isHovered extraStyles="24px" />
       </a>
     </div>
-    <div class="flex gap-6 font-bebas text-lg md:text-2xl md:pr-11">
+    <div class="flex gap-6 font-bebas text-2xl md:pr-11">
+
       <a href="" target="_blank">
         <p class="hover:text-primary-violet">Contacto</p>
       </a>
