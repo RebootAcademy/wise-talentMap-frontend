@@ -56,11 +56,13 @@ const onBlur = () => searchFocus.value = false
 const items = ref([
   {
     label: 'WISE CANARIAS',
-    icon: ''
+    command: () => {
+      window.open('https://www.wisecanarias.com/')
+    }
   },
   {
     label: 'ENTORNO VIRTUAL',
-    icon: ''
+    route: ''
   }
 ])
 
