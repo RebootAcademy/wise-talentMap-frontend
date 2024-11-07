@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full flex flex-col-reverse items-center justify-center py-8 md:mx-10 md:h-[34rem] md:flex-row">
+  <div class="w-full flex flex-col-reverse items-center justify-center py-8 lg:mx-10 lg:h-[34rem] lg:flex-row">
     <iframe src="https://www.youtube.com/embed/ls_Eue1xUtY?autoplay=1&mute=1&controls=0" title="YouTube video player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      class="hidden md:block md:w-1/2 h-[250px] lg:h-[450px] md:h-[300px] md:px-12" frameborder="0"
+      class="hidden lg:block lg:w-1/2 h-[250px] lg:h-[450px] lg:px-12" frameborder="0"
       referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <div class="flex flex-col gap-4 md:w-1/2 px-4 md:px-12 mb-8 md:mb-0">
-      <h1 class="font-bebas text-4xl md:text-6xl text-center text-anthraciteGray mb-4">
+    <div class="flex flex-col gap-4 lg:w-1/2 px-4 lg:px-12 mb-8 lg:mb-0">
+      <h1 class="font-bebas text-4xl lg:text-6xl text-center text-anthraciteGray mb-4">
         Entorno Virtual
       </h1>
       <p class="md:text-2xl text-lg text-center text-anthraciteGray">
