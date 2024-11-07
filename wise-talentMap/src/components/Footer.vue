@@ -28,7 +28,7 @@
         <Icon icon="email" class="cursor-pointer" color="white" isHovered extraStyles="24px" />
       </a>
     </div>
-    <div class="flex gap-6 font-bebas text-2xl md:pr-11">
+    <div class="flex gap-6 font-bebas md:text-2xl md:pr-11">
 
       <a href="" target="_blank">
         <p class="hover:text-primary-violet">Contacto</p>
