@@ -1,7 +1,8 @@
 <template>
   <div class="flex items-center justify-center">
     <component v-if="!isSvg" :is="iconComponent" aria-hidden="true" :class="`${size} fill-transparent text-${color}`" />
-    <span v-else :class="`pi ${iconComponent} ${size} text-${color} ${isHovered && 'hover:text-primary-violet'}`" :style="`font-size: ${extraStyles} `"></span>
+    <span v-else :class="`pi ${iconComponent} ${size} text-${color} ${isHovered && 'hover:text-primary-violet'}`"
+      :style="`font-size: ${extraStyles} `"></span>
   </div>
 </template>
 
@@ -30,13 +31,14 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  isHovered : {
+  isHovered: {
     type: Boolean,
     default: false
   }
 })
 
 const allowedIcons = {
+  burguer: 'pi-bars',
   engineer: 'pi-cog',
   closeCircle: 'pi-times-circle',
   filterSlider: FilterSlider,

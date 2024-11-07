@@ -5,13 +5,19 @@
       <img class="w-28 cursor-pointer"
         src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730735936/logoTalentMap_vsxcz2.png"
         @click="() => router.push('/')">
-      <div class="flex gap-2">
+      <div class="hidden md:flex gap-2">
         <CustomButton :clickFn="() => console.log('Wise')" class="h-11 text-2xl border border-black">
           WISE CANARIAS
         </CustomButton>
         <CustomButton :clickFn="() => console.log('VR')" class="h-11 text-2xl text-white bg-fourColors">
           ENTORNO VIRTUAL
         </CustomButton>
+      </div>
+      <div class="md:hidden">
+        <CustomButton class="w-10 h-10 !p-0" :clickFn="toggleMenu">
+          <Icon icon="burguer" size="!items-start" extraStyles="2.5rem" />
+        </CustomButton>
+        <Menu ref="showMenu" :model="items" popup />
       </div>
     </div>
     <!-- Filters bar -->
@@ -31,14 +37,31 @@ import CustomButton from '@/components/CustomButton.vue'
 import CustomInput from '@/components/CustomInput.vue';
 import SteamFilterButtons from '@/components/SteamFilterButtons.vue';
 import router from '@/router'
+import Menu from 'primevue/menu';
+import Icon from '@/components/Icon.vue';
 
 const searchParam = ref('')
 const searchFocus = ref(false)
 const filtersVisible = ref(false)
+const showMenu = ref()
 const checkWidth = ref(window.innerWidth > 678)
 
 const handleOpenModal = () => filtersVisible.value = !filtersVisible.value
+const toggleMenu = (e) => {
+  showMenu.value.toggle(e)
+}
 const onFocus = () => searchFocus.value = true
 const onBlur = () => searchFocus.value = false
+
+const items = ref([
+  {
+    label: 'WISE CANARIAS',
+    icon: ''
+  },
+  {
+    label: 'ENTORNO VIRTUAL',
+    icon: ''
+  }
+])
 
 </script>
