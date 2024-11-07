@@ -10,14 +10,15 @@
         fácilmente con profesionales clave y acceder a una red de referentes que promueven una comunidad más inclusiva y
         diversa.
       </p>
-      <div class="md:hidden flex items-center">
+      <div class="md:hidden flex items-center cursor-pointer" @click="() => $router.push('/talentMap')">
         <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif" />
       </div>
       <CustomButton class="font-bebas border h-12 border-deepGray rounded-md self-center text-2xl"
         :clickFn="() => $router.push('/talentMap')">IR A LA HERRAMIENTA
       </CustomButton>
     </div>
-    <div class="hidden md:w-[40rem] md:h-[28rem] md:flex items-center">
+    <div class="hidden md:w-[40rem] md:h-[28rem] md:flex items-center cursor-pointer"
+      @click="() => $router.push('/talentMap')">
       <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif" />
     </div>
   </div>

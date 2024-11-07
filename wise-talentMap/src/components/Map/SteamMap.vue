@@ -1,28 +1,28 @@
 <template>
 
-    <div class="w-full h-full relative !bg-secondary-blue">
-      <DrawerButton class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-8 left-6 z-10 bg-secondary-white rounded-md cursor-pointer"/>
-      <div id="map" class="w-full h-full"></div>
-      <CustomButton
-        class="absolute top-[32px] right-[32px] p-2 z-[1000] w-8 h-8 bg-white flex justify-center items-center border border-primary-violet"
-        :class="store.openDrawer && 'hidden md:flex'"
-        :clickFn="handleOpenModal">
-        <Icon icon="filterSlider" color="primary-violet" />
-      </CustomButton>
-      <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
+  <div class="w-full h-full relative">
+    <DrawerButton
+      class="absolute px-1.5 py-1.5 w-8 h-8 border-2 border-primary-violet top-8 left-6 z-10 bg-secondary-white rounded-md cursor-pointer" />
+    <div id="map" class="w-full h-full"></div>
+    <CustomButton
+      class="absolute top-[32px] right-[32px] p-2 z-[1000] w-8 h-8 bg-white flex justify-center items-center border border-primary-violet"
+      :class="store.openDrawer && 'hidden md:flex'" :clickFn="handleOpenModal">
+      <Icon icon="filterSlider" color="primary-violet" />
+    </CustomButton>
+    <!-- <MiniMap :center="[28.50291, -15.88168]" :zoom="0" class="minimap" :class="{ hidden: store.openDrawer }"
         :people="filteredPeople.length ? filteredPeople : []" /> -->
-      <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
-        style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
-      <Card v-if="showCard" :person="target" @close="showCard = false"
-        style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
-      <FilterModal v-model:visible="filtersVisible" :filtersVisible="filtersVisible"
-        :handleVisibility="handleOpenModal" />
-    </div>
+    <ListComponent v-if="showList" :markers="listData" :visible="showList" @close="showList = false"
+      style="position: absolute; top: 10px; right: 10px; z-index: 1000" />
+    <Card v-if="showCard" :person="target" @close="showCard = false"
+      style="position: absolute; top: 50px; right: 50px; z-index: 1000" />
+    <FilterModal v-model:visible="filtersVisible" :filtersVisible="filtersVisible"
+      :handleVisibility="handleOpenModal" />
+  </div>
 
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useUserStore } from '@/stores/user'
 import * as L from 'leaflet'
 import '@maptiler/leaflet-maptilersdk'
@@ -39,7 +39,6 @@ import DrawerButton from '../DrawerButton.vue'
 
 const store = useUserStore()
 
-const loading = ref(true)
 const showList = ref(false)
 const showCard = ref(false)
 const listData = ref([])
@@ -171,13 +170,12 @@ onMounted(async () => {
     ],
     maxBoundsViscosity: 1.0,
   })
-   
+
   map.value.whenReady(() => {
-    console.log('Entro')
-  setTimeout(() => {
-    store.loader = false;
-  }, 0); 
-});
+    setTimeout(() => {
+      store.loader = false;
+    }, 0);
+  });
 
 
   const zoomControl = L.control.zoom()
@@ -262,6 +260,8 @@ onMounted(async () => {
 
 
 })
+
+onUnmounted(() => store.loader = false)
 
 watch(
   () => filteredPeople.value,
