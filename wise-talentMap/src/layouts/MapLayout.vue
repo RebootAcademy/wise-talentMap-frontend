@@ -44,7 +44,7 @@ const searchParam = ref('')
 const searchFocus = ref(false)
 const filtersVisible = ref(false)
 const showMenu = ref()
-const checkWidth = ref(window.innerWidth > 678)
+const checkWidth = ref(window.innerWidth > 768)
 
 const handleOpenModal = () => filtersVisible.value = !filtersVisible.value
 const toggleMenu = (e) => {

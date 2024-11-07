@@ -4,8 +4,9 @@
     <div :class="`h-full ${store.openDrawer ? ' md:w-1/2' : 'w-full'}`">
       <SteamMap />
     </div>
-    <div v-if="store.loader" class="absolute h-full w-full z-[1002]" :class="`${!store.loader && 'animate_animated animate_zoomOut'} `">
-      <LoaderCHATGPT/>
+    <div v-if="store.loader" class="absolute h-full w-full z-[1002]"
+      :class="`${!store.loader && 'animate_animated animate_zoomOut'} `">
+      <LoaderCHATGPT />
     </div>
   </div>
 </template>

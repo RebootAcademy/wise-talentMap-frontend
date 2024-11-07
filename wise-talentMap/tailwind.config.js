@@ -10,11 +10,11 @@ module.exports = {
         '-100': '-1',
       },
       screens: {
-        sm: '640px',
-        md: '768px',
-        lg: '1024px',
-        xl: '1280px',
-        '2xl': '1440px',
+        sm: '640px', /* Mobile Vertical */
+        md: '768px', /* Mobile Horizontal */
+        lg: '1024px', /* Tablet Vertical */
+        xl: '1280px', /* Tablet Horizontal */
+        '2xl': '1440px', /* Desktop */
       },
       colors: {
         primary: {

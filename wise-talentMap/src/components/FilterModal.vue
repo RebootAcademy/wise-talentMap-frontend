@@ -1,7 +1,8 @@
 <template>
-  <Dialog :visible="filtersVisible" class="w-[31rem]" style="border: 1px solid #881BF5" modal dismissableMask>
+  <Dialog :visible="filtersVisible" class="w-full h-full absolute top-24 md:static md:h-fit md:w-[31rem] overflow-auto"
+    style="border: 1px solid #881BF5" modal dismissableMask>
     <template #container>
-      <div class="bg-white text-deepGray rounded-md  flex flex-col gap-6">
+      <div class="bg-white text-deepGray rounded-md flex flex-col gap-6">
         <header class="flex items-center justify-center gap-2 relative p-6 font-bebas text-2xl border-b">
           <span>FILTERS</span>
           <Icon icon="close" class="absolute right-6 cursor-pointer" size="w-3 h-3" @click="handleVisibility" />
