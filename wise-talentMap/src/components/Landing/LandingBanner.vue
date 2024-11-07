@@ -5,8 +5,8 @@
             <div class="md:w-1/2 px-0 md:px-12 lg:px-16 md:mr-12 py-12">
                 <h1 class="font-bebas text-5xl text-center text-secondary-white mb-4">¿Qué es el Mapa de Talento de
                     Mujeres STEAM en Canarias?</h1>
-                <p class="text-2xl text-center text-secondary-white clamped-text" :class="{ 'expanded': isExpanded }"
-                    @click="toggleExpand">
+                <p class="text-lg md:text-2xl text-center text-secondary-white clamped-text"
+                    :class="{ 'expanded': isExpanded }" @click="toggleExpand">
                     {{ isExpanded ? fullText : truncatedText }}
                 </p>
             </div>
