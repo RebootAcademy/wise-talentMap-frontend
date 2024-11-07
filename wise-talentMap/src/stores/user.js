@@ -9,6 +9,7 @@ export const useUserStore = defineStore('user', {
     selectedUsers: [],
     cardPerson: null,
     searchInput: '',
+    loader: true,
     openDrawer: false,
     steam: [
       {
