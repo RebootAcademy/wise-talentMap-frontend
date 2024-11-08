@@ -4,7 +4,8 @@
         md:px-10 md:py-12">
         <h4 class="
             font-bebas text-xl
-            md:text-xl">{{ title }}</h4>
+            md:text-xl
+            lg:text-2xl">{{ title }}</h4>
         <p>{{ description }}</p>
     </div>
 </template>

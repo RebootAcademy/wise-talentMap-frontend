@@ -2,23 +2,27 @@
     <div class="
             bg-cover bg-right grid grid-cols-6
             smd:grid-cols-4
-            md:grid-cols-8"
+            md:grid-cols-8
+            lg:grid-cols-12"
         style="background-image: url('https://talentmap.wisecanarias.com/homePageBanner.webp?auto=format')">
         <div class="
                 col-span-6 flex justify-center items-center bg-threeColorsBanner 
                 smd:col-span-4
-                md:col-span-8 md:grid md:grid-cols-8">
+                md:col-span-8 md:grid md:grid-cols-8
+                lg:col-span-12 lg:grid lg:grid-cols-12">
             <div class="
                     px-0 py-12
                     md:px-12 md:col-start-2 md:col-end-8 md:gap-8
-                    lg:px-16">
+                    lg:px-16 lg:col-start-2 lg:col-end-12 lg:gap-8">
                 <h1 class="
                         font-bebas text-3xl text-center text-secondary-white mb-4
-                        md:text-4xl">
+                        md:text-4xl
+                        lg:text-5xl">
                     ¿Que es el mapa de talento wise c?
                 </h1>
                 <p class="
-                        text-center text-secondary-white" :class="{ 'expanded': isExpanded }" @click="toggleExpand">
+                        text-center text-secondary-white
+                        lg:text-xl" :class="{ 'expanded': isExpanded }" @click="toggleExpand">
                     {{ isExpanded ? fullText : truncatedText }}
                 </p>
             </div>
