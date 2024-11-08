@@ -22,7 +22,8 @@
                 </h1>
                 <p class="
                         text-center text-secondary-white
-                        lg:text-xl" :class="{ 'expanded': isExpanded }" @click="toggleExpand">
+                        lg:text-xl
+                        xl:text-2xl" :class="{ 'expanded': isExpanded }" @click="toggleExpand">
                     {{ isExpanded ? fullText : truncatedText }}
                 </p>
             </div>

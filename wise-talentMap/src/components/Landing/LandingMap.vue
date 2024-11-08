@@ -22,7 +22,8 @@
       <div class="lg:col-span-5 lg:flex lg:flex-col lg:gap-8">
         <p class="
           text-left text-anthraciteGray
-          md:text-xl">
+          md:text-xl
+          xl:text-2xl">
           ¡Descubre el talento femenino en Canarias! Con nuestro mapa interactivo, podrás explorar perfiles destacados
           de
           mujeres en las áreas STEAM, organizados por especialidad y ubicación. Esta herramienta te permitirá conectar
@@ -35,10 +36,10 @@
           md:text-2xl" isHovered :clickFn="() => $router.push('/talentMap')">IR A LA HERRAMIENTA
         </CustomButton>
       </div>
-    </div>
-    <div class="hidden col-span-6 content-center xl:flex items-center cursor-pointer"
-      @click="() => $router.push('/talentMap')">
-      <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif" />
+      <div class="hidden col-span-6 content-center xl:flex items-center cursor-pointer"
+        @click="() => $router.push('/talentMap')">
+        <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif" />
+      </div>
     </div>
   </div>
 </template>

@@ -14,7 +14,8 @@
                 p-4 col-span-6 
                 smd:col-span-2 
                 md:col-span-4
-                lg:col-span-6" />
+                lg:col-span-6
+                xl:col-span-4" />
     </div>
 </template>
 

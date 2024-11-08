@@ -19,7 +19,8 @@
       <div class="lg:col-span-7 lg:flex lg:flex-col lg:gap-8">
         <p class="
           text-left text-anthraciteGray
-          md:text-xl">
+          md:text-xl
+          xl:text-2xl">
           El entorno virtual ofrece a las profesionales canarias una nueva ventana para mostrar sus experiencias y
           conectar con otras expertas. Con un diseño inmersivo y accesible desde ordenadores, móviles o gafas de
           realidad
