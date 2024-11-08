@@ -1,9 +1,17 @@
 <template>
-    <div class="grid grid-cols-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-8 py-6 px-4 bg-[#C7E1FF]">
-        <h2 class="col-span-6 md:col-span-6 lg:col-span-12 font-bebas text-3xl text-center text-anthraciteGray">
+    <div class="
+            grid grid-cols-6 gap-8 py-6 px-4 bg-[#C7E1FF] 
+            smd:grid-cols-4 
+            lg:grid-cols-12">
+        <h2 class="
+                col-span-6 font-bebas text-3xl text-center text-anthraciteGray
+                smd:col-span-4 
+                lg:col-span-12">
             Objectivos específicos</h2>
-        <GoalCard v-for="goal in goals" :key="goal.title" :title="goal.title" :description="goal.description"
-            class="p-4 col-span-6 md:col-span-3 lg:col-span-4 " />
+        <GoalCard v-for="goal in goals" :key="goal.title" :title="goal.title" :description="goal.description" class="
+                p-4 col-span-6 
+                smd:col-span-2 
+                lg:col-span-4" />
     </div>
 </template>
 
