@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[url('/homePageBanner.jpeg')] bg-cover bg-right">
+    <div class="bg-[url('/homePageBanner.webp')] bg-cover bg-right">
         <div
             class="flex md:flex-row-reverse justify-center md:justify-start items-center md:min-h-[655px] bg-threeColorsBanner">
             <div class="md:w-1/2 px-0 md:px-12 lg:px-16 md:mr-12 py-12">
