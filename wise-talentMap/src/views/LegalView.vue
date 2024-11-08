@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="flex flex-col px-12 md:px-24 mt-8 gap-4 text-lg mb-16">
-      <h1>AVISO LEGAL WEB</h1>
+      <h1 class="text-primary-violet text-xl md:text-3xl font-bold text-center text-bebas">AVISO LEGAL WEB</h1>
       <h3 class="text-3xl font-bebas font-bold">I. OBJETO</h3>
       <p>
         Las presentes condiciones legales son establecidas por Asociación
         Canaria de mujeres científicas y tecnológicas en adelante WISE Canarias,
         con el fin de determinar los criterios y condiciones de uso de la página
-        web: www.talentmap.wisecanarias.com.com.
+        web: <span class="font-bold">www.talentmap.wisecanarias.com</span>.
       </p>
       <div>
         <p class="font-bold font-bebas text-xl">Datos del Titular</p>
@@ -24,7 +24,7 @@
             Domicilio en: C/ Luis Morote, No. 6 P. 1, Puerta 8. 35007 Las Palmas
             de Gran Canaria
           </p>
-          <p>Correo electrónico: hi@wisecanarias.com.com</p>
+          <p>Correo electrónico: hi@wisecanarias.com</p>
         </div>
       </div>
       <p>
@@ -45,7 +45,7 @@
         Puede conocer nuestra política de privacidad visitando el siguiente
         enlace:
         <a
-          href="www.talentmap.wisecanarias.com/privacy"
+          href="/privacy"
           class="hover:text-secondary-turquoise text-primary-violet cursor-pointer"
           >Política de privacidad</a
         >.
@@ -144,7 +144,7 @@
         nuestra política de privacidad en
         <a
           class="hover:text-secondary-turquoise text-primary-violet cursor-pointer"
-          href="www.talentmap.wisecanarias.com/privacy"
+          href="/privacy"
           >www.talentmap.wisecanarias.com/privacy</a
         >.
       </p>

@@ -3,7 +3,7 @@
     <div
       class="flex flex-col px-12 md:px-24 mt-8 gap-4 text-lato md:text-lg mb-16"
     >
-      <h1 class="text-center text-xl md:text-3xl font-bold text-bebas">
+      <h1 class="text-center text-primary-violet text-xl md:text-3xl font-bold text-bebas">
         POLITICA DE PRIVACIDAD – MAPA DE TALENTO WISE CANARIAS
       </h1>
       <p>¡Hola!</p>
@@ -15,8 +15,7 @@
       <p>
         Si quieres saber más sobre WISE Canarias, sobre nuestra labor como
         asociación, y sobre cómo tratamos los datos en WISE, puedes hacerlo
-        visitando nuestra política de privacidad principal (añadir enlace a la
-        política de privacidad de WISE).
+        visitando nuestra política de privacidad principal. <a href="https://www.wisecanarias.com/legal/private-policy" class=" font-bold hover:text-secondary-turquoise text-primary-violet cursor-pointer">Política de privacidad de Wise Canarias</a> .
       </p>
       <p>
         De conformidad con lo previsto en el artículo 13 del Reglamento UE

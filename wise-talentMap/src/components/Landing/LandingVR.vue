@@ -8,7 +8,7 @@
       <h1 class="font-bebas text-4xl lg:text-6xl text-center text-anthraciteGray mb-4">
         Entorno Virtual
       </h1>
-      <p class="md:text-2xl text-lg text-center text-anthraciteGray">
+      <p class="md:text-2xl text-lg lg:pr-6 text-center text-anthraciteGray">
         El entorno virtual ofrece a las profesionales canarias una nueva ventana para mostrar sus experiencias y
         conectar con otras expertas. Con un diseño inmersivo y accesible desde ordenadores, móviles o gafas de realidad
         virtual, esta plataforma facilita el networking, la mentoría y la colaboración en proyectos innovadores. Además,
@@ -21,11 +21,14 @@
         class="md:hidden md:w-1/2 h-[250px] lg:h-[450px] md:h-[300px] md:px-12" frameborder="0"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       <CustomButton
+        isHovered
         class="font-bebas border h-12 flex items-center border-deepGray rounded-md self-center text-2xl px-4 py-2"
-        :clickFn="() => console.log('Ir a entorno virtual')">IR A LA HERRAMIENTA
+        :clickFn="() => $router.push('/talentMap')">IR A LA HERRAMIENTA
       </CustomButton>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import CustomButton from '../CustomButton.vue'
+</script>

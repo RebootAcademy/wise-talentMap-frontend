@@ -14,6 +14,7 @@
         <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif" />
       </div>
       <CustomButton class="font-bebas border h-12 border-deepGray rounded-md self-center text-2xl"
+        isHovered
         :clickFn="() => $router.push('/talentMap')">IR A LA HERRAMIENTA
       </CustomButton>
     </div>
