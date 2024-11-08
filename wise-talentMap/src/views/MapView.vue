@@ -1,7 +1,7 @@
 <template>
   <div class="h-full lg:h-[80.9%] flex relative">
-    <Drawer v-if="store.openDrawer" class="w-full md:w-1/2 transition ease-in-out duration-500" />
-    <div :class="`h-full ${store.openDrawer ? ' md:w-1/2' : 'w-full'}`">
+    <Drawer v-if="store.openDrawer" class="w-full lg:w-1/2 transition ease-in-out duration-500" />
+    <div :class="`h-full ${store.openDrawer ? 'md:w-1/2' : 'w-full'}`">
       <SteamMap />
     </div>
     <div v-if="store.loader" class="absolute h-full w-full z-[1002]"

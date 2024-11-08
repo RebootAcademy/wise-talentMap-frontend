@@ -10,6 +10,7 @@ module.exports = {
         '-100': '-1',
       },
       screens: {
+        xs: '370px',
         sm: '640px', /* Mobile Vertical */
         smd: '720px',
         md: '768px', /* Mobile Horizontal */

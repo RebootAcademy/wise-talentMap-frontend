@@ -19,19 +19,19 @@
     <div class="pt-6 mb-2 z-20">
       <img
         :src="person.image  ? person.image : '/defaultImg.png'"
-        class="h-32 w-32 top-10 left-4 object-cover rounded-full border border-secondary-turquoise"
+        class="h-24 w-24 md:h-32 md:w-32 top-10 left-4 object-cover rounded-full border border-secondary-turquoise"
       />
     </div>
 
     <div class="flex flex-col gap-4 pb-6 w-full h-full">
-      <p class="font-bebas text-xl">
+      <p class="font-bebas md:text-xl">
         {{ person.firstName }} {{ person.lastName }}
       </p>
       <div class="flex flex-col gap-4 h-full  ">
         <SteamIcons :steams="person.steam" />
         <div class="flex gap-2">
           <Icon icon="job" />
-          <p class="card-title text-sm">{{ person.jobPosition }}</p>
+          <p class="card-title text-xs md:text-sm">{{ person.jobPosition }}</p>
         </div>
       </div>
     </div>
