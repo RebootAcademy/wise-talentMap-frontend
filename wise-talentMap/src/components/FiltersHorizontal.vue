@@ -57,8 +57,9 @@
     </div>
 
     <footer class="font-bebas flex justify-center gap-6 border-t py-1">
-      <CustomButton class="border py-2 px-4 border-black " :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
-      <CustomButton :clickFn="applyFilters"
+      <CustomButton isHovered class="border py-2 px-4 border-black " :clickFn="clearFilters">QUITAR FILTROS
+      </CustomButton>
+      <CustomButton isHovered :clickFn="applyFilters"
         class="border border-mediumGray rounded-md text-secondary-white bg-twoColorsBlue">APLICAR
       </CustomButton>
     </footer>

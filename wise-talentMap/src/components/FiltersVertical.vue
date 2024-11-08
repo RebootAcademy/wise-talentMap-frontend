@@ -45,8 +45,8 @@
       <hr>
     </div>
     <footer class="font-bebas flex justify-between px-6 pb-6">
-      <CustomButton :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
-      <CustomButton :clickFn="applyFilters"
+      <CustomButton isHovered :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
+      <CustomButton isHovered :clickFn="applyFilters"
         class="border border-mediumGray rounded-md text-secondary-white bg-twoColorsBlue">APLICAR
       </CustomButton>
     </footer>
