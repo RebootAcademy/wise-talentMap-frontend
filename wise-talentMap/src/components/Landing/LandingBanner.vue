@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[url('/homePageBanner.webp')] bg-cover bg-right">
+    <div :style="backgroundStyle" class="bg-cover bg-right">
         <div
             class="flex md:flex-row-reverse justify-center md:justify-start items-center md:min-h-[655px] bg-threeColorsBanner">
             <div class="md:w-1/2 px-0 md:px-12 lg:px-16 md:mr-12 py-12">
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const isExpanded = ref(false);
 const fullText = ref(`Es una plataforma interactiva diseñada para visibilizar y conectar el talento femenino en Ciencia, Tecnología, Ingeniería, Arte y Matemáticas. Este mapa destaca las contribuciones de mujeres profesionales en sectores clave, fomenta la colaboración y crea una red de mentoras que inspira a nuevas generaciones. Conectamos el talento y empoderamos a las mujeres. Nuestra misión es construir un futuro más inclusivo y diverso, donde cada historia de éxito sirva como modelo a seguir. ¡Únete a nosotros y sé parte del cambio!`);
@@ -24,6 +24,12 @@ const truncatedText = ref(fullText.value.slice(0, 150) + '...');
 const toggleExpand = () => {
     isExpanded.value = true;
 };
+
+const backgroundStyle = computed(() => {
+    return {
+        backgroundImage: "url('https://talentmap.wisecanarias.com//homePageBanner.webp?auto=format')",
+    }
+})
 
 watch(() => window.innerWidth, () => {
     if (window.innerWidth > 768) isExpanded.value = true
