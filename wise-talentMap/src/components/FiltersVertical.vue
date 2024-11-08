@@ -208,4 +208,12 @@ watch(() => store.steamFilter, () => {
   steamFilter.value = [...store.steamFilter]
 }, { immediate: true })
 
+watch(() => store.filterType, () => {
+  if (store.filterType === 'canary') {
+    countryFilter.value = ''
+  } else {
+    municipalityFilter.value = ''
+    islandFilter.value = []
+  }
+})
 </script>
