@@ -3,7 +3,7 @@
     <div
       :class="`border-r p-2.5 h-full flex items-center rounded-l-md ${store.filterType === 'canary' && 'bg-blue-300'}`"
       @click="() => store.filterType = 'canary'">
-      Islas Canarias
+      Canarias
     </div>
     <div :class="`p-2.5 h-full flex items-center rounded-r-md ${store.filterType !== 'canary' && 'bg-blue-300'}`"
       @click="() => store.filterType = 'international'">

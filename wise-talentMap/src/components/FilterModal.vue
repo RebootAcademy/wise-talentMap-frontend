@@ -1,6 +1,6 @@
 <template>
-  <Dialog :visible="filtersVisible" class="w-full md:static lg:h-fit lg:w-[31rem] overflow-auto"
-    style="border: 1px solid #881BF5" modal dismissableMask>
+  <Dialog :visible="filtersVisible" class="w-full md:static lg:h-fit lg:w-[31rem]" style="border: 1px solid #881BF5"
+    modal dismissableMask>
     <template #container>
       <FiltersHorizontal v-if="checkWidth" :handleVisibility="handleVisibility" />
       <FiltersVertical v-else :handleVisibility="handleVisibility" />

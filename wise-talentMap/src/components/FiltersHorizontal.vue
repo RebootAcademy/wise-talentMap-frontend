@@ -1,11 +1,14 @@
 <template>
-  <div class="bg-white text-deepGray h-screen rounded-md flex flex-col justify-between gap-1">
+  <div class="bg-white text-deepGray h-full rounded-md flex flex-col justify-between gap-1">
+
     <header class="flex items-center justify-center gap-2 sm:h-3 relative p-6 font-bebas text-2xl border-b">
       <span>FILTROS</span>
       <Icon icon="close" class="absolute right-6 cursor-pointer" size="w-3 h-3" @click="handleVisibility" />
     </header>
-    <div class="px-6 w-full h-full flex gap-6">
-      <section class="flex flex-col gap-4 w-1/2 border-r">
+
+    <div class="px-6 w-full h-full flex gap-6 py-6">
+
+      <section class="flex flex-col gap-6 w-1/2 ">
         <p class="font-bebas text-xl">ÁREA STEAM</p>
         <div class="flex flex-wrap gap-2">
           <CustomButton v-for="(option, idx) in store.steam" :key="idx"
@@ -18,22 +21,27 @@
           </CustomButton>
         </div>
       </section>
-      <section class="flex flex-col justify-center gap-2.5 w-1/2 h-full overflow-auto">
+
+      <section class="custom-scrollbar flex flex-col gap-6 w-1/2 h-32 overflow-auto">
+
         <div class="flex items-center gap-2">
           <p class="font-bebas text-xl">Localizacion</p>
-          <Tabs class="h-6" />
+          <Tabs class="h-8" />
         </div>
+
         <div v-if="store.filterType === 'canary'" class="flex flex-wrap gap-2 text-deepGray">
           <CustomButton v-for="(island, idx) in islands" :key="idx"
-            :class="`${islandFilter.includes(island) ? 'bg-twoColorsBlue bg-clip-text text-transparent border-blueGradient-rounded' : 'border border-deepGray'} !rounded-full`"
+            :class="`${islandFilter.includes(island) ? 'bg-twoColorsBlue bg-clip-text text-transparent border-blueGradient-rounded' : 'border border-deepGray'} h-8 text-xs !rounded-full`"
             :clickFn="() => checkSelections('islands', island)">
             {{ island }}
           </CustomButton>
         </div>
+
         <section v-else class="flex flex-col gap-2.5">
-          <Select v-model="selectedCountry" :value="selectedCountry" :options="countries" class="w-56"
+          <Select v-model="selectedCountry" :value="selectedCountry" :options="countries" class="w-56 text-sm"
             placeholder="Selecciona un país" @change="(e) => checkSelections('country', e.value)" />
         </section>
+
         <Select v-if="islandFilter.length" v-model="selectedMunicipality" :options="selectableMunicipalities"
           class="w-56 text-sm" placeholder="Selecciona un municipio"
           @change="(e) => checkSelections('municipality', e.value)" optionGroupLabel="island"
@@ -42,15 +50,19 @@
             <div>{{ slotProps.municipalities }}</div>
           </template>
         </Select>
+
       </section>
+
       <hr>
     </div>
-    <footer class="font-bebas flex justify-center gap-6">
-      <CustomButton :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
+
+    <footer class="font-bebas flex justify-center gap-6 border-t py-1">
+      <CustomButton class="border py-2 px-4 border-black " :clickFn="clearFilters">QUITAR FILTROS</CustomButton>
       <CustomButton :clickFn="applyFilters"
         class="border border-mediumGray rounded-md text-secondary-white bg-twoColorsBlue">APLICAR
       </CustomButton>
     </footer>
+
   </div>
 </template>
 
@@ -62,6 +74,7 @@ import Select from 'primevue/select'
 import Icon from './Icon.vue';
 import Tabs from './Tabs.vue'
 import CustomButton from './CustomButton.vue';
+import Divider from './Divider.vue';
 
 const islands = ['Gran Canaria', 'Fuerteventura', 'La Graciosa', 'Lanzarote', 'Tenerife', 'La Gomera', 'La Palma', 'El Hierro']
 const store = useUserStore()
@@ -219,3 +232,26 @@ watch(() => store.filterType, () => {
 })
 
 </script>
+<style scoped>
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #881bf5;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #881bf5;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #881bf5 #f1f1f100;
+}
+</style>
