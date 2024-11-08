@@ -56,7 +56,8 @@ const allowedIcons = {
   email: 'pi-envelope',
   location: 'pi-map-marker',
   job: 'pi-briefcase',
-  back: 'pi-chevron-left'
+  back: 'pi-chevron-left',
+  arrowUp: 'pi-arrow-up'
 }
 
 const iconComponent = computed(() => {

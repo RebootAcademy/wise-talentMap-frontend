@@ -14,6 +14,7 @@
         class="col-span-6 xs:col-span-3 lg:col-span-3 2xl:col-span-2 border-2 border-gray-50"
         :class="showCard && ' blur-sm'" @click="handleShowCard(user)" />
     </div>
+    <ScrollToTop containerSelector=".custom-scrollbar" class=" md:hidden"/>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import DrawerCard from './DrawerCard.vue'
 import Card from '../Map/Card.vue'
 import CustomInput from '../CustomInput.vue'
 import DrawerButton from '../DrawerButton.vue'
+import ScrollToTop from '../ScrollToTop.vue'
 const store = useUserStore()
 const showCard = ref(false)
 const searchUser = ref(null)

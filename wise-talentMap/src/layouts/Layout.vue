@@ -3,7 +3,7 @@
     class="flex flex-col w-full min-h-screen bg-secondary-white text-anthraciteGray overflow-x-hidden"
   >
     <Header />
-    <RouterView />
+    <RouterView />    
   </div>
 </template>
 

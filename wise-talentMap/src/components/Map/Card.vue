@@ -30,7 +30,7 @@
             <Icon icon="job" />
             <p>{{ person.jobPosition }}</p>
           </div>
-          <div  class="flex gap-2">
+          <div v-if="person.linkedin" class="flex gap-2">
             <Icon icon="linkedin" />
             <a :href="person.linkedin" target="_blank" class="text-primary-violet hover:text-primary-violet/70">
               <p>
