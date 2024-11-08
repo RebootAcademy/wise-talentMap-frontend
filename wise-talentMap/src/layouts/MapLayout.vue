@@ -37,8 +37,7 @@
     </div>
     <!-- Filters bar -->
     <div
-      v-if="checkWidth"
-      :class="`bg-white h-20 text-black flex ${
+      :class="`hidden sm:flex bg-white h-20 text-black  ${
         searchFocus ? 'gap-7' : 'justify-between '
       } items-center py-2.5 px-8`"
     >
@@ -61,7 +60,7 @@ import Icon from '@/components/Icon.vue'
 const searchFocus = ref(false)
 const filtersVisible = ref(false)
 const showMenu = ref()
-const checkWidth = ref(window.innerWidth >= 1024)
+const checkWidth = ref(window.innerWidth >= 728)
 
 const handleOpenModal = () => (filtersVisible.value = !filtersVisible.value)
 const toggleMenu = (e) => {
