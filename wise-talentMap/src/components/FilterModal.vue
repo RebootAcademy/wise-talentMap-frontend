@@ -28,7 +28,6 @@ const props = defineProps({
   }
 })
 
-const userAgent = navigator.userAgent || navigator.vendor || window.opera
-const checkWidth = ref(window.matchMedia("(orientation: landscape)").matches && /android|iPhone|iPad|iPod/i.test(userAgent))
+const checkWidth = ref(window.innerWidth >= 760 && window.innerWidth <= 1024)
 
 </script>
