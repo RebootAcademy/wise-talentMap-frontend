@@ -27,7 +27,7 @@ const toggleExpand = () => {
 
 const backgroundStyle = computed(() => {
     return {
-        backgroundImage: "url('https://talentmap.wisecanarias.com//homePageBanner.webp?auto=format')",
+        backgroundImage: "url('https://talentmap.wisecanarias.com/homePageBanner.webp?auto=format')",
     }
 })
 
