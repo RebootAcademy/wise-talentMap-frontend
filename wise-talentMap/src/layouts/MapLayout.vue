@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full">
+  <div class="h-screen w-full overflow-hidden">
     <!-- Main header -->
     <div
       class="bg-white border-b h-16 lg:h-24 flex items-center justify-between font-bebas text-3xl text-black py-2.5 px-8">

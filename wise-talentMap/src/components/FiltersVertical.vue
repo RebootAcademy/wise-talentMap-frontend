@@ -1,15 +1,15 @@
 <template>
   <div class="bg-white text-deepGray rounded-md flex flex-col gap-6">
-    <header class="flex items-center justify-center gap-2 sm:h-3 relative p-6 font-bebas text-2xl border-b">
+    <header class="flex items-center justify-center gap-2 sm:h-3 relative p-2 lg:p-6 font-bebas text-2xl border-b">
       <span>FILTROS</span>
       <Icon icon="close" class="absolute right-6 cursor-pointer" size="w-3 h-3" @click="handleVisibility" />
     </header>
-    <div class="px-6 flex flex-col sm:flex-row lg:flex-col gap-6">
-      <section class="flex flex-col gap-6 sm:w-1/2">
+    <div class="px-6 flex flex-col gap-6">
+      <section class="flex flex-col gap-6 ">
         <p class="font-bebas text-xl">ÁREA STEAM</p>
         <div class="flex flex-wrap gap-2">
           <CustomButton v-for="(option, idx) in store.steam" :key="idx"
-            :class="`flex gap-2 font-lato lg:text-xl items-center border border-deepGray !rounded-full ${isFilterActive(option.filterValue) && 'border-blueGradient-rounded'}`"
+            :class="`flex gap-2 font-lato items-center border border-deepGray !rounded-full ${isFilterActive(option.filterValue) && 'border-blueGradient-rounded'}`"
             :clickFn="() => toggleSteamFilter(option.filterValue)">
             <Icon :icon="option.icon" :color="isFilterActive(option.filterValue) ? 'primary-violet' : 'deepGray'" />
             <span :class="isFilterActive(option.filterValue) && 'bg-twoColorsBlue bg-clip-text text-transparent'">
@@ -19,16 +19,20 @@
         </div>
       </section>
       <hr class="hidden lg:block">
-      <Tabs class="h-fit" />
-      <section v-if="store.filterType === 'canary'" class="flex flex-col gap-6">
-        <p class="font-bebas text-xl">ISLA DE RESIDENCIA</p>
-        <div class="flex flex-wrap gap-2 text-deepGray">
+      <section class="flex flex-col gap-6">
+        <p class="font-bebas text-xl">Localización</p>
+        <Tabs class="h-fit" />
+        <div v-if="store.filterType === 'canary'" class="flex flex-wrap gap-2 text-deepGray">
           <CustomButton v-for="(island, idx) in islands" :key="idx"
             :class="`${islandFilter.includes(island) ? 'bg-twoColorsBlue bg-clip-text text-transparent border-blueGradient-rounded' : 'border border-deepGray'} !rounded-full`"
             :clickFn="() => checkSelections('islands', island)">
             {{ island }}
           </CustomButton>
         </div>
+        <section v-else class="flex flex-col gap-6">
+          <Select v-model="selectedCountry" :value="selectedCountry" :options="countries" class="w-56"
+            placeholder="Selecciona un país" @change="(e) => checkSelections('country', e.value)" />
+        </section>
         <Select v-if="islandFilter.length" v-model="selectedMunicipality" :options="selectableMunicipalities"
           class="w-56 text-sm" placeholder="Selecciona un municipio"
           @change="(e) => checkSelections('municipality', e.value)" optionGroupLabel="island"
@@ -37,12 +41,6 @@
             <div>{{ slotProps.municipalities }}</div>
           </template>
         </Select>
-      </section>
-      <section v-else class="flex flex-col gap-6">
-        <hr>
-        <p class="font-bebas text-xl">PAIS DE RESIDENCIA</p>
-        <Select v-model="selectedCountry" :value="selectedCountry" :options="countries" class="w-56"
-          placeholder="Selecciona un país" @change="(e) => checkSelections('country', e.value)" />
       </section>
       <hr>
     </div>
