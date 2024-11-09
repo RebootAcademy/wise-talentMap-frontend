@@ -25,6 +25,9 @@
         <!-- <a href="" target="_blank" @click="() => router.push('/contact')">
         <p class="hover:text-primary-violet">Contacto</p>
       </a> -->
+              <a href="/cookies" target="_blank">
+          <p class="hover:text-primary-violet">Politica de cookies</p>
+        </a>
         <a href="/privacy" target="_blank">
           <p class="hover:text-primary-violet">Politica de privacidad</p>
         </a>

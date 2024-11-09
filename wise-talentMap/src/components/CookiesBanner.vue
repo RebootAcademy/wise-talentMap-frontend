@@ -20,6 +20,7 @@
             funcione correctamente y pueden almacenar y recuperar información
             del usuario durante la navegación. Puedes ver aquí nuestra
             <a
+              href="/cookies"
               class="text-primary-violet hover:text-secondary-blue cursor-pointer"
               >Política de Cookies</a
             >.

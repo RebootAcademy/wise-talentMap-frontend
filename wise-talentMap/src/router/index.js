@@ -5,6 +5,7 @@ import MapLayout from '@/layouts/MapLayout.vue'
 import MapView from '@/views/MapView.vue'
 import PrivacyView from '@/views/PrivacyView.vue'
 import LegalView from '@/views/LegalView.vue'
+import CookiesPolicy from '@/views/CookiesPolicy.vue'
 
 
 const router = createRouter({
@@ -29,6 +30,11 @@ const router = createRouter({
           path: '/legal',
           name: 'legal',
           component: LegalView,
+        },
+        {
+          path: '/cookies',
+          name: 'cookies',
+          component: CookiesPolicy
         }
       ],
     },
