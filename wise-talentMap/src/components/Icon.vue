@@ -13,6 +13,7 @@ import FunctionMath from '@/assets/Icons/FunctionMath.vue';
 import Laptop from '@/assets/Icons/Laptop.vue';
 import Paintbrush from '@/assets/Icons/Paintbrush.vue';
 import Science from '@/assets/Icons/Science.vue';
+import EngineerIcon from '@/assets/Icons/EngineerIcon.vue'
 
 const props = defineProps({
   icon: {
@@ -39,7 +40,7 @@ const props = defineProps({
 
 const allowedIcons = {
   burguer: 'pi-bars',
-  engineer: 'pi-cog',
+  engineer: EngineerIcon,
   closeCircle: 'pi-times-circle',
   filterSlider: FilterSlider,
   close: 'pi-times',
@@ -55,7 +56,8 @@ const allowedIcons = {
   email: 'pi-envelope',
   location: 'pi-map-marker',
   job: 'pi-briefcase',
-  back: 'pi-chevron-left'
+  back: 'pi-chevron-left',
+  arrowUp: 'pi-arrow-up'
 }
 
 const iconComponent = computed(() => {

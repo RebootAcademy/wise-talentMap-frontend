@@ -9,6 +9,7 @@
       class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft" />
     <BannerMentions class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12" />
     <Footer class="col-span-4 md:col-span-6 lg:col-span-12"/>
+    <ScrollToTop />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import { getUsers } from '../services/user.services'
 import { useRouter } from 'vue-router'
 import Footer from '@/components/Footer.vue'
 import BannerMentions from '@/components/BannerMentions.vue'
+import ScrollToTop from '@/components/ScrollToTop.vue'
 const userStore = useUserStore()
 const router = useRouter()
 

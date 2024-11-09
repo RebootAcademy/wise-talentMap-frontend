@@ -1,6 +1,6 @@
 <template>
   <div class="custom-scrollbar relative bg-secondary-white border-t overflow-auto mb-5">
-    <div class="absolute  w-full px-8">
+    <div class="absolute  w-full px-4 lg:px-8">
       <div class="flex justify-center items-center gap-4 mt-4">
         <CustomInput :isDisabled="filteredPeople.length === 1 && !store.searchInput" class=" w-full"
           :class="showCard && ' blur-sm'" placeholder="Buscar por nombre y/o apellidos" />
@@ -9,11 +9,12 @@
       </div>
     </div>
     <Card v-if="showCard" :person="store.cardPerson" class="sticky top-0  z-50" @close="showCard = false" />
-    <div class="absolute top-20 h-full w-full grid grid-cols-6 gap-6 px-8 bg-secondary-white z-10">
+    <div class="absolute top-20 h-full w-full grid grid-cols-6 gap-6 px-4 lg:px-8 bg-secondary-white z-10">
       <DrawerCard v-for="user in filteredPeople" :key="user.id" :person="user"
-        class="col-span-6 sm:col-span-3 lg:col-span-3 2xl:col-span-2 border-2 border-gray-50"
+        class="col-span-6 xs:col-span-3 lg:col-span-3 2xl:col-span-2 border-2 border-gray-50"
         :class="showCard && ' blur-sm'" @click="handleShowCard(user)" />
     </div>
+    <ScrollToTop containerSelector=".custom-scrollbar" class=" md:hidden"/>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import DrawerCard from './DrawerCard.vue'
 import Card from '../Map/Card.vue'
 import CustomInput from '../CustomInput.vue'
 import DrawerButton from '../DrawerButton.vue'
+import ScrollToTop from '../ScrollToTop.vue'
 const store = useUserStore()
 const showCard = ref(false)
 const searchUser = ref(null)
