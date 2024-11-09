@@ -13,7 +13,7 @@
         lg:text-6xl lg:col-span-12">
         Entorno Virtual
       </h1>
-      <img src="/vr.jpeg" class="
+      <img src="./../../assets/vrCorto.gif" class="
         lg:col-span-7 
         lg:hidden">
       <div class="lg:col-span-7 lg:flex lg:flex-col lg:gap-8">
@@ -36,7 +36,7 @@
           <span class="text-center w-full">IR A LA HERRAMIENTA</span>
         </CustomButton>
       </div>
-      <img src="/vr.jpeg" class="hidden lg:block lg:col-span-5">
+      <img src="./../../assets/vrCorto.gif" class="hidden lg:block lg:col-span-5">
     </div>
   </div>
 </template>
