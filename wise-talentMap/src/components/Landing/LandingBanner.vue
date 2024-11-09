@@ -4,7 +4,7 @@
             smd:grid-cols-4
             md:grid-cols-8
             lg:grid-cols-12"
-        style="background-image: url('https://talentmap.wisecanarias.com/homePageBanner.webp?auto=format')">
+        style="background-image: url('/homePageBanner2.webp')">
         <div class="
                 col-span-6 flex justify-center items-center bg-threeColorsBanner 
                 smd:col-span-4
@@ -43,11 +43,7 @@ const toggleExpand = () => {
     isExpanded.value = true;
 };
 
-const backgroundStyle = computed(() => {
-    return {
-        backgroundImage: "url('https://talentmap.wisecanarias.com/homePageBanner.webp?auto=format')",
-    }
-})
+
 
 watch(() => window.innerWidth, () => {
     if (window.innerWidth > 768) isExpanded.value = true
