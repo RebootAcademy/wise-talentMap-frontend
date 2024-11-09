@@ -31,8 +31,9 @@
           su desarrollo profesional.
         </p>
         <CustomButton isHovered class="
-          font-bebas border h-12 py-3 border-deepGray rounded-md self-center
-          md:text-2xl" :clickFn="() => $router.push('/talentMap')">IR A LA HERRAMIENTA
+          font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center
+          md:text-2xl" :clickFn="() => $router.push('/talentMap')">
+          <span class="text-center w-full">IR A LA HERRAMIENTA</span>
         </CustomButton>
       </div>
       <img src="/vr.jpeg" class="hidden lg:block lg:col-span-5">

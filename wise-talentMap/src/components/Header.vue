@@ -7,7 +7,7 @@
       @click="() => $router.push('/')"
       src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730735936/logoTalentMap_vsxcz2.png"
     />
-    <div class="flex gap-2 items-center">
+    <div class="hidden lg:flex gap-2 items-center">
       <a href="https://www.wisecanarias.com" target="_blank">
         <CustomButton
           isHovered
@@ -24,7 +24,6 @@
           isHovered
           class="h-11 text-2xl text-white bg-fourColors rounded-md"
         >
-          ACCESO AL TYPEFORM
         </CustomButton>
       </a>
     </div>
