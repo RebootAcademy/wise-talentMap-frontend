@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="flex flex-col px-12 md:px-24 mt-8 gap-4 text-lg mb-16">
+    <div class="flex flex-col font-lato px-12 md:px-32 mt-12 gap-4 text-lg mb-16">
       <h1 class="text-primary-violet text-xl md:text-3xl font-bold text-center text-bebas">AVISO LEGAL WEB</h1>
-      <h3 class="text-3xl font-bebas font-bold">I. OBJETO</h3>
+      <h3 class="text-3xl font-bebas text-primary-violet">I. OBJETO</h3>
       <p>
         Las presentes condiciones legales son establecidas por Asociación
         Canaria de mujeres científicas y tecnológicas en adelante WISE Canarias,
@@ -10,7 +10,7 @@
         web: <span class="font-bold">www.talentmap.wisecanarias.com</span>.
       </p>
       <div>
-        <p class="font-bold font-bebas text-xl">Datos del Titular</p>
+        <p class="text-primary-violet font-bebas text-xl">Datos del Titular</p>
         <p>
           Según lo establecido en la Ley de Servicios de la Sociedad de la
           información y Comercio Electrónico LSSICE 34/2002, WISE Canarias, pone
@@ -38,7 +38,7 @@
         los usuarios, se avisará con antelación a la entrada en vigor de los
         cambios.
       </p>
-      <h3 class="text-3xl font-bebas font-bold mt-4">
+      <h3 class="text-3xl font-bebas text-primary-violet mt-4">
         II. POLÍTICA DE PRIVACIDAD
       </h3>
       <p>
@@ -50,7 +50,7 @@
           >Política de privacidad</a
         >.
       </p>
-      <h3 class="text-3xl font-bebas font-bold mt-4">
+      <h3 class="text-3xl font-bebas text-primary-violet mt-4">
         III. POLÍTICA DE ENLACES
       </h3>
       <p>
@@ -70,7 +70,7 @@
         servicios que pueda encontrar el usuario en las páginas a los que
         redirigen.
       </p>
-      <h3 class="text-3xl font-bebas font-bold mt-4">
+      <h3 class="text-3xl font-bebas text-primary-violet mt-4">
         IV. PROPIEDAD INTELECTUAL
       </h3>
       <p>
@@ -87,7 +87,7 @@
         intelectual o industrial. Los usuarios solo pueden hacer un uso privado
         de esta web.
       </p>
-      <h3 class="text-3xl font-bebas font-bold mt-4">
+      <h3 class="text-3xl font-bebas text-primary-violet mt-4">
         V. OBLIGACIONES DEL USUARIO
       </h3>
 
@@ -124,7 +124,7 @@
           ellos.
         </p>
       </div>
-      <h3 class="text-3xl font-bebas font-bold mt-4">
+      <h3 class="text-3xl font-bebas text-primary-violet mt-4">
         VI. EXCLUSIONES DE RESPONSABILIDAD
       </h3>
       <p>
@@ -148,7 +148,7 @@
           >www.talentmap.wisecanarias.com/privacy</a
         >.
       </p>
-      <h3 class="text-3xl font-bebas font-bold mt-4">
+      <h3 class="text-3xl font-bebas text-primary-violet mt-4">
         II. LEY APLICABLE Y JURISDICCIÓN
       </h3>
       <p>Serán aplicables las normas del Ordenamiento jurídico español.</p>

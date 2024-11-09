@@ -24,6 +24,7 @@
           isHovered
           class="h-11 text-2xl text-white bg-fourColors rounded-md"
         >
+        INSCRÍBITE
         </CustomButton>
       </a>
     </div>
