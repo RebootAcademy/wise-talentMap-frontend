@@ -13,9 +13,8 @@
         lg:text-6xl lg:col-span-12">
         Entorno Virtual
       </h1>
-
-      <img src="./../../assets/vrCorto.gif" class="
-        w-full
+      <img @click="redirectToVR" src="./../../assets/vrCorto.gif" class="
+        w-full cursor-pointer
         lg:col-span-7
         xl:col-span-6">
       <div class="
@@ -31,14 +30,11 @@
           realidad
           virtual, esta plataforma facilita el networking, la mentoría y la colaboración en proyectos innovadores.
         </p>
-        <a target="_blank"
-          href="https://www.spatial.io/s/MAPA-DE-TALENTOS-WISE-CANARIAS-6728b32e13a2ce7da7b3a85a?share=1006082582040945292">
-          <CustomButton isHovered class="
+        <CustomButton isHovered class="
             font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center w-fit
-            md:text-2xl">
-            <span class="text-center w-full">IR A LA HERRAMIENTA</span>
-          </CustomButton>
-        </a>
+            md:text-2xl" :clickFn="redirectToVR">
+          <span class="text-center w-full">IR A LA HERRAMIENTA</span>
+        </CustomButton>
       </div>
     </div>
   </div>
@@ -46,4 +42,15 @@
 
 <script setup>
 import CustomButton from '../CustomButton.vue'
+
+const redirectToVR = () => {
+  window.open('https://www.spatial.io/s/MAPA-DE-TALENTOS-WISE-CANARIAS-6728b32e13a2ce7da7b3a85a?share=1006082582040945292')
+  if (localStorage.getItem('cookiesAccepted') && window.gtag) {
+    window.gtag('event', 'access_vr', {
+      event_category: 'vr',
+      event_label: 'Vr Access',
+      value: 1
+    })
+  }
+}
 </script>
