@@ -43,4 +43,5 @@
 
 <script setup>
 import CustomButton from '../CustomButton.vue'
+
 </script>

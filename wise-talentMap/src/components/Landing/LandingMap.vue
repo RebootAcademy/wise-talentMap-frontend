@@ -7,7 +7,7 @@
         Mapa interactivo
       </h1>
       <div class="flex items-center cursor-pointer md:col-span-4 lg:col-span-6 xl:hidden"
-        @click="() => $router.push('/talentMap')">
+        @click="handleClick">
         <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif" />
       </div>
       <div class="
@@ -23,12 +23,12 @@
           inclusiva y diversa.
         </p>
         <CustomButton class="font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center md:text-2xl"
-          isHovered :clickFn="() => $router.push('/talentMap')">
+          isHovered :clickFn="handleClick">
           <span class="text-center w-full">IR A LA HERRAMIENTA</span>
         </CustomButton>
       </div>
       <div class="hidden xl:flex col-span-6 content-center  items-center cursor-pointer"
-        @click="() => $router.push('/talentMap')">
+        @click=" handleClick">
         <img src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif" />
       </div>
     </div>
@@ -36,5 +36,17 @@
 </template>
 
 <script setup>
+import router from '@/router'
 import CustomButton from '../CustomButton.vue'
+
+const handleClick = () => {
+  router.push('/talentMap')
+  if (localStorage.getItem('cookiesAccepted') && window.gtag) {
+    window.gtag('event', 'map_access', {
+      event_category: 'map',
+      event_label: 'Map Access',
+      value: 1,
+    })
+  }
+}
 </script>
