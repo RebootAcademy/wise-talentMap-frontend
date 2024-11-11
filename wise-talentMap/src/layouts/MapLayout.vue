@@ -12,7 +12,8 @@
             WISE CANARIAS
           </CustomButton>
         </a>
-        <a href="https://www.wisecanarias.com" target="_blank">
+        <a href="https://www.spatial.io/s/MAPA-DE-TALENTOS-WISE-CANARIAS-6728b32e13a2ce7da7b3a85a?share=1006082582040945292"
+          target="_blank">
           <CustomButton isHovered class="h-11 text-2xl text-white bg-fourColors">
             ENTORNO VIRTUAL
           </CustomButton>

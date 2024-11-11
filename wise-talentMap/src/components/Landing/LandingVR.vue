@@ -31,11 +31,14 @@
           realidad
           virtual, esta plataforma facilita el networking, la mentoría y la colaboración en proyectos innovadores.
         </p>
-        <CustomButton isHovered class="
-          font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center w-fit
-          md:text-2xl" :clickFn="() => $router.push('/talentMap')">
-          <span class="text-center w-full">IR A LA HERRAMIENTA</span>
-        </CustomButton>
+        <a target="_blank"
+          href="https://www.spatial.io/s/MAPA-DE-TALENTOS-WISE-CANARIAS-6728b32e13a2ce7da7b3a85a?share=1006082582040945292">
+          <CustomButton isHovered class="
+            font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center w-fit
+            md:text-2xl">
+            <span class="text-center w-full">IR A LA HERRAMIENTA</span>
+          </CustomButton>
+        </a>
       </div>
     </div>
   </div>
