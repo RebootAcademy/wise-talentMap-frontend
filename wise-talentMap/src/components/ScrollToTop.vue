@@ -2,7 +2,7 @@
   <div
     v-if="isVisible"
     @click="scrollToTop"
-    class="fixed flex items-center justify-center w-10 h-10 md:w-16 md:h-16 bg-fourColors rounded-full bottom-4 right-4 z-50 cursor-pointer"
+    class="fixed flex items-center justify-center w-10 h-10 md:w-16 md:h-16 bg-fourColors rounded-full bottom-5 md:bottom-20 right-5 z-50 cursor-pointer"
   >
     <Icon icon="arrowUp" extraStyles="20px" color="white" />
   </div>

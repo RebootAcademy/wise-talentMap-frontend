@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="flex flex-col px-12 md:px-24 mt-8 gap-4 text-lato md:text-lg mb-16"
+      class="flex flex-col font-lato px-12 md:px-32 mt-12 gap-4 text-lg mb-16"
     >
       <h1 class="text-center text-primary-violet text-xl md:text-3xl font-bold text-bebas">
         POLITICA DE PRIVACIDAD – MAPA DE TALENTO WISE CANARIAS
