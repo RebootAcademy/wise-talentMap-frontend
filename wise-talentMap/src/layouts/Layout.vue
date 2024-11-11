@@ -10,7 +10,7 @@ import Header from '../components/Header.vue'
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  if (window.gtag) {
+  if (localStorage.getItem('cookiesAccepted') && window.gtag) {
     window.gtag('event', 'user_connected', {
       event_category: 'user',
       event_label: 'User Connected',
