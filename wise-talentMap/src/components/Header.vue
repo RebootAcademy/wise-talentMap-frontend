@@ -8,11 +8,6 @@
           WISE CANARIAS
         </CustomButton>
       </a>
-      <a href="https://whckd25oxu8.typeform.com/to/NxoBBEzg#nombre=xxxxx" target="_blank">
-        <CustomButton isHovered class="h-11 text-2xl text-white bg-fourColors rounded-md">
-          INSCRÍBITE
-        </CustomButton>
-      </a>
     </div>
     <div class="lg:hidden">
       <CustomButton class="w-8 h-8 !p-0" :clickFn="toggleMenu">
