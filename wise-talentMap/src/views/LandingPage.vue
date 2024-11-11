@@ -7,6 +7,7 @@
     <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 " />
     <LandingGoals
       class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft" />
+    <LandingTypeform class="col-span-4 md:col-span-6 lg:col-span-12" />
     <BannerMentions class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12" />
     <Footer class="col-span-4 md:col-span-6 lg:col-span-12"/>
     <ScrollToTop />
@@ -26,6 +27,7 @@ import { useRouter } from 'vue-router'
 import Footer from '@/components/Footer.vue'
 import BannerMentions from '@/components/BannerMentions.vue'
 import ScrollToTop from '@/components/ScrollToTop.vue'
+import LandingTypeform from '@/components/Landing/LandingTypeform.vue'
 const userStore = useUserStore()
 const router = useRouter()
 
