@@ -21,23 +21,24 @@ const router = createRouter({
           name: 'landing-page',
           component: LandingPage,
         },
+        {
+          path: 'privacy',
+          name: 'privacy',
+          component: PrivacyView,
+        },
+        {
+          path: 'legal',
+          name: 'legal',
+          component: LegalView,
+        },
+        {
+          path: 'cookies',
+          name: 'cookies',
+          component: CookiesPolicy,
+        },
       ],
     },
-    {
-      path: '/privacy',
-      name: 'privacy',
-      component: PrivacyView,
-    },
-    {
-      path: '/legal',
-      name: 'legal',
-      component: LegalView,
-    },
-    {
-      path: '/cookies',
-      name: 'cookies',
-      component: CookiesPolicy,
-    },
+
     {
       path: '/talentmap',
       name: 'talent-map',
@@ -49,7 +50,12 @@ const router = createRouter({
         },
       ],
     },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: Layout, children: [{ path: '', name: 'not-found', component: NotFound }] },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: Layout,
+      children: [{path: '', name: 'not-found', component: NotFound}],
+    },
   ],
 })
 
