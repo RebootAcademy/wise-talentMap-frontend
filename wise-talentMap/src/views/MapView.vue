@@ -6,7 +6,7 @@
     </div>
     <div v-if="store.loader" class="absolute h-full w-full z-[1002]"
       :class="`${!store.loader && 'animate_animated animate_zoomOut'} `">
-      <LoaderCHATGPT />
+      <Loader />
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
 import Drawer from '@/components/Drawer/Drawer.vue'
 import { useUserStore } from '@/stores/user'
 import SteamMap from '@/components/Map/SteamMap.vue'
-import LoaderCHATGPT from '@/components/LoaderCHATGPT.vue'
+import Loader from '@/components/Loader.vue'
 
 const store = useUserStore()
 </script>
