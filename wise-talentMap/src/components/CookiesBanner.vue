@@ -7,8 +7,6 @@
       >
         <div class="relative flex flex-col gap-2 items-center">
           <img src="../assets/cookies.webp" class="w-20" alt="Cookies" />
-          <!--             <img src="/logocorto.ico" class="w-12 absolute left-48 top-0" alt="Cookies" />
- -->
           <p
             class="font-bold text-deepGray text-center font-bebas text-3xl md:text-size-sub-title-md mt-4"
           >
@@ -27,7 +25,7 @@
           </p>
           <button
             @click="acceptCookies"
-            class="h-11 text-2xl text-white font-bebas bg-fourColors rounded-md w-full hover:border-2 hover:border-primary-violet hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-primary-violet to-secondary-turquoise"
+            class="h-11 text-2xl text-white font-bebas bg-twoColorsBlue rounded-md w-full hover:border-2 hover:border-primary-violet hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-primary-violet to-secondary-turquoise"
           >
             Aceptar
           </button>

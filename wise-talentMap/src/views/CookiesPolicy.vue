@@ -15,7 +15,7 @@
               se requiere de la instalación de cookies.
             </p>
             <p>
-              Responsable: Asociación Canaria de mujeres científicas y tecnológicas
+              Responsable: ASOCIACIÓN WOMEN IN STEAM EMPOWERMENT CANARIAS (WISE-CANARIAS)
             </p>
             <p>
               Finalidad: Gestión de datos de navegación y análisis de las visitas de

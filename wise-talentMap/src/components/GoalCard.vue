@@ -1,6 +1,6 @@
 <template>
     <div class="
-        flex flex-col gap-2 border-blueGradient rounded-md 
+        flex flex-col gap-2 border-2 border-primary-violet rounded-md 
         md:px-10 md:py-12">
         <h4 class="
             font-bebas text-xl

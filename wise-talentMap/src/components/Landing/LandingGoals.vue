@@ -1,24 +1,28 @@
 <template>
-  <div
-    class="grid grid-cols-6 gap-8 py-6 px-4 bg-[#C7E1FF] smd:grid-cols-4 md:grid-cols-8 lg:grid-cols-12 lg:pt-20"
-  >
-    <h2
-      class="col-span-6 font-bebas text-3xl text-center text-anthraciteGray smd:col-span-4 md:col-span-8 md:text-6xl lg:col-span-12 pb-4"
-    >
-      Objectivos específicos
-    </h2>
-    <GoalCard
-      v-for="goal in goals"
-      :key="goal.title"
-      :title="goal.title"
-      :description="goal.description"
-      class="p-4 col-span-6 smd:col-span-2 md:col-span-4 lg:col-span-6 xl:col-span-4"
-    />
+    <div>
+        <div
+          class="grid grid-cols-6 gap-4 md:gap-8 px-8 bg-[#C7E1FF] smd:grid-cols-4 md:grid-cols-8 lg:grid-cols-12  "
+        >
+          <h2
+            class="col-span-6 font-bebas text-3xl text-center text-anthraciteGray smd:col-span-4 md:col-span-8 md:text-6xl lg:col-span-12 py-6 lg:pt-20"
+          >
+            Objectivos específicos
+          </h2>
+          <GoalCard
+            v-for="goal in goals"
+            :key="goal.title"
+            :title="goal.title"
+            :description="goal.description"
+            class="p-4 col-span-6 smd:col-span-2 md:col-span-4 lg:col-span-6 xl:col-span-4"
+          />
+        </div>
+        <LandingTypeform />
   </div>
 </template>
 
 <script setup>
 import GoalCard from '../GoalCard.vue'
+import LandingTypeform from './LandingTypeform.vue'
 
 const goals = [
   {

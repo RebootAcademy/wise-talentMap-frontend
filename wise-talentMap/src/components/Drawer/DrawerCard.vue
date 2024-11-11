@@ -31,7 +31,7 @@
         <SteamIcons :steams="person.steam" />
         <div class="flex gap-2">
           <Icon icon="job" />
-          <p class="card-title text-xs md:text-sm">{{ person.jobPosition }}</p>
+          <p class="card-title text-xs md:text-sm">{{ person.jobPosition ? person.jobPosition : 'No especificado' }}</p>
         </div>
       </div>
     </div>
