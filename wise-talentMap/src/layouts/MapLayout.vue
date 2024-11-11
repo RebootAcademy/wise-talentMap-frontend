@@ -55,7 +55,7 @@ const onFocus = () => (searchFocus.value = true)
 const onBlur = () => (searchFocus.value = false)
 
 const redirectToVR = () => {
-  window.open('https://www.spatial.io/s/MAPA-DE-TALENTOS-WISE-CANARIAS-6728b32e13a2ce7da7b3a85a?share=1006082582040945292')
+  window.location.href = 'https://www.spatial.io/s/MAPA-DE-TALENTOS-WISE-CANARIAS-6728b32e13a2ce7da7b3a85a?share=1006082582040945292'
   if (localStorage.getItem('cookiesAccepted') && window.gtag) {
     window.gtag('event', 'access_vr', {
       event_category: 'vr',
