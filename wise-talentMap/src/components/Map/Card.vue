@@ -28,7 +28,7 @@
           </div>
           <div class="flex gap-2">
             <Icon icon="job" />
-            <p>{{ person.jobPosition }}</p>
+            <p>{{  person.jobPosition ? person.jobPosition : 'No especificado' }}</p>
           </div>
           <div v-if="person.linkedin" class="flex gap-2">
             <Icon icon="linkedin" />
