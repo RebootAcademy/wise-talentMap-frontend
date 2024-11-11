@@ -7,7 +7,6 @@
     <LandingVR class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 " />
     <LandingGoals
       class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12 animate__animated animate__slideInLeft" />
-    <LandingTypeform class="col-span-4 md:col-span-6 lg:col-span-12" />
     <BannerMentions class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-12" />
     <Footer class="col-span-4 md:col-span-6 lg:col-span-12"/>
     <ScrollToTop />
