@@ -12,11 +12,9 @@
             WISE CANARIAS
           </CustomButton>
         </a>
-        <a href="https://www.wisecanarias.com" target="_blank">
-          <CustomButton isHovered class="h-11 text-2xl text-white bg-fourColors">
-            ENTORNO VIRTUAL
-          </CustomButton>
-        </a>
+        <CustomButton isHovered class="h-11 text-2xl text-white bg-fourColors" :clickFn="redirectToVR">
+          ENTORNO VIRTUAL
+        </CustomButton>
       </div>
       <div class="lg:hidden">
         <CustomButton class="w-8 h-8 !p-0" :clickFn="toggleMenu">
@@ -55,6 +53,17 @@ const toggleMenu = (e) => {
 }
 const onFocus = () => (searchFocus.value = true)
 const onBlur = () => (searchFocus.value = false)
+
+const redirectToVR = () => {
+  window.open('https://www.spatial.io/s/MAPA-DE-TALENTOS-WISE-CANARIAS-6728b32e13a2ce7da7b3a85a?share=1006082582040945292')
+  if (localStorage.getItem('cookiesAccepted') && window.gtag) {
+    window.gtag('event', 'access_vr', {
+      event_category: 'vr',
+      event_label: 'Vr Access',
+      value: 1
+    })
+  }
+}
 
 const items = ref([
   {

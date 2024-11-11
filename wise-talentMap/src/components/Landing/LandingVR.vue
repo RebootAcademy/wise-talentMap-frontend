@@ -13,9 +13,8 @@
         lg:text-6xl lg:col-span-12">
         Entorno Virtual
       </h1>
-
-      <img src="./../../assets/vrCorto.gif" class="
-        w-full
+      <img @click="redirectToVR" src="./../../assets/vrCorto.gif" class="
+        w-full cursor-pointer
         lg:col-span-7
         xl:col-span-6">
       <div class="
@@ -32,8 +31,8 @@
           virtual, esta plataforma facilita el networking, la mentoría y la colaboración en proyectos innovadores.
         </p>
         <CustomButton isHovered class="
-          font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center w-fit
-          md:text-2xl" :clickFn="() => $router.push('/talentMap')">
+            font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center w-fit
+            md:text-2xl" :clickFn="redirectToVR">
           <span class="text-center w-full">IR A LA HERRAMIENTA</span>
         </CustomButton>
       </div>
