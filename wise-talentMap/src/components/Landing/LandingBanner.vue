@@ -1,9 +1,9 @@
 <template>
   <div class="
-            bg-cover bg-right grid grid-cols-6
-            smd:grid-cols-4
-            md:grid-cols-8
-            lg:grid-cols-12" style="background-image: url('/homePageBanner2.webp')">
+            bg-cover bg-right grid grid-cols-6 h-[350px]
+            smd:grid-cols-4 
+            md:grid-cols-8 md:h-[400px]
+            lg:grid-cols-12 lg:h-[600px]" style="background-image: url('/homePageBanner2.webp')">
     <div class="
                 col-span-6 flex justify-center items-center bg-threeColorsBanner 
                 smd:col-span-4
@@ -19,12 +19,6 @@
                         lg:text-5xl">
           ¿Que es el mapa de talento wise c?
         </h1>
-        <p class="
-                        text-center text-secondary-white
-                        lg:text-xl
-                        xl:text-2xl" :class="{ 'expanded': isExpanded }" @click="toggleExpand">
-          {{ isExpanded ? fullText : truncatedText }}
-        </p> -->
         <div class="hidden lg:flex flex-col text-center text-secondary-white lg:text-xl xl:text-2xl">
           <p>
             Es una plataforma interactiva diseñada para visibilizar y conectar
