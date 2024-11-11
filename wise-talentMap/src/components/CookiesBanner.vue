@@ -7,8 +7,8 @@
       >
         <div class="relative flex flex-col gap-2 items-center">
           <img src="../assets/cookies.webp" class="w-20" alt="Cookies" />
-          <!--             <img src="/logocorto.ico" class="w-12 absolute left-48 top-0" alt="Cookies" />
- -->
+          <img src="/logocorto.ico" class="w-12 absolute left-48 top-0" alt="Cookies" />
+
           <p
             class="font-bold text-deepGray text-center font-bebas text-3xl md:text-size-sub-title-md mt-4"
           >
