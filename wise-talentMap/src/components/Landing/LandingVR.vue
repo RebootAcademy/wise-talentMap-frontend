@@ -13,11 +13,15 @@
         lg:text-6xl lg:col-span-12">
         Entorno Virtual
       </h1>
-      <img  @click="() => $router.push('/talentMap')" src="./../../assets/vrCorto.gif" class="
+
+      <img src="./../../assets/vrCorto.gif" class="
+        w-full
         lg:col-span-7
-        lg:hidden">
-      <img src="./../../assets/vrCorto.gif" class="hidden lg:block lg:col-span-6 w-full">
-      <div class="lg:col-span-6 lg:flex lg:flex-col lg:gap-8">
+        xl:col-span-6">
+      <div class="
+        flex flex-col gap-4
+        lg:col-span-5 lg:flex lg:flex-col lg:gap-0
+        xl:col-span-6 xl:gap-6">
         <p class="
           text-left text-anthraciteGray
           md:text-xl
@@ -26,13 +30,9 @@
           conectar con otras expertas. Con un diseño inmersivo y accesible desde ordenadores, móviles o gafas de
           realidad
           virtual, esta plataforma facilita el networking, la mentoría y la colaboración en proyectos innovadores.
-          Además,
-          permite la participación en conferencias y talleres, ampliando redes y fortaleciendo la comunidad STEAM en
-          Canarias, donde cada interacción tiene el potencial de abrir nuevas oportunidades y empoderar a las mujeres en
-          su desarrollo profesional.
         </p>
         <CustomButton isHovered class="
-          font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center
+          font-bebas border h-12 py-3 mt-4 border-deepGray rounded-md self-center w-fit
           md:text-2xl" :clickFn="() => $router.push('/talentMap')">
           <span class="text-center w-full">IR A LA HERRAMIENTA</span>
         </CustomButton>
