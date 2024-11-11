@@ -37,6 +37,11 @@ const handleShowCard = (user) => {
 
 const filteredPeople = computed(() => {
   let filtered = store.selectedUsers
+  if (store.steamFilter.length) {
+    filtered = filtered.filter((person) => {
+      return person.steam.find((area) => store.steamFilter.includes(area.name))
+    })
+  }
   if (store.searchInput) {
     filtered = store.selectedUsers.filter((person) => {
       return (

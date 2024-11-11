@@ -60,7 +60,7 @@ onMounted(() => {
 function loadGoogleAnalytics() {
   if (!window.gtag) {
     const script = document.createElement('script')
-    script.src = `https://www.googletagmanager.com/gtag/js?id=TU_ID_DE_ANALYTICS`
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_ID_G_ANALYTICS}`
     script.async = true
     document.head.appendChild(script)
 
@@ -72,7 +72,7 @@ function loadGoogleAnalytics() {
       }
       window.gtag = gtag
       gtag('js', new Date())
-      gtag('config', 'TU_ID_DE_ANALYTICS', {anonymize_ip: true})
+      gtag('config', import.meta.env.VITE_ID_G_ANALYTICS, {anonymize_ip: true})
     }
 
     script.onerror = (error) => {

@@ -184,7 +184,7 @@ onMounted(async () => {
   zoomControl.addTo(map.value)
   //
   const mtLayer = new L.MaptilerLayer({
-    apiKey: 'i5OzUSOgKbWzD2DSP43I',
+    apiKey: import.meta.env.VITE_MAP_KEY,
     style:
       'https://api.maptiler.com/maps/f5b7cf32-2b60-40ea-b08b-6e6c919e904a/style.json',
     noWrap: true,
