@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-6 gap-8 py-6 px-4 bg-[#C7E1FF] smd:grid-cols-4 md:grid-cols-8 lg:grid-cols-12 lg:pt-20"
+    class="grid grid-cols-6 gap-8 px-4 bg-[#C7E1FF] smd:grid-cols-4 md:grid-cols-8 lg:grid-cols-12 pb-6 pt-6 lg:pt-20"
   >
     <h2
       class="col-span-6 font-bebas text-3xl text-center text-anthraciteGray smd:col-span-4 md:col-span-8 md:text-6xl lg:col-span-12 pb-4"
