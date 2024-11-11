@@ -9,14 +9,14 @@
         Mapa interactivo
       </h1>
       <div
-        class="flex items-center cursor-pointer lg:col-span-7 xl:hidden"
+        class="flex items-center cursor-pointer md:col-span-4 lg:col-span-6 xl:hidden"
         @click="() => $router.push('/talentMap')"
       >
         <img
           src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730823755/mapPreview_riwwxn.gif"
         />
       </div>
-      <div class="lg:col-span-5 lg:flex lg:flex-col lg:gap-8">
+      <div class="col-span-4 lg:col-span-6 lg:flex lg:flex-col lg:gap-8">
         <p class="text-left text-anthraciteGray md:text-xl xl:text-2xl">
           ¡Descubre el talento femenino en Canarias! Con nuestro mapa
           interactivo, podrás explorar perfiles destacados de mujeres en las
@@ -34,7 +34,7 @@
         </CustomButton>
       </div>
       <div
-        class="hidden col-span-6 content-center xl:flex items-center cursor-pointer"
+        class="hidden xl:flex col-span-6 content-center  items-center cursor-pointer"
         @click="() => $router.push('/talentMap')"
       >
         <img

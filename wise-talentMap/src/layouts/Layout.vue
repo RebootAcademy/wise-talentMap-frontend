@@ -1,15 +1,13 @@
 <template>
-  <div
-    class="flex flex-col w-full min-h-screen bg-secondary-white text-anthraciteGray overflow-x-hidden"
-  >
+  <div class="flex flex-col w-full h-screen min-h-screen bg-secondary-white text-anthraciteGray overflow-x-hidden">
     <Header />
-    <RouterView />    
+    <RouterView />
   </div>
 </template>
 
 <script setup>
 import Header from '../components/Header.vue'
-import {onMounted} from 'vue'
+import { onMounted } from 'vue'
 
 onMounted(() => {
   if (window.gtag) {

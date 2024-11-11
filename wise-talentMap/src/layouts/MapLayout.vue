@@ -2,28 +2,18 @@
   <div class="h-screen w-full fixed">
     <!-- Main header -->
     <div
-      class="bg-white border-b h-16 lg:h-24 flex items-center justify-between font-bebas text-3xl text-black py-2.5 px-8"
-    >
-      <img
-        class="w-20 lg:w-28 cursor-pointer"
+      class="bg-white border-b h-16 lg:h-24 flex items-center justify-between font-bebas text-3xl text-black py-2.5 px-8">
+      <img class="w-20 lg:w-28 cursor-pointer"
         src="https://res.cloudinary.com/dcfgavulz/image/upload/v1730735936/logoTalentMap_vsxcz2.png"
-        @click="() => router.push('/')"
-      />
+        @click="() => router.push('/')" />
       <div class="hidden lg:flex gap-2">
         <a href="https://www.wisecanarias.com" target="_blank">
-          <CustomButton
-          isHovered
-            class="h-11 text-2xl border border-black"
-          >
+          <CustomButton isHovered class="h-11 text-2xl border border-black">
             WISE CANARIAS
           </CustomButton>
         </a>
         <a href="https://www.wisecanarias.com" target="_blank">
-          <CustomButton
-          isHovered
-            class="h-11 text-2xl text-white bg-fourColors"
-  
-          >
+          <CustomButton isHovered class="h-11 text-2xl text-white bg-fourColors">
             ENTORNO VIRTUAL
           </CustomButton>
         </a>
@@ -36,11 +26,8 @@
       </div>
     </div>
     <!-- Filters bar -->
-    <div
-      :class="`hidden sm:flex bg-white h-20 text-black  ${
-        searchFocus ? 'gap-7' : 'justify-between '
-      } items-center py-2.5 px-8`"
-    >
+    <div :class="`hidden sm:flex bg-white h-20 text-black  ${searchFocus ? 'gap-7' : 'justify-between '
+      } items-center py-2.5 px-8`">
       <div class="w-full flex gap-7 items-center justify-center">
         <SteamFilterButtons />
       </div>
@@ -50,7 +37,7 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 import CustomButton from '@/components/CustomButton.vue'
 import SteamFilterButtons from '@/components/SteamFilterButtons.vue'
 import router from '@/router'
