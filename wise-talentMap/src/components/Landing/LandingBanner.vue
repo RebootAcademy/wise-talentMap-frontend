@@ -3,7 +3,7 @@
             bg-cover bg-right grid grid-cols-6 h-[350px]
             smd:grid-cols-4 
             md:grid-cols-8 md:h-[400px]
-            lg:grid-cols-12 lg:h-[600px]" style="background-image: url('/homePageBanner3.webp')">
+            lg:grid-cols-12 lg:h-[600px]" preload style="background-image: url('/homePageBanner3.webp')">
     <div class="
                 col-span-6 flex justify-center items-center bg-threeColorsBanner 
                 smd:col-span-4
