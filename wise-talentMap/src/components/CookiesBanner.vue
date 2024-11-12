@@ -83,7 +83,6 @@ function loadGoogleAnalytics() {
 
 // Función para aceptar cookies
 function acceptCookies() {
-  console.log('true')
   localStorage.setItem('cookiesAccepted', JSON.stringify(true))
   cookiesAccepted.value = true
   loadGoogleAnalytics()
@@ -91,7 +90,6 @@ function acceptCookies() {
 
 // Función para rechazar cookies
 function declineCookies() {
-  console.log('false')
 
   localStorage.setItem('cookiesAccepted', JSON.stringify(false))
   cookiesAccepted.value = false

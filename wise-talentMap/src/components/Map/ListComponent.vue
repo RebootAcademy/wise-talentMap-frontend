@@ -23,7 +23,6 @@ const props = defineProps({
   },
 });
 
-console.log(props.markers[0])
 // Definimos los eventos
 const emit = defineEmits(['close']);
 

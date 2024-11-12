@@ -68,7 +68,6 @@ export const useUserStore = defineStore('user', {
     },
     handleOpenDrawer(state) {
       this.openDrawer = state
-      console.log(this.openDrawer, 'openDrawer')
     },
 
     setSelectedUsers(users) {
