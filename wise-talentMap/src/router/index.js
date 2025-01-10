@@ -7,6 +7,7 @@ import PrivacyView from '@/views/PrivacyView.vue'
 import LegalView from '@/views/LegalView.vue'
 import CookiesPolicy from '@/views/CookiesPolicy.vue'
 import NotFound from '@/views/NotFound.vue'
+import Login from '@/views/Admin/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,11 +52,17 @@ const router = createRouter({
       ],
     },
     {
+      path: '/login',
+      name: 'login',
+      component: Layout,
+      children: [{path: '', name: 'login', component: Login}],
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: Layout,
       children: [{path: '', name: 'not-found', component: NotFound}],
-    },
+    }
   ],
 })
 

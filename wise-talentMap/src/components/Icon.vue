@@ -57,7 +57,10 @@ const allowedIcons = {
   location: 'pi-map-marker',
   job: 'pi-briefcase',
   back: 'pi-chevron-left',
-  arrowUp: 'pi-arrow-up'
+  arrowUp: 'pi-arrow-up',
+  eye: 'pi-eye',
+  lock: 'pi-eye-slash',
+  info: 'pi-info-circle'
 }
 
 const iconComponent = computed(() => {

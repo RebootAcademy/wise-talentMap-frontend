@@ -1,12 +1,14 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { getUsers } from '@/services/user.services'
+import { login } from '@/services/auth.services'
 
 export const useUserStore = defineStore('user', {
   // Estado
   state: () => ({
     users: [], // Almacena la lista de usuarios
     selectedUsers: [],
+    adminUser: {},
     cardPerson: null,
     searchInput: '',
     loader: true,
@@ -58,14 +60,35 @@ export const useUserStore = defineStore('user', {
     async fetchUsers() {
       try {
         // Llama a la API para obtener usuarios
-        this.users = await getUsers()
+        let users = await getUsers() 
+        this.users = users?.filter((user) => user.role !== 'admin')
         if (!this.selectedUsers.length) {
+          
           this.selectedUsers = this.users
         }
       } catch (error) {
         console.error('Error al obtener usuarios:', error)
       }
     },
+
+    async login(email, password) {
+      try {
+        console.log('email', email)
+        const user = await login(email, password)
+        console.log('user', user)
+        localStorage.setItem('token', user.result.token)
+        this.adminUser = user.result.user
+        if (user.success) {
+          return true
+        } else {
+          return false
+        }
+      } catch (error) {
+        console.log(error.message)
+        throw new Error(error)
+      }
+    },
+
     handleOpenDrawer(state) {
       this.openDrawer = state
     },

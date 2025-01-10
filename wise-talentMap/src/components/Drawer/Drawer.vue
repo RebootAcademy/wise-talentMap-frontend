@@ -2,7 +2,7 @@
   <div class="custom-scrollbar relative bg-secondary-white border-t overflow-auto mb-5">
     <div class="absolute  w-full px-4 lg:px-8">
       <div class="flex justify-center items-center gap-4 mt-4">
-        <CustomInput :isDisabled="filteredPeople.length === 1 && !store.searchInput" class=" w-full"
+        <CustomInput icon="search" isSearch :isDisabled="filteredPeople.length === 1 && !store.searchInput" class=" w-full"
           :class="showCard && ' blur-sm'" placeholder="Buscar por nombre y/o apellidos" />
         <DrawerButton
           class=" md:hidden px-1.5 py-2 w-10 h-10 border-2 border-primary-violet bg-secondary-white rounded-md cursor-pointer" />

@@ -20,18 +20,3 @@ import CustomButton from '../CustomButton.vue'
 
 </script>
 
-<!-- 
-<div class="flex flex-col md:flex-row justify-center items-end border-blueGradient w-[70%] py-8">
-            <p class="w-full md:w-1/2 text-3xl font-lato">Si eres mujer que trabaja o investiga en Canarias, o eres canaria que desarrolla su labor en el extranjero, y te dedicas a áreas STEAM (Ciencia, Tecnología, Ingeniería, Artes y Matemáticas)  </p>
-             <a
-            href="https://whckd25oxu8.typeform.com/to/NxoBBEzg#nombre=xxxxx"
-            target="_blank"
-          >
-            <CustomButton
-              isHovered
-              class="h-11 text-2xl text-white bg-fourColors rounded-md"
-            >
-            INSCRÍBITE
-            </CustomButton>
-          </a>
-        </div> -->
